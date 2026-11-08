@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://lt2wgrndg13g" path="res://scripts/entities/landscape.gd" id="4_iywne"]
 [ext_resource type="Shader" uid="uid://bbe0ja2p84h6q" path="res://shaders/space_sky.gdshader" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://cgtl4cs7kygag" path="res://scripts/fit_camera.gd" id="8_fitcam"]
+[ext_resource type="Script" path="res://scripts/planet_terrain.gd" id="9_terrain"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gee14"]
 resource_name = "planet_Cube_001"
@@ -149,16 +150,19 @@ script = ExtResource("1_uwrxv")
 transform = Transform3D(1.835, 0, 0, 0, 1.835, 0, 0, 0, 1.835, 0, 0, 0)
 
 [node name="planet" parent="planet2" index="0" unique_id=1760047288]
-instance_shader_parameters/mountain_sharpness = 1.965
-instance_shader_parameters/normal_strength = 5.9910002845725
-instance_shader_parameters/sea_level = 0.5330000253175
-instance_shader_parameters/seabed_relief = 0.20800000988
-instance_shader_parameters/terrain_enabled = false
-instance_shader_parameters/terrain_height = 0.48
-instance_shader_parameters/terrain_octaves = 1
-instance_shader_parameters/terrain_scale = 3.295
-instance_shader_parameters/terrain_seed = 32
 mesh = SubResource("ArrayMesh_gee14")
+script = ExtResource("9_terrain")
+terrain_enabled = false
+terrain_seed = 32
+terrain_height = 0.48
+terrain_scale = 3.295
+sea_level = 0.533
+mountain_sharpness = 1.965
+terrain_octaves = 1
+seabed_relief = 0.208
+normal_strength = 5.991
+normal_epsilon = 0.0455
+normal_octaves = 3
 
 [node name="Camera" type="Camera3D" parent="." unique_id=780614332]
 transform = Transform3D(1, 0, 0, 0, 0.88734907, 0.46109828, 0, -0.46109828, 0.88734907, 0, 5.2450976, 10.031903)

@@ -1,28 +1,31 @@
 // Shared procedural terrain for planet shaders (color pass + outline pass).
-// Terrain settings are *instance* uniforms: they live on the MeshInstance3D
-// (Inspector > Geometry > Instance Shader Parameters), so every pass on that
-// node (color + outline next_pass) reads the same values and stays in sync.
+// Terrain settings are regular uniforms. Don't edit them on the materials:
+// the PlanetTerrain script (scripts/planet_terrain.gd) on the planet node
+// owns them and pushes the same values into the color pass and the outline
+// next_pass, so both stay in sync.
+// (Not instance uniforms: those read back as garbage on some mobile WebGL GPUs,
+// which made the planet invisible.)
 
 // ---- Terrain (vertex displacement along the sphere radius) ----
-instance uniform bool terrain_enabled = true;
-instance uniform float terrain_height = 0.77;
-instance uniform float terrain_scale = 1.8;
-instance uniform float sea_level : hint_range(0.0, 1.0) = 0.45;
-instance uniform float mountain_sharpness = 1.5;
+uniform bool terrain_enabled = true;
+uniform float terrain_height = 0.77;
+uniform float terrain_scale = 1.8;
+uniform float sea_level : hint_range(0.0, 1.0) = 0.45;
+uniform float mountain_sharpness = 1.5;
 // Any integer gives a completely different landscape.
-instance uniform int terrain_seed = 0;
-instance uniform int terrain_octaves : hint_range(1, 8) = 5;
+uniform int terrain_seed = 0;
+uniform int terrain_octaves : hint_range(1, 8) = 5;
 // Gentle relief below sea level (fraction of terrain_height), so no area is flat.
-instance uniform float seabed_relief : hint_range(0.0, 1.0) = 0.15;
+uniform float seabed_relief : hint_range(0.0, 1.0) = 0.15;
 
 // ---- Terrain normals ----
 // Exaggerates how far mountain normals tilt away from the sphere surface.
-instance uniform float normal_strength : hint_range(0.0, 8.0) = 5.2;
+uniform float normal_strength : hint_range(0.0, 8.0) = 5.2;
 // Finite-difference step for the normal (smaller = picks up finer detail).
-instance uniform float normal_epsilon : hint_range(0.0005, 0.1) = 0.0455;
+uniform float normal_epsilon : hint_range(0.0005, 0.1) = 0.0455;
 // Noise octaves used for normals. Fewer = only big landforms count;
 // geometry still uses terrain_octaves.
-instance uniform int normal_octaves : hint_range(1, 8) = 3;
+uniform int normal_octaves : hint_range(1, 8) = 3;
 
 // PCG3D integer hash: uniform output everywhere, seeded.
 uvec3 pcg3d(uvec3 v) {
@@ -58,7 +61,7 @@ float fbm(vec3 p, int octaves) {
 	float amp = 0.5;
 	float norm = 0.0;
 	for (int i = 0; i < 8; i++) {
-		if (i >= octaves) {
+		if (i >= max(octaves, 1)) {
 			break;
 		}
 		sum += amp * value_noise(p);
@@ -66,7 +69,7 @@ float fbm(vec3 p, int octaves) {
 		p *= 2.0;
 		amp *= 0.5;
 	}
-	return sum / norm;
+	return sum / max(norm, 1e-6);
 }
 
 // Height above the base radius for a direction on the sphere.
@@ -74,7 +77,7 @@ float terrain_at(vec3 dir, int octaves) {
 	float h = fbm(dir * terrain_scale, octaves);
 	float land = max(h - sea_level, 0.0) / max(1.0 - sea_level, 1e-4);
 	float seabed = min(h, sea_level) / max(sea_level, 1e-4);
-	return (pow(land, mountain_sharpness) + seabed * seabed_relief) * terrain_height;
+	return (pow(land, max(mountain_sharpness, 1e-3)) + seabed * seabed_relief) * terrain_height;
 }
 
 // Normal of the displaced surface at a sphere direction, from two nearby samples.
@@ -83,6 +86,7 @@ vec3 terrain_normal_ex(vec3 dir, float radius, int octaves, float eps, float str
 	vec3 up = abs(dir.y) < 0.99 ? vec3(0.0, 1.0, 0.0) : vec3(1.0, 0.0, 0.0);
 	vec3 t1 = normalize(cross(dir, up));
 	vec3 t2 = cross(dir, t1);
+	eps = max(eps, 1e-4);
 	vec3 d1 = normalize(dir + t1 * eps);
 	vec3 d2 = normalize(dir + t2 * eps);
 
@@ -90,7 +94,8 @@ vec3 terrain_normal_ex(vec3 dir, float radius, int octaves, float eps, float str
 	vec3 p1 = d1 * (radius + terrain_at(d1, octaves));
 	vec3 p2 = d2 * (radius + terrain_at(d2, octaves));
 
-	vec3 n = normalize(cross(p1 - p0, p2 - p0));
+	vec3 c = cross(p1 - p0, p2 - p0);
+	vec3 n = dot(c, c) > 1e-20 ? normalize(c) : dir;
 	if (dot(n, dir) < 0.0) {
 		n = -n;
 	}
