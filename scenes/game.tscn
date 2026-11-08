@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://cjl8twqqt6mum" path="res://materials/material_new.tres" id="3_u5sy4"]
 [ext_resource type="Script" uid="uid://lt2wgrndg13g" path="res://scripts/entities/landscape.gd" id="4_iywne"]
 [ext_resource type="Shader" uid="uid://bbe0ja2p84h6q" path="res://shaders/space_sky.gdshader" id="7_u5sy4"]
+[ext_resource type="Script" uid="uid://cgtl4cs7kygag" path="res://scripts/fit_camera.gd" id="8_fitcam"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gee14"]
 resource_name = "planet_Cube_001"
@@ -161,6 +162,7 @@ mesh = SubResource("ArrayMesh_gee14")
 
 [node name="Camera" type="Camera3D" parent="." unique_id=780614332]
 transform = Transform3D(1, 0, 0, 0, 0.88734907, 0.46109828, 0, -0.46109828, 0.88734907, 0, 5.2450976, 10.031903)
+script = ExtResource("8_fitcam")
 
 [node name="PlanetCore" type="Node" parent="." unique_id=266317937 node_paths=PackedStringArray("fossils", "landscape") groups=["entity"]]
 script = ExtResource("2_yqjtg")
@@ -168,10 +170,17 @@ fossils = NodePath("../Fossils")
 landscape = NodePath("../Landscape")
 
 [node name="Button" type="Button" parent="PlanetCore" unique_id=511205241]
-offset_left = 380.0
-offset_top = 296.0
-offset_right = 474.0
-offset_bottom = 335.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -28.0
+offset_right = -102.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "PlanetCore"
 
 [node name="Core" type="MeshInstance3D" parent="PlanetCore" unique_id=574797616]
@@ -184,20 +193,34 @@ libraries/ = SubResource("AnimationLibrary_gee14")
 script = ExtResource("3_lbhrr")
 
 [node name="Button" type="Button" parent="Fossils" unique_id=704916949]
-offset_left = 529.0
-offset_top = 242.0
-offset_right = 619.0
-offset_bottom = 285.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -82.0
+offset_right = 43.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Fossils"
 
 [node name="Landscape" type="Node" parent="." unique_id=58858047 groups=["entity"]]
 script = ExtResource("4_iywne")
 
 [node name="Button" type="Button" parent="Landscape" unique_id=1891994611]
-offset_left = 678.0
-offset_top = 307.0
-offset_right = 777.0
-offset_bottom = 338.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 102.0
+offset_top = -17.0
+offset_right = 201.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Landscape
 "
 
