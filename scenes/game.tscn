@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://lt2wgrndg13g" path="res://scripts/entities/landscape.gd" id="4_iywne"]
 [ext_resource type="Shader" uid="uid://bbe0ja2p84h6q" path="res://shaders/space_sky.gdshader" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://cgtl4cs7kygag" path="res://scripts/fit_camera.gd" id="8_fitcam"]
-[ext_resource type="Script" path="res://scripts/planet_terrain.gd" id="9_terrain"]
+[ext_resource type="Script" uid="uid://ctghcmdu2n0pv" path="res://scripts/planet_terrain.gd" id="9_terrain"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gee14"]
 resource_name = "planet_Cube_001"
