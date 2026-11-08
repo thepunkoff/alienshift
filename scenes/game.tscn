@@ -1,0 +1,143 @@
+[gd_scene format=3 uid="uid://020qm2exuxa2"]
+
+[ext_resource type="Script" uid="uid://da7rw34q7e5yn" path="res://scripts/game.gd" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://cvk568fl7xmji" path="res://scripts/entities/planet_core.gd" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://c5de7r7eofyu5" path="res://scripts/entities/fossils.gd" id="3_lbhrr"]
+[ext_resource type="Script" uid="uid://lt2wgrndg13g" path="res://scripts/entities/landscape.gd" id="4_iywne"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_iywne"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbhrr"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_lbhrr"]
+material = SubResource("StandardMaterial3D_lbhrr")
+
+[sub_resource type="Animation" id="Animation_lbhrr"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_u5sy4"]
+resource_name = "take_out"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 3.2511806, 5.0171137, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gee14"]
+_data = {
+&"RESET": SubResource("Animation_lbhrr"),
+&"take_out": SubResource("Animation_u5sy4")
+}
+
+[sub_resource type="PrismMesh" id="PrismMesh_lbhrr"]
+
+[sub_resource type="Animation" id="Animation_iywne"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_p57ef"]
+resource_name = "appear"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 1, 0, 4.104, 0)
+
+[sub_resource type="Animation" id="Animation_gee14"]
+resource_name = "grow"
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 1, 1, 1, 6, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 4.104, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u5sy4"]
+_data = {
+&"RESET": SubResource("Animation_iywne"),
+&"appear": SubResource("Animation_p57ef"),
+&"grow": SubResource("Animation_gee14")
+}
+
+[node name="Game" type="Node" unique_id=1463540394]
+script = ExtResource("1_uwrxv")
+
+[node name="Planet" type="MeshInstance3D" parent="." unique_id=669586317]
+transform = Transform3D(7.59, 0, 0, 0, 7.59, 0, 0, 0, 7.59, 0, 0, 0)
+mesh = SubResource("SphereMesh_iywne")
+
+[node name="Camera" type="Camera3D" parent="." unique_id=780614332]
+transform = Transform3D(1, 0, 0, 0, 0.88734907, 0.46109828, 0, -0.46109828, 0.88734907, 0, 5.2450976, 10.031903)
+
+[node name="PlanetCore" type="Node" parent="." unique_id=266317937 node_paths=PackedStringArray("fossils", "landscape") groups=["entity"]]
+script = ExtResource("2_yqjtg")
+fossils = NodePath("../Fossils")
+landscape = NodePath("../Landscape")
+
+[node name="Button" type="Button" parent="PlanetCore" unique_id=511205241]
+offset_left = 380.0
+offset_top = 296.0
+offset_right = 474.0
+offset_bottom = 335.0
+text = "PlanetCore"
+
+[node name="Core" type="MeshInstance3D" parent="PlanetCore" unique_id=574797616]
+mesh = SubResource("SphereMesh_lbhrr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlanetCore/Core" unique_id=19252481]
+libraries/ = SubResource("AnimationLibrary_gee14")
+
+[node name="Fossils" type="Node" parent="." unique_id=180190775 groups=["entity"]]
+script = ExtResource("3_lbhrr")
+
+[node name="Button" type="Button" parent="Fossils" unique_id=704916949]
+offset_left = 529.0
+offset_top = 242.0
+offset_right = 619.0
+offset_bottom = 285.0
+text = "Fossils"
+
+[node name="Landscape" type="Node" parent="." unique_id=58858047 groups=["entity"]]
+script = ExtResource("4_iywne")
+
+[node name="Button" type="Button" parent="Landscape" unique_id=1891994611]
+offset_left = 678.0
+offset_top = 307.0
+offset_right = 777.0
+offset_bottom = 338.0
+text = "Landscape
+"
+
+[node name="Mountain" type="MeshInstance3D" parent="Landscape" unique_id=597539185]
+mesh = SubResource("PrismMesh_lbhrr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Landscape/Mountain" unique_id=575769432]
+libraries/ = SubResource("AnimationLibrary_u5sy4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1026976489]
+transform = Transform3D(1, 0, 0, 0, 0.20246257, 0.97929, 0, -0.97929, 0.20246257, 0, 5.9661746, 0)
