@@ -1,0 +1,53 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cjl8twqqt6mum"]
+
+[ext_resource type="Shader" uid="uid://ci5s3lsfx68k6" path="res://shaders/material_new.gdshader" id="1_mnew"]
+[ext_resource type="Shader" uid="uid://cofurw4awa1vd" path="res://shaders/material_new_outline.gdshader" id="2_outl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_outline"]
+render_priority = 0
+shader = ExtResource("2_outl")
+shader_parameter/outline_color = Color(0.07, 0.04, 0.09, 1)
+shader_parameter/outline_width = 0.004
+shader_parameter/constant_screen_width = true
+
+[resource]
+render_priority = 0
+next_pass = SubResource("ShaderMaterial_outline")
+shader = ExtResource("1_mnew")
+shader_parameter/mix_factor = 0.12400000589
+shader_parameter/emission_strength = 1.0
+shader_parameter/a_location = Vector3(0, 0, 0)
+shader_parameter/a_rotation_deg = Vector3(180, 0, 0)
+shader_parameter/a_scale = Vector3(0.8, -1.7, 1)
+shader_parameter/use_scene_light = true
+shader_parameter/light_ramp_scale = 0.71
+shader_parameter/light_ramp_offset = 0.0
+shader_parameter/use_light_color = false
+shader_parameter/receive_shadows = true
+shader_parameter/a_c0 = Color(0.325, 0.357, 0.388, 1)
+shader_parameter/a_c1 = Color(0.251, 0.11, 0.322, 1)
+shader_parameter/a_c2 = Color(0.549, 0.549, 0.549, 1)
+shader_parameter/a_c3 = Color(0.753, 0.631, 0.812, 1)
+shader_parameter/a_p1 = 0.06800000323
+shader_parameter/a_p2 = 0.0830000039425
+shader_parameter/a_p3 = 0.702000033345
+shader_parameter/bbox_min = Vector3(-0.5, -0.5, -0.5)
+shader_parameter/bbox_size = Vector3(1, 1, 1)
+shader_parameter/b_location = Vector3(0, 0, 0)
+shader_parameter/b_rotation_deg = Vector3(0, 0, 0)
+shader_parameter/b_scale = Vector3(0.5, 0.5, 0.5)
+shader_parameter/voronoi_scale = -2.0
+shader_parameter/voronoi_detail = 0.0
+shader_parameter/voronoi_roughness = 0.307
+shader_parameter/voronoi_lacunarity = 2.465
+shader_parameter/voronoi_exponent = 1.02
+shader_parameter/voronoi_randomness = 0.5990000284525
+shader_parameter/b_c0 = Color(0.325, 0.357, 0.388, 1)
+shader_parameter/b_c1 = Color(0.549, 0.549, 0.549, 1)
+shader_parameter/b_c2 = Color(0.251, 0.11, 0.322, 1)
+shader_parameter/b_c3 = Color(0.753, 0.631, 0.812, 1)
+shader_parameter/b_p1 = 0.08
+shader_parameter/b_p2 = 0.325
+shader_parameter/b_p3 = 0.6
+shader_parameter/generated_use_displaced = false
+shader_parameter/per_pixel_normals = true
