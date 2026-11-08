@@ -148,7 +148,7 @@ script = ExtResource("1_uwrxv")
 transform = Transform3D(1.835, 0, 0, 0, 1.835, 0, 0, 0, 1.835, 0, 0, 0)
 
 [node name="planet" parent="planet2" index="0" unique_id=1760047288]
-instance_shader_parameters/mountain_sharpness = 1.9649999999999999
+instance_shader_parameters/mountain_sharpness = 1.965
 instance_shader_parameters/normal_strength = 5.9910002845725
 instance_shader_parameters/sea_level = 0.5330000253175
 instance_shader_parameters/seabed_relief = 0.20800000988

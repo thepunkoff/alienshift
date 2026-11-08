@@ -1,0 +1,93 @@
+name: Deploy web build to itch.io
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: itch-web
+  cancel-in-progress: true
+
+env:
+  GODOT_VERSION: 4.6.3
+  # itch.io target "<user>/<game>" — set as a repository variable ITCH_TARGET.
+  ITCH_TARGET: ${{ vars.ITCH_TARGET }}
+  ITCH_CHANNEL: html5
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check configuration
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          if [ -z "$ITCH_TARGET" ]; then
+            echo "::error::Set repository variable ITCH_TARGET (e.g. yourname/alienshift)"; exit 1
+          fi
+          if [ -z "$BUTLER_API_KEY" ]; then
+            echo "::error::Set repository secret BUTLER_API_KEY (itch.io API key)"; exit 1
+          fi
+
+      - name: Cache Godot + web templates
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          path: ~/godot
+          key: godot-${{ env.GODOT_VERSION }}-web-nothreads
+
+      - name: Download Godot and web export templates
+        if: steps.cache-godot.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable"
+          mkdir -p ~/godot/templates
+          cd ~/godot
+          curl -sSLf -o godot.zip "$base/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          unzip -q godot.zip && rm godot.zip
+          mv "Godot_v${GODOT_VERSION}-stable_linux.x86_64" godot
+          # The template bundle is ~1.2 GB; keep only what the "Web" preset needs.
+          curl -sSLf -o templates.tpz "$base/Godot_v${GODOT_VERSION}-stable_export_templates.tpz"
+          unzip -q -j templates.tpz \
+            'templates/version.txt' \
+            'templates/web_nothreads_release.zip' \
+            'templates/web_nothreads_debug.zip' -d templates
+          rm templates.tpz
+
+      - name: Install Godot
+        run: |
+          sudo ln -sf ~/godot/godot /usr/local/bin/godot
+          dest=~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+          mkdir -p "$dest"
+          cp ~/godot/templates/* "$dest/"
+          godot --version
+
+      - name: Import project
+        # .godot/ is gitignored, so assets must be imported before export.
+        run: godot --headless --import || true
+
+      - name: Export web build
+        run: ./export_web.sh
+
+      - name: Install butler
+        run: |
+          curl -sSLf -o butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
+          unzip -q butler.zip -d ~/butler && rm butler.zip
+          chmod +x ~/butler/butler
+          ~/butler/butler -V
+
+      - name: Push to itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          ~/butler/butler push build/web "$ITCH_TARGET:$ITCH_CHANNEL" \
+            --userversion "${{ github.run_number }}-${GITHUB_SHA::7}"
+
+      - name: Keep zip as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: alienshift-web
+          path: build/alienshift-web.zip
