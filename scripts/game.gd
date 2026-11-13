@@ -18,7 +18,7 @@ func _ready() -> void:
 	_planet_core_button.pressed.connect(planet_core)
 	_fossils_button.pressed.connect(fossils)
 	_landscape_button.pressed.connect(landscape)
-	_end_game()
+	# _end_game()
 
 
 func planet_core():
