@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://cdwbec3xanud5"]
+
+[ext_resource type="Script" uid="uid://ckmeef86p3omg" path="res://scripts/ships/ship_summon.gd" id="1_1up5q"]
+[ext_resource type="PackedScene" uid="uid://c54m1dpwcfywe" path="res://models/ship_summon.glb" id="2_3njwo"]
+
+[sub_resource type="Animation" id="Animation_1up5q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ship_summon2/ship_summon:blend_shapes/radio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ship_summon2/ship_summon:blend_shapes/tentacle")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pwkru"]
+resource_name = "move_tentacle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ship_summon2/ship_summon:blend_shapes/tentacle")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3njwo"]
+resource_name = "summon_monster"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ship_summon2/ship_summon:blend_shapes/radio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.2, 0.36666667, 0.43333334, 0.5, 0.56666666, 0.6333333, 1.1666666, 1.2666667, 1.3666667, 1.6666666, 1.7666667, 1.8666667, 2.5333333, 2.6666667, 2.7333336, 2.9, 2.9666667, 3.0333333, 3.1, 3.1666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.19999999999999996, 0.19999999999999996, 1.0, 0.19999999999999996, 1.0, 0.19999999999999996, 0.19999999999999996, 1.0, 0.2, 0.2, 1.0, 0.2, 0.19999999999999996, 1.0, 0.19999999999999996, 0.19999999999999996, 1.0, 0.19999999999999996, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pwkru"]
+_data = {
+&"RESET": SubResource("Animation_1up5q"),
+&"move_tentacle": SubResource("Animation_pwkru"),
+&"summon_monster": SubResource("Animation_3njwo")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1up5q"]
+animation = &"summon_monster"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3njwo"]
+animation = &"move_tentacle"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_pwkru"]
+filter_enabled = true
+filters = ["ship_summon2/ship_summon:blend_shapes/radio"]
+mix_mode = 1
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3mar0"]
+graph_offset = Vector2(-756.0979, -60.97249)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_3njwo")
+nodes/Animation/position = Vector2(-460, 40)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_1up5q")
+"nodes/Animation 2/position" = Vector2(-460, 300)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_pwkru")
+nodes/OneShot/position = Vector2(0, 120)
+node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Animation", &"OneShot", 1, &"Animation 2"]
+
+[node name="ShipSummon" type="Node3D" unique_id=1644426378]
+script = ExtResource("1_1up5q")
+
+[node name="ship_summon2" parent="." unique_id=710268839 instance=ExtResource("2_3njwo")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=237891706]
+libraries/ = SubResource("AnimationLibrary_pwkru")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=663463899]
+tree_root = SubResource("AnimationNodeBlendTree_3mar0")
+anim_player = NodePath("../AnimationPlayer")
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+
+[editable path="ship_summon2"]

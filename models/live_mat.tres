@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bpasqevfa1hh"]
+
+[ext_resource type="Texture2D" uid="uid://bm3bopuyqbm71" path="res://models/ship_live_live_texture.png" id="1_iuywt"]
+
+[resource]
+resource_name = "live_mat"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_iuywt")
+roughness = 0.5

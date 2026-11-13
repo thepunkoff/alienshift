@@ -39,6 +39,19 @@ uniform float twinkle_speed = 1.5;
 uniform float twinkle_amount : hint_range(0.0, 1.0) = 0.3;
 uniform int star_seed = 1;
 
+// ---- Rotation ----
+// Spin of the nebula + stars. Negative speed reverses direction.
+uniform float rotation_speed = 1.0; // degrees per second
+// Axis the sky spins around (normalized in shader; Y = spin around the vertical).
+uniform vec3 rotation_axis = vec3(0.0, 1.0, 0.0);
+
+// Rodrigues rotation of v around unit axis k by angle a.
+vec3 rotate_axis(vec3 v, vec3 k, float a) {
+	float c = cos(a);
+	float s = sin(a);
+	return v * c + cross(k, v) * s + k * dot(k, v) * (1.0 - c);
+}
+
 // ---- Hashing / noise ----
 uvec3 pcg3d(uvec3 v) {
 	v = v * 1664525u + 1013904223u;
@@ -152,9 +165,13 @@ void sky() {
 	}
 	vec3 col = mix(space_bottom, space_top, clamp(g, 0.0, 1.0));
 
+	// Rotated direction for nebula + stars (gradient stays fixed to the horizon).
+	vec3 axis = length(rotation_axis) > 0.0001 ? normalize(rotation_axis) : vec3(0.0, 1.0, 0.0);
+	vec3 rdir = rotate_axis(dir, axis, -radians(rotation_speed) * TIME);
+
 	// Nebula: fbm posterized into 3 flat bands with hard edges.
 	if (nebula_enabled) {
-		float n = fbm(dir * nebula_scale, nebula_seed);
+		float n = fbm(rdir * nebula_scale, nebula_seed);
 		if (n > nebula_threshold) {
 			col = nebula_dark;
 		}
@@ -167,9 +184,9 @@ void sky() {
 	}
 
 	// Stars (dots first, sparkles on top).
-	vec4 dots = star_layer(dir, dot_density, dot_size, dot_amount, false, star_seed, TIME);
+	vec4 dots = star_layer(rdir, dot_density, dot_size, dot_amount, false, star_seed, TIME);
 	col = mix(col, dots.rgb, dots.a);
-	vec4 sparks = star_layer(dir, sparkle_density, sparkle_size, sparkle_amount, true, star_seed + 101, TIME);
+	vec4 sparks = star_layer(rdir, sparkle_density, sparkle_size, sparkle_amount, true, star_seed + 101, TIME);
 	col = mix(col, sparks.rgb, sparks.a);
 
 	COLOR = col;

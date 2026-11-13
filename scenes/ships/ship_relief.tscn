@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cboqdp0shm28y"]
+
+[ext_resource type="Script" uid="uid://cn1oiniq0732f" path="res://scripts/ships/ship_relief.gd" id="1_xo5uv"]
+[ext_resource type="PackedScene" uid="uid://doj0u1rva5y5f" path="res://models/ship_relief.glb" id="1_xvgyx"]
+
+[node name="ShipRelief" type="Node3D" unique_id=915160757]
+script = ExtResource("1_xo5uv")
+
+[node name="ship_relief2" parent="." unique_id=705752394 instance=ExtResource("1_xvgyx")]
+
+[editable path="ship_relief2"]

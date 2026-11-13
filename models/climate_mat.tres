@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c42xjhkqdie1i"]
+
+[ext_resource type="Texture2D" uid="uid://cytvnq3moyxpb" path="res://models/ship_climate_climate_texture.png" id="1_0l3ok"]
+
+[resource]
+resource_name = "climate_mat"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_0l3ok")
+roughness = 0.0

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dk7nwesc5jcnq"]
+
+[ext_resource type="Script" uid="uid://dsb5gb8nah0hs" path="res://scripts/ships/ship_crystal.gd" id="1_88lfp"]
+[ext_resource type="PackedScene" uid="uid://q7jy1d8il1q" path="res://models/ship_crystal.glb" id="2_tk35k"]
+
+[node name="ShipCrystal" type="Node3D" unique_id=1547445990]
+script = ExtResource("1_88lfp")
+
+[node name="ship_crystal2" parent="." unique_id=62585376 instance=ExtResource("2_tk35k")]
+
+[editable path="ship_crystal2"]

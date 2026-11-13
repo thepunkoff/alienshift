@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ddbjo2ajv0ap4"]
+
+[ext_resource type="Texture2D" uid="uid://fyvmx5bn5oeh" path="res://models/ship_relief_bomb_clouds_texture.png" id="1_nqrsp"]
+
+[resource]
+resource_name = "bomb_clouds_mat"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_nqrsp")
+roughness = 0.0

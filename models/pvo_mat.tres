@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b1pnyrj6sfgi6"]
+
+[ext_resource type="Texture2D" uid="uid://bprkp1vl7pwfa" path="res://models/ship_pvo_pvo_texture.png" id="1_vhsuc"]
+
+[resource]
+resource_name = "pvo_mat"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_vhsuc")

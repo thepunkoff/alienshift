@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://csxtvdwgn6d34"]
+
+[ext_resource type="Script" uid="uid://54yncbvtbfim" path="res://scripts/ships/ship_purifying.gd" id="1_u3m6u"]
+[ext_resource type="PackedScene" uid="uid://c50lvdlfbb7tf" path="res://models/ship_purifying.glb" id="2_b7oqi"]
+
+[node name="ShipPurifying" type="Node3D" unique_id=1684163355]
+script = ExtResource("1_u3m6u")
+
+[node name="ship_purifying2" parent="." unique_id=203978773 instance=ExtResource("2_b7oqi")]
+
+[editable path="ship_purifying2"]

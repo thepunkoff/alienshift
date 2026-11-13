@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cql15oy0u4t20"]
+
+[ext_resource type="Texture2D" uid="uid://b536bhmxcm868" path="res://models/ship_crystal_crystal_texture.png" id="1_iu887"]
+
+[resource]
+resource_name = "crystal_mat"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_iu887")
+roughness = 0.5

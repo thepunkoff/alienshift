@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cdtyfsbp3xc0t"]
+
+[ext_resource type="Texture2D" uid="uid://bp6qau03uocbe" path="res://models/ship_purifying_purifying_texture.png" id="1_w0bbk"]
+
+[resource]
+resource_name = "purifying_material"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_w0bbk")
+roughness = 0.0

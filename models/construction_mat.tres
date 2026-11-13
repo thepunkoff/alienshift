@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ljpea3agg66p"]
+
+[ext_resource type="Texture2D" uid="uid://y822oclvu6bk" path="res://models/ship_construction_construction_texture.png" id="1_67v3y"]
+
+[resource]
+resource_name = "construction_mat"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_67v3y")

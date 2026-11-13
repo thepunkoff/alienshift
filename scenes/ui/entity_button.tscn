@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://cyraid8nhxyk"]
+
+[ext_resource type="Script" uid="uid://c3v6p6ed6b2lb" path="res://scripts/ui/entity_button.gd" id="1_0rud4"]
+[ext_resource type="Texture2D" uid="uid://ds5wfd3vr6lf1" path="res://graphics/climate.png" id="2_0rud4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14kd5"]
+bg_color = Color(0.039442074, 0.11081601, 0.18936256, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.2509804, 0.10980392, 0.32156864, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="EntityButton" type="Control" unique_id=1723808063]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 80.0
+offset_bottom = 80.0
+script = ExtResource("1_0rud4")
+
+[node name="Panel" type="Panel" parent="." unique_id=896072224]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_14kd5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=2001094516]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -80.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 4
+
+[node name="Button" type="Button" parent="Panel/MarginContainer" unique_id=199696687]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/Button" unique_id=1661605793]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_0rud4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Score" type="Label" parent="Panel" unique_id=368771437]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.9999998, 0.9077199, 0.7079619, 1)
+theme_override_font_sizes/font_size = 16
+text = "LVL X"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="." unique_id=1682044168]
+visible = false
+layout_mode = 1
+offset_right = 41.0
+offset_bottom = 9.0
+theme_override_font_sizes/font_size = 6
+text = "Climatologists"

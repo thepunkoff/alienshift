@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dv2ao0qpma72r"]
+
+[ext_resource type="Texture2D" uid="uid://ba5t5p52qpcyj" path="res://models/ship_enrichment_enrichment_texture.png" id="1_lbp2h"]
+
+[resource]
+resource_name = "enrichment_mat"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_lbp2h")

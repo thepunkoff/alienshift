@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://1mdx4rpmlksu"]
+
+[ext_resource type="Texture2D" uid="uid://hs7cwjtjtbpm" path="res://models/ship_core_core_texture.png" id="1_1p41v"]
+
+[resource]
+resource_name = "Material"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_1p41v")
+roughness = 0.0

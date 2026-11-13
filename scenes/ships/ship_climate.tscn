@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b6yqr867tnihq"]
+
+[ext_resource type="Script" uid="uid://daypp2d1dnyyu" path="res://scripts/ships/ship_climate.gd" id="1_v5dcs"]
+[ext_resource type="PackedScene" uid="uid://boa3x60gqxnl4" path="res://models/ship_climate.glb" id="2_x16y7"]
+
+[node name="ShipClimate" type="Node3D" unique_id=1547168477]
+script = ExtResource("1_v5dcs")
+
+[node name="ship_climate2" parent="." unique_id=619175887 instance=ExtResource("2_x16y7")]
+
+[editable path="ship_climate2"]

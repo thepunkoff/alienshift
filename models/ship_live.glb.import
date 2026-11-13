@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c6pmc3nm7gcma"
-path="res://.godot/imported/planet.glb-eb73154a46d548d4ee1bfe2e035cb51b.scn"
+uid="uid://cwmjpqv1a2y3h"
+path="res://.godot/imported/ship_live.glb-f9360678088d4e17048151089a2b5752.scn"
 
 [deps]
 
-source_file="res://planet.glb"
-dest_files=["res://.godot/imported/planet.glb-eb73154a46d548d4ee1bfe2e035cb51b.scn"]
+source_file="res://models/ship_live.glb"
+dest_files=["res://.godot/imported/ship_live.glb-f9360678088d4e17048151089a2b5752.scn"]
 
 [params]
 
@@ -34,7 +34,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-materials/extract=0
+materials/extract=2
 materials/extract_format=0
 materials/extract_path=""
 _subresources={}

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://ru56dvybno8t"]
+
+[ext_resource type="Script" uid="uid://dsp50p6438x33" path="res://scripts/ships/ship_life.gd" id="1_3s3vx"]
+[ext_resource type="PackedScene" uid="uid://cwmjpqv1a2y3h" path="res://models/ship_live.glb" id="1_s0i42"]
+
+[node name="ShipLife" type="Node3D" unique_id=199775063]
+script = ExtResource("1_3s3vx")
+
+[node name="ship_live2" parent="." unique_id=466029185 instance=ExtResource("1_s0i42")]
+
+[editable path="ship_live2"]

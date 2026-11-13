@@ -1,14 +1,25 @@
 [gd_scene format=4 uid="uid://020qm2exuxa2"]
 
 [ext_resource type="Script" uid="uid://da7rw34q7e5yn" path="res://scripts/game.gd" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://c6pmc3nm7gcma" path="res://planet.glb" id="2_p57ef"]
+[ext_resource type="PackedScene" uid="uid://c6pmc3nm7gcma" path="res://models/planet.glb" id="2_p57ef"]
 [ext_resource type="Script" uid="uid://cvk568fl7xmji" path="res://scripts/entities/planet_core.gd" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://c5de7r7eofyu5" path="res://scripts/entities/fossils.gd" id="3_lbhrr"]
 [ext_resource type="Material" uid="uid://cjl8twqqt6mum" path="res://materials/material_new.tres" id="3_u5sy4"]
 [ext_resource type="Script" uid="uid://lt2wgrndg13g" path="res://scripts/entities/landscape.gd" id="4_iywne"]
 [ext_resource type="Shader" uid="uid://bbe0ja2p84h6q" path="res://shaders/space_sky.gdshader" id="7_u5sy4"]
-[ext_resource type="Script" uid="uid://cgtl4cs7kygag" path="res://scripts/fit_camera.gd" id="8_fitcam"]
+[ext_resource type="PackedScene" uid="uid://cyraid8nhxyk" path="res://scenes/ui/entity_button.tscn" id="9_0tnpc"]
 [ext_resource type="Script" uid="uid://ctghcmdu2n0pv" path="res://scripts/planet_terrain.gd" id="9_terrain"]
+[ext_resource type="Texture2D" uid="uid://ds5wfd3vr6lf1" path="res://graphics/climate.png" id="10_vtaks"]
+[ext_resource type="Texture2D" uid="uid://dvndn75mnqegw" path="res://graphics/construction.png" id="11_264po"]
+[ext_resource type="Texture2D" uid="uid://cmh3e45uuxsvl" path="res://graphics/core.png" id="12_1kice"]
+[ext_resource type="Texture2D" uid="uid://umhoxtsmjgfi" path="res://graphics/crystal.png" id="13_5newe"]
+[ext_resource type="Texture2D" uid="uid://cg8kvpslt7sxc" path="res://graphics/enrichment.png" id="14_37s47"]
+[ext_resource type="Texture2D" uid="uid://50oiqeuqhnuu" path="res://graphics/life.png" id="15_bt5mj"]
+[ext_resource type="Texture2D" uid="uid://o4er2ewa2tnu" path="res://graphics/puryfying.png" id="16_e1j6l"]
+[ext_resource type="Texture2D" uid="uid://v726864vo1lh" path="res://graphics/pvo.png" id="17_pl11u"]
+[ext_resource type="Texture2D" uid="uid://b0fiayaotjtij" path="res://graphics/relief.png" id="18_bhx41"]
+[ext_resource type="FontFile" uid="uid://b5g7e7xq8d4wn" path="res://fonts/Oxanium-VariableFont_wght.ttf" id="19_264po"]
+[ext_resource type="Texture2D" uid="uid://t0lctbvoqgnn" path="res://graphics/summon.png" id="19_qnb83"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gee14"]
 resource_name = "planet_Cube_001"
@@ -135,6 +146,8 @@ shader_parameter/sparkle_amount = 0.06
 shader_parameter/twinkle_speed = 1.5
 shader_parameter/twinkle_amount = 0.1190000056525
 shader_parameter/star_seed = 1
+shader_parameter/rotation_speed = 1.0
+shader_parameter/rotation_axis = Vector3(0, 1, 0)
 
 [sub_resource type="Sky" id="Sky_u5sy4"]
 sky_material = SubResource("ShaderMaterial_p57ef")
@@ -149,7 +162,7 @@ script = ExtResource("1_uwrxv")
 [node name="planet2" parent="." unique_id=338713869 instance=ExtResource("2_p57ef")]
 transform = Transform3D(1.835, 0, 0, 0, 1.835, 0, 0, 0, 1.835, 0, 0, 0)
 
-[node name="planet" parent="planet2" index="0" unique_id=1760047288]
+[node name="planet" parent="planet2" index="0" unique_id=346555450]
 mesh = SubResource("ArrayMesh_gee14")
 script = ExtResource("9_terrain")
 terrain_enabled = false
@@ -166,26 +179,11 @@ normal_octaves = 3
 
 [node name="Camera" type="Camera3D" parent="." unique_id=780614332]
 transform = Transform3D(1, 0, 0, 0, 0.88734907, 0.46109828, 0, -0.46109828, 0.88734907, 0, 5.2450976, 10.031903)
-script = ExtResource("8_fitcam")
 
 [node name="PlanetCore" type="Node" parent="." unique_id=266317937 node_paths=PackedStringArray("fossils", "landscape") groups=["entity"]]
 script = ExtResource("2_yqjtg")
 fossils = NodePath("../Fossils")
 landscape = NodePath("../Landscape")
-
-[node name="Button" type="Button" parent="PlanetCore" unique_id=511205241]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -196.0
-offset_top = -28.0
-offset_right = -102.0
-offset_bottom = 11.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "PlanetCore"
 
 [node name="Core" type="MeshInstance3D" parent="PlanetCore" unique_id=574797616]
 mesh = SubResource("SphereMesh_lbhrr")
@@ -196,37 +194,8 @@ libraries/ = SubResource("AnimationLibrary_gee14")
 [node name="Fossils" type="Node" parent="." unique_id=180190775 groups=["entity"]]
 script = ExtResource("3_lbhrr")
 
-[node name="Button" type="Button" parent="Fossils" unique_id=704916949]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -47.0
-offset_top = -82.0
-offset_right = 43.0
-offset_bottom = -39.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Fossils"
-
 [node name="Landscape" type="Node" parent="." unique_id=58858047 groups=["entity"]]
 script = ExtResource("4_iywne")
-
-[node name="Button" type="Button" parent="Landscape" unique_id=1891994611]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 102.0
-offset_top = -17.0
-offset_right = 201.0
-offset_bottom = 14.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Landscape
-"
 
 [node name="Mountain" type="MeshInstance3D" parent="Landscape" unique_id=597539185]
 mesh = SubResource("PrismMesh_lbhrr")
@@ -235,9 +204,85 @@ mesh = SubResource("PrismMesh_lbhrr")
 libraries/ = SubResource("AnimationLibrary_u5sy4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1026976489]
-transform = Transform3D(0.025037229, -0.967836, -0.2503333, -0.4119498, -0.2381509, 0.879535, -0.9108627, 0.08110377, -0.40466243, -4.1982965, 2.752436, 4.932056)
+transform = Transform3D(0.39528885, 0.82298154, 0.40798056, -0.41194984, -0.23815097, 0.87953484, 0.8210019, -0.5157378, 0.24488871, -11.077077, 2.752436, 4.932056)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=715571524]
 environment = SubResource("Environment_u5sy4")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1469947885]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1874052168]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -368.0
+offset_top = -91.0
+offset_right = 368.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Climate" parent="CanvasLayer/HBoxContainer" unique_id=1723808063 instance=ExtResource("9_0tnpc")]
+layout_mode = 2
+texture = ExtResource("10_vtaks")
+
+[node name="Construction" parent="CanvasLayer/HBoxContainer" unique_id=1536897161 instance=ExtResource("9_0tnpc")]
+layout_mode = 2
+texture = ExtResource("11_264po")
+
+[node name="Core" parent="CanvasLayer/HBoxContainer" unique_id=1664569202 instance=ExtResource("9_0tnpc")]
+layout_mode = 2
+texture = ExtResource("12_1kice")
+
+[node name="Crystal" parent="CanvasLayer/HBoxContainer" unique_id=2033335254 instance=ExtResource("9_0tnpc")]
+layout_mode = 2
+texture = ExtResource("13_5newe")
+
+[node name="Enrichment" parent="CanvasLayer/HBoxContainer" unique_id=1492331858 instance=ExtResource("9_0tnpc")]
+layout_mode = 2
+texture = ExtResource("14_37s47")
+
+[node name="Life" parent="CanvasLayer/HBoxContainer" unique_id=189140017 instance=ExtResource("9_0tnpc")]
+layout_mode = 2
+texture = ExtResource("15_bt5mj")
+
+[node name="Purifying" parent="CanvasLayer/HBoxContainer" unique_id=460608123 instance=ExtResource("9_0tnpc")]
+layout_mode = 2
+texture = ExtResource("16_e1j6l")
+
+[node name="Pvo" parent="CanvasLayer/HBoxContainer" unique_id=922752817 instance=ExtResource("9_0tnpc")]
+layout_mode = 2
+texture = ExtResource("17_pl11u")
+
+[node name="Relief" parent="CanvasLayer/HBoxContainer" unique_id=2032888911 instance=ExtResource("9_0tnpc")]
+layout_mode = 2
+texture = ExtResource("18_bhx41")
+
+[node name="Summon" parent="CanvasLayer/HBoxContainer" unique_id=606658212 instance=ExtResource("9_0tnpc")]
+layout_mode = 2
+texture = ExtResource("19_qnb83")
+
+[node name="GameOverLabel" type="Label" parent="CanvasLayer" unique_id=435123468]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.90588236, 0.70980394, 1)
+theme_override_colors/font_outline_color = Color(1, 0.90588236, 0.70980394, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("19_264po")
+theme_override_font_sizes/font_size = 49
+text = "Game Over"
+visible_characters = 0
+visible_ratio = 0.0
 
 [editable path="planet2"]
