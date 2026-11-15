@@ -20,7 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://b0fiayaotjtij" path="res://graphics/relief.png" id="18_bhx41"]
 [ext_resource type="FontFile" uid="uid://b5g7e7xq8d4wn" path="res://fonts/Oxanium-VariableFont_wght.ttf" id="19_264po"]
 [ext_resource type="Texture2D" uid="uid://t0lctbvoqgnn" path="res://graphics/summon.png" id="19_qnb83"]
-[ext_resource type="PackedScene" uid="uid://b6yqr867tnihq" path="res://scenes/ships/ship_climate.tscn" id="21_37s47"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gee14"]
 resource_name = "planet_Cube_001"
@@ -285,8 +284,5 @@ theme_override_font_sizes/font_size = 49
 text = "Game Over"
 visible_characters = 0
 visible_ratio = 0.0
-
-[node name="ShipClimate" parent="." unique_id=1547168477 instance=ExtResource("21_37s47")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.3250427, 0)
 
 [editable path="planet2"]
