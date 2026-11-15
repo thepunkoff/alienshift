@@ -8,3 +8,5 @@ transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("1_nqrsp")
 roughness = 0.0
+emission_enabled = true
+emission_texture = ExtResource("1_nqrsp")
