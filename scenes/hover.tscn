@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cgj4s4dhuihid"]
+
+[ext_resource type="Script" uid="uid://dv8j2rccmrf2q" path="res://scripts/hover.gd" id="1_2fykw"]
+
+[node name="Hover" type="Node" unique_id=1829011034 node_paths=PackedStringArray("target")]
+script = ExtResource("1_2fykw")
+target = NodePath("")
