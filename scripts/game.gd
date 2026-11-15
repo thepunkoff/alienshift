@@ -13,15 +13,23 @@ extends Node
 @onready var _landscape_button: EntityButton = $CanvasLayer/HBoxContainer/Relief
 @onready var _landscape: Landscape = $Landscape
 
+var _current_button_order: int = 1
+
 
 func _ready() -> void:
-	_planet_core_button.pressed.connect(planet_core)
-	_fossils_button.pressed.connect(fossils)
-	_landscape_button.pressed.connect(landscape)
-	# _end_game()
+	_planet_core_button.pressed.connect(planet_core, CONNECT_ONE_SHOT)
+	_fossils_button.pressed.connect(fossils, CONNECT_ONE_SHOT)
+	_landscape_button.pressed.connect(landscape, CONNECT_ONE_SHOT)
+
+
+# func _input(event: InputEvent) -> void:
+# 	if event is InputEventKey and event.keycode == KEY_SPACE and event.pressed == true:
+# 		_end_game()
 
 
 func planet_core():
+	_planet_core_button.set_pressed_order(_current_button_order)
+	_current_button_order += 1
 	_planet_core_button.disabled = true
 	await _planet_core.level_up()
 	await _evolve_except(_planet_core)
@@ -29,6 +37,8 @@ func planet_core():
 
 
 func fossils():
+	_fossils_button.set_pressed_order(_current_button_order)
+	_current_button_order += 1
 	_fossils_button.disabled = true
 	await _fossils.level_up()
 	await _evolve_except(_fossils)
@@ -36,6 +46,8 @@ func fossils():
 
 
 func landscape():
+	_landscape_button.set_pressed_order(_current_button_order)
+	_current_button_order += 1
 	_landscape_button.disabled = true
 	await _landscape.level_up()
 	await _evolve_except(_landscape)
