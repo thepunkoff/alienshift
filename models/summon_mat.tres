@@ -7,5 +7,3 @@ resource_name = "summon_mat"
 transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("1_d8r4d")
-emission_enabled = true
-emission_texture = ExtResource("1_d8r4d")

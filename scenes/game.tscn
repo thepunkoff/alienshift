@@ -2,18 +2,25 @@
 
 [ext_resource type="Script" uid="uid://da7rw34q7e5yn" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://c6pmc3nm7gcma" path="res://models/planet.glb" id="2_p57ef"]
-[ext_resource type="Script" uid="uid://cvk568fl7xmji" path="res://scripts/entities/planet_core.gd" id="2_yqjtg"]
-[ext_resource type="Script" uid="uid://c5de7r7eofyu5" path="res://scripts/entities/fossils.gd" id="3_lbhrr"]
+[ext_resource type="Script" uid="uid://cvk568fl7xmji" path="res://scripts/entities/core.gd" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://c5de7r7eofyu5" path="res://scripts/entities/crystal.gd" id="3_lbhrr"]
 [ext_resource type="Material" uid="uid://cjl8twqqt6mum" path="res://materials/material_new.tres" id="3_u5sy4"]
-[ext_resource type="Script" uid="uid://lt2wgrndg13g" path="res://scripts/entities/landscape.gd" id="4_iywne"]
+[ext_resource type="Script" uid="uid://lt2wgrndg13g" path="res://scripts/entities/relief.gd" id="4_iywne"]
+[ext_resource type="Script" uid="uid://co2kmmkwfqo55" path="res://scripts/entities/climate.gd" id="7_5newe"]
 [ext_resource type="Shader" uid="uid://bbe0ja2p84h6q" path="res://shaders/space_sky.gdshader" id="7_u5sy4"]
+[ext_resource type="Script" uid="uid://bffg87kkq6ugr" path="res://scripts/entities/construction.gd" id="8_construct"]
 [ext_resource type="PackedScene" uid="uid://cyraid8nhxyk" path="res://scenes/ui/entity_button.tscn" id="9_0tnpc"]
+[ext_resource type="Script" uid="uid://c5wvomhw3o5o3" path="res://scripts/entities/enrichment.gd" id="9_enrichment"]
 [ext_resource type="Script" uid="uid://ctghcmdu2n0pv" path="res://scripts/planet_terrain.gd" id="9_terrain"]
+[ext_resource type="Script" uid="uid://dagaulcgtgxei" path="res://scripts/entities/life.gd" id="10_qnb83"]
 [ext_resource type="Texture2D" uid="uid://ds5wfd3vr6lf1" path="res://graphics/climate.png" id="10_vtaks"]
 [ext_resource type="Texture2D" uid="uid://dvndn75mnqegw" path="res://graphics/construction.png" id="11_264po"]
+[ext_resource type="Script" uid="uid://b3mro7isnu747" path="res://scripts/entities/purifying.gd" id="11_sww3w"]
 [ext_resource type="Texture2D" uid="uid://cmh3e45uuxsvl" path="res://graphics/core.png" id="12_1kice"]
+[ext_resource type="Script" uid="uid://c3u3c6g0e041a" path="res://scripts/entities/pvo.gd" id="12_suyxu"]
 [ext_resource type="Texture2D" uid="uid://umhoxtsmjgfi" path="res://graphics/crystal.png" id="13_5newe"]
 [ext_resource type="Texture2D" uid="uid://cg8kvpslt7sxc" path="res://graphics/enrichment.png" id="14_37s47"]
+[ext_resource type="Script" uid="uid://bylh6btymf47a" path="res://scripts/entities/summon.gd" id="14_sgl2t"]
 [ext_resource type="Texture2D" uid="uid://50oiqeuqhnuu" path="res://graphics/life.png" id="15_bt5mj"]
 [ext_resource type="Texture2D" uid="uid://o4er2ewa2tnu" path="res://graphics/puryfying.png" id="16_e1j6l"]
 [ext_resource type="Texture2D" uid="uid://v726864vo1lh" path="res://graphics/pvo.png" id="17_pl11u"]
@@ -183,28 +190,56 @@ normal_octaves = 3
 [node name="Camera" type="Camera3D" parent="." unique_id=780614332]
 transform = Transform3D(1, 0, 0, 0, 0.88734907, 0.46109828, 0, -0.46109828, 0.88734907, 0, 5.2450976, 10.031903)
 
-[node name="PlanetCore" type="Node" parent="." unique_id=266317937 node_paths=PackedStringArray("fossils", "landscape") groups=["entity"]]
-script = ExtResource("2_yqjtg")
-fossils = NodePath("../Fossils")
-landscape = NodePath("../Landscape")
+[node name="Climate" type="Node" parent="." unique_id=755252094 groups=["entity"]]
+script = ExtResource("7_5newe")
 
-[node name="Core" type="MeshInstance3D" parent="PlanetCore" unique_id=574797616]
+[node name="Construction" type="Node" parent="." unique_id=255364905 node_paths=PackedStringArray("life") groups=["entity"]]
+script = ExtResource("8_construct")
+life = NodePath("../Life")
+
+[node name="Core" type="Node" parent="." unique_id=266317937 groups=["entity"]]
+script = ExtResource("2_yqjtg")
+
+[node name="Core" type="MeshInstance3D" parent="Core" unique_id=574797616]
 mesh = SubResource("SphereMesh_lbhrr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlanetCore/Core" unique_id=19252481]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Core/Core" unique_id=19252481]
 libraries/ = SubResource("AnimationLibrary_gee14")
 
-[node name="Fossils" type="Node" parent="." unique_id=180190775 groups=["entity"]]
+[node name="Crystal" type="Node" parent="." unique_id=180190775 node_paths=PackedStringArray("summon") groups=["entity"]]
 script = ExtResource("3_lbhrr")
+summon = NodePath("../Summon")
 
-[node name="Landscape" type="Node" parent="." unique_id=58858047 groups=["entity"]]
+[node name="Enrichment" type="Node" parent="." unique_id=140800727 node_paths=PackedStringArray("crystal") groups=["entity"]]
+script = ExtResource("9_enrichment")
+crystal = NodePath("../Crystal")
+
+[node name="Life" type="Node" parent="." unique_id=239157618 node_paths=PackedStringArray("summon") groups=["entity"]]
+script = ExtResource("10_qnb83")
+summon = NodePath("../Summon")
+
+[node name="Purifying" type="Node" parent="." unique_id=843564201 node_paths=PackedStringArray("core") groups=["entity"]]
+script = ExtResource("11_sww3w")
+core = NodePath("../Core")
+
+[node name="Pvo" type="Node" parent="." unique_id=2051376375 node_paths=PackedStringArray("relief", "life") groups=["entity"]]
+script = ExtResource("12_suyxu")
+relief = NodePath("../Relief")
+life = NodePath("../Life")
+
+[node name="Relief" type="Node" parent="." unique_id=58858047 groups=["entity"]]
 script = ExtResource("4_iywne")
 
-[node name="Mountain" type="MeshInstance3D" parent="Landscape" unique_id=597539185]
+[node name="Mountain" type="MeshInstance3D" parent="Relief" unique_id=597539185]
 mesh = SubResource("PrismMesh_lbhrr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Landscape/Mountain" unique_id=575769432]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Relief/Mountain" unique_id=575769432]
 libraries/ = SubResource("AnimationLibrary_u5sy4")
+
+[node name="Summon" type="Node" parent="." unique_id=227231354 node_paths=PackedStringArray("core", "climate") groups=["entity"]]
+script = ExtResource("14_sgl2t")
+core = NodePath("../Core")
+climate = NodePath("../Climate")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1026976489]
 transform = Transform3D(0.39528885, 0.82298154, 0.40798056, -0.41194984, -0.23815097, 0.87953484, 0.8210019, -0.5157378, 0.24488871, -11.077077, 2.752436, 4.932056)
