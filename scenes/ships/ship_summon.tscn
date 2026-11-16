@@ -82,7 +82,7 @@ filters = ["ship_summon2/ship_summon:blend_shapes/radio"]
 mix_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3mar0"]
-graph_offset = Vector2(-770.6765, -28.83879)
+graph_offset = Vector2(-793.85547, -13.75)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_3njwo")
 nodes/Animation/position = Vector2(-460, 40)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_1up5q")

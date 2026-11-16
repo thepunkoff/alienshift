@@ -2,6 +2,7 @@ extends Node
 
 @onready var _buttons_parent: Node = $CanvasLayer/HBoxContainer
 @onready var _game_over_label: Label = $CanvasLayer/GameOverLabel
+@onready var _try_again_button: Button = $CanvasLayer/TryAgainButton
 @onready var _entities: Array[Node] = get_tree().get_nodes_in_group("entity")
 
 @onready var _planet_core_button: EntityButton = $CanvasLayer/HBoxContainer/Core
@@ -20,11 +21,13 @@ func _ready() -> void:
 	_planet_core_button.pressed.connect(planet_core, CONNECT_ONE_SHOT)
 	_fossils_button.pressed.connect(fossils, CONNECT_ONE_SHOT)
 	_landscape_button.pressed.connect(landscape, CONNECT_ONE_SHOT)
+	_game_over_label.visible_ratio = 0
+	_try_again_button.self_modulate.a = 0
 
 
-# func _input(event: InputEvent) -> void:
-# 	if event is InputEventKey and event.keycode == KEY_SPACE and event.pressed == true:
-# 		_end_game()
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.keycode == KEY_SPACE and event.pressed == true:
+		_end_game()
 
 
 func planet_core():
