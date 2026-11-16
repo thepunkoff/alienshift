@@ -7,5 +7,3 @@ resource_name = "enrichment_mat"
 transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("1_lbp2h")
-emission_enabled = true
-emission_texture = ExtResource("1_lbp2h")

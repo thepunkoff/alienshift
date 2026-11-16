@@ -1,17 +1,13 @@
 extends Entity
-class_name Landscape
+class_name Relief
 
-const STATE_ADDED: String = "added"
-const STATE_GREW: String = "grew"
-
+const STATE_BOMBS_CREATED_RELIEF: String = "bombs_created_relief"
 
 @onready var _mountain_animation_player: AnimationPlayer = $Mountain/AnimationPlayer
 
-
 func _ready():
 	register_states({
-		1: State.create(STATE_ADDED),
-		2: State.create(STATE_GREW)
+		1: State.create(STATE_BOMBS_CREATED_RELIEF)
 	})
 
 
@@ -20,10 +16,8 @@ func run_level_up(new_lvl: int, new_state: State):
 		return
 
 	match new_state.name:
-		STATE_ADDED:
-			await change()
-		STATE_GREW:
-			await grow()
+		STATE_BOMBS_CREATED_RELIEF:
+			await bombs_created_relief()
 		_:
 			push_error("PlanetCore state not expected: '%s'." % [new_state.name])
 
@@ -32,15 +26,8 @@ func run_synergies():
 	pass
 
 
-func change():
+func bombs_created_relief():
 	_mountain_animation_player.play("appear")
 	await _mountain_animation_player.animation_finished
-	print("Landscape changed.")
-	pass
-
-
-func grow():
-	_mountain_animation_player.play("grow")
-	await _mountain_animation_player.animation_finished
-	print("Landscape grew.")
+	print("Сбрасывают атомные бомбы, появляются впадины и горы")
 	pass
