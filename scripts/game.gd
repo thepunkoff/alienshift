@@ -4,6 +4,7 @@ extends Node
 @onready var _game_over_label: Label = $CanvasLayer/GameOverLabel
 var _entities: Array[Node] = []
 var _game_over_started := false
+var _current_button_order: int = 1
 
 @onready var _planet_core_button: EntityButton = $CanvasLayer/HBoxContainer/Core
 @onready var _planet_core: Core = $Core
@@ -53,27 +54,29 @@ func _ready() -> void:
 		_life_button: _life,
 		_summon_button: _summon,
 	}
-
 	for button in _button_entities:
 		button.pressed.connect(_activate.bind(button))
+	_summon.planet_eaten.connect(_end_game)
 
 func _activate(button: EntityButton) -> void:
+	button.set_pressed_order(_current_button_order)
+	_current_button_order += 1
 	button.disabled = true
-	await _button_entities[button].level_up()
-	await _evolve()
+	var entity: Entity = _button_entities[button]
+	await entity.level_up()
+	await _evolve(entity)
 	await _try_end_game()
 
 
-func _evolve():
+func _evolve(except: Entity) -> void:
 	##сначала взаимодействия, потом в самом конце апаем уровни, чтобы к следующему клику у нас они были нужного уровня для работы с взаимодейстиями
 	for entity: Entity in _entities:
 		if entity.level > 0:
 			await entity.run_synergies()
 
 	for entity: Entity in _entities:
-		if entity.level > 0:
+		if entity != except and entity.level > 0:
 			await entity.level_up()
-			
 
 func _try_end_game():
 	for b: EntityButton in _buttons_parent.get_children():
