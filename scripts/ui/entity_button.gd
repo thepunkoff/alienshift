@@ -33,7 +33,7 @@ var disabled: bool = false:
 
 
 func enable_score(delay: float):
-	order_label.text = str(get_meta("order", "?"))
+	order_label.text = str(get_meta("order", ""))
 	var tween: Tween = create_tween()
 	tween.tween_interval(delay)
 	tween.tween_property(panel, "size:y", 115, 0.2)

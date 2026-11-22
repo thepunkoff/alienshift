@@ -2,9 +2,19 @@ extends Entity
 class_name Crystal
 
 @export var summon: Summon
+@export var planet: Planet
 
 const STATE_FOSSILS_BURIED: String = "fossils_buried"
 const STATE_MINERALIZATION_OCCURRED: String = "mineralization_occurred"
+
+@onready var _ship: ShipCrystal = $Path3D/PathFollow3D/ShipCrystal
+@onready var _ship_path_follow: PathFollow3D = $Path3D/PathFollow3D
+@onready var _ship_path_follow_2: PathFollow3D = $"Path3D2/PathFollow3D"
+@onready var _path: Path3D = $Path3D2
+@onready var _particles: GPUParticles3D = $GPUParticles3D
+
+var _fossils_bloomed: bool
+var _align_ship_to_planet: bool
 
 func _ready():
 	register_states({
@@ -12,7 +22,21 @@ func _ready():
 		7: State.create(STATE_MINERALIZATION_OCCURRED)
 	})
 
-var _fossils_bloomed: bool = false
+
+
+@onready var cam: Camera3D = get_viewport().get_camera_3d()
+func _process(delta: float) -> void:
+
+	if _align_ship_to_planet:
+		_ship.transform.basis = Helpers.aligned_to_planet(_ship)
+		# _ship.look_at(cam.position, Vector3.UP, true)
+		# direction to the camera, in the parent's local space
+		var parent := _ship.get_parent_node_3d()
+		var dir := parent.global_basis.inverse() * (cam.global_position - _ship.global_position)
+
+		# rotation around X that points +Z toward the camera (in the YZ plane)
+		_ship.rotation.x = atan2(-dir.y, dir.z)
+
 
 func run_level_up(new_lvl: int, new_state: State):
 	if new_state == null:
@@ -31,19 +55,58 @@ func run_synergies():
 	if _fossils_bloomed:
 		return
 
-	if 	summon.level > 0:
+	if summon.level > 0:
 		await bloom()
 		_fossils_bloomed = true
 
 
 func bury_fossils():
 	print("Высаживаются человечки и закапывают светящиеся кристаллы в землю")
-	pass
+	var tween: Tween = create_tween()
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, 6)
+	await tween.finished
+
+	_ship_path_follow.remove_child(_ship)
+	_ship_path_follow_2.add_child(_ship)
+	tween = create_tween()
+	tween.tween_property(_ship, "transform:basis", Helpers.aligned_to_planet(_ship), .5)
+	await tween.finished
+	_align_ship_to_planet = true
+
+	await _ship.drop_crystals()
+
+	tween = create_tween()
+	tween.tween_property(_ship_path_follow_2, "progress", _path.curve.get_closest_offset(_path.curve.get_point_position(1)), 2)
+	await tween.finished
+	await _ship.drop_crystals()
+
+	tween = create_tween()
+	tween.tween_property(_ship_path_follow_2, "progress", _path.curve.get_closest_offset(_path.curve.get_point_position(2)), 2)
+
+	await tween.finished
+	await _ship.drop_crystals()
+
+	tween = create_tween()
+	tween.tween_property(_ship_path_follow_2, "progress", _path.curve.get_baked_length(), 1)
+	await tween.finished
+
+
+	_ship_path_follow_2.remove_child(_ship)
+	_ship_path_follow.add_child(_ship)
+	_align_ship_to_planet = false
+	tween = create_tween()
+	tween.tween_property(_ship, "rotation", Vector3.ZERO, 1)
+
+	tween = create_tween()
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, 6)
+	await tween.finished
 
 func mineralization_occurred():
 	print("Почва пригодна для жизни - нет текста в shuffle")
-	pass
+	_particles.emitting = true
+
 
 func bloom():
 	print("Минералы растут как грибы")
-	pass
+	await planet.grow_crystals()
+	_particles.emitting = false

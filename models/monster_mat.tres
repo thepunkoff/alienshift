@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dapm23u0fcgyo"]
+
+[ext_resource type="Texture2D" uid="uid://r4cyixiyxeh2" path="res://models/monster_animations_monster_texture.png" id="1_ahxtt"]
+
+[resource]
+resource_name = "monster_mat"
+cull_mode = 2
+albedo_texture = ExtResource("1_ahxtt")

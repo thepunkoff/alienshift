@@ -68,6 +68,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Order" type="Label" parent="Panel/MarginContainer/Button" unique_id=662769181]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

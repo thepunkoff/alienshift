@@ -3,9 +3,58 @@
 [ext_resource type="Script" uid="uid://1lubu3o6w1tu" path="res://scripts/ships/ship_enrichment.gd" id="1_t1wc6"]
 [ext_resource type="PackedScene" uid="uid://fat208xfndrp" path="res://models/ship_enrichment.glb" id="2_57grl"]
 
+[sub_resource type="Gradient" id="Gradient_t1wc6"]
+colors = PackedColorArray(1, 0.19215687, 0.7254902, 1, 1, 0.71377236, 0.98715895, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t1wc6"]
+gradient = SubResource("Gradient_t1wc6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_t1wc6"]
+emission_shape = 1
+emission_sphere_radius = 0.18
+angle_min = -44.49999
+angle_max = 42.700012
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.29999998
+color_ramp = SubResource("GradientTexture1D_t1wc6")
+color_initial_ramp = SubResource("GradientTexture1D_t1wc6")
+turbulence_noise_strength = 0.32
+turbulence_noise_scale = 0.093
+turbulence_influence_min = 0.105000004
+turbulence_influence_max = 0.149
+turbulence_initial_displacement_min = -8.999999
+turbulence_initial_displacement_max = 9.700002
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57grl"]
+transparency = 1
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_57grl"]
+material = SubResource("StandardMaterial3D_57grl")
+
 [node name="ShipEnrichment" type="Node3D" unique_id=1434045125]
 script = ExtResource("1_t1wc6")
 
 [node name="ship_enrichment2" parent="." unique_id=1611072272 instance=ExtResource("2_57grl")]
+
+[node name="ship_enrichment" parent="ship_enrichment2" index="0" unique_id=454004343]
+blend_shapes/hose = 1.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=55307437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2377892, -0.56832683, 0)
+layers = 16
+emitting = false
+speed_scale = 1.55
+process_material = SubResource("ParticleProcessMaterial_t1wc6")
+draw_pass_1 = SubResource("RibbonTrailMesh_57grl")
 
 [editable path="ship_enrichment2"]

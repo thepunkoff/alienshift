@@ -82,7 +82,7 @@ filters = ["ship_summon2/ship_summon:blend_shapes/radio"]
 mix_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3mar0"]
-graph_offset = Vector2(-793.85547, -13.75)
+graph_offset = Vector2(-770.8013, -114.79081)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_3njwo")
 nodes/Animation/position = Vector2(-460, 40)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_1up5q")
@@ -92,6 +92,7 @@ nodes/OneShot/position = Vector2(0, 120)
 node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Animation", &"OneShot", 1, &"Animation 2"]
 
 [node name="ShipSummon" type="Node3D" unique_id=1644426378]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_1up5q")
 
 [node name="ship_summon2" parent="." unique_id=710268839 instance=ExtResource("2_3njwo")]

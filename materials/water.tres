@@ -1,0 +1,40 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cwdy4123l7c0k"]
+
+[ext_resource type="Shader" uid="uid://b265x7jgwisem" path="res://shaders/water.gdshader" id="1_6gfwt"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_6gfwt")
+shader_parameter/shallow_color = Color(0.3019608, 0.3254902, 0.8509804, 1)
+shader_parameter/deep_color = Color(0.01779726, 0.14345518, 0.38194603, 1)
+shader_parameter/depth_max = 0.5710000033725
+shader_parameter/color_steps = 4
+shader_parameter/alpha_shallow = 0.69200003287
+shader_parameter/alpha_deep = 0.898000042655
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_height = 0.12
+shader_parameter/wave_frequency = 0.10000000149012
+shader_parameter/wave_speed = 0.0
+shader_parameter/enable_shore_foam = true
+shader_parameter/enable_crest_foam = false
+shader_parameter/foam_color = Color(0.73333335, 0.40392157, 0.73333335, 1)
+shader_parameter/shore_foam_distance = 0.022000001045
+shader_parameter/shore_foam_noise = 0.010000000475
+shader_parameter/crest_foam_threshold = 1.306000062035
+shader_parameter/foam_scale = 2.0
+shader_parameter/foam_speed = 0.25
+shader_parameter/line_color = Color(0.25490198, 0.10980392, 0.4509804, 1)
+shader_parameter/line_strength = 0.6510000309225
+shader_parameter/line_width = 0.0
+shader_parameter/line_scale = 1.2
+shader_parameter/line_speed = 0.0650000030875
+shader_parameter/fresnel_power = 4.0
+shader_parameter/fresnel_threshold = 0.6
+shader_parameter/fresnel_amount = 0.09200000437
+shader_parameter/fresnel_color = Color(0.85882354, 0.19607843, 1, 1)
+shader_parameter/specular_shininess = 200.0
+shader_parameter/specular_threshold = 0.7
+shader_parameter/specular_strength = 0.6
+shader_parameter/light_bands = 2
+shader_parameter/shadow_floor = 0.6
+shader_parameter/compatibility_depth = true

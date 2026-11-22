@@ -8,4 +8,7 @@ script = ExtResource("1_bkwon")
 
 [node name="ship_construction2" parent="." unique_id=1891709183 instance=ExtResource("2_nbv7e")]
 
+[node name="ship_construction" parent="ship_construction2" index="0" unique_id=1478311255]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
 [editable path="ship_construction2"]

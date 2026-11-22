@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cdvqbuh0wwi54"]
+
+[ext_resource type="Texture2D" uid="uid://c4xjl5j6ck0a7" path="res://models/grass_grass_texture.png" id="1_ubvis"]
+
+[resource]
+resource_name = "grass_mat"
+cull_mode = 2
+albedo_texture = ExtResource("1_ubvis")
+emission_enabled = true
+emission_texture = ExtResource("1_ubvis")

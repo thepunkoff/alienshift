@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ta5ody2oivxk"]
+
+[ext_resource type="Texture2D" uid="uid://07ad2t0xx8y0" path="res://models/house_house_texture.png" id="1_gfgd7"]
+
+[resource]
+resource_name = "Material.007"
+cull_mode = 2
+albedo_texture = ExtResource("1_gfgd7")
+emission_enabled = true
+emission_texture = ExtResource("1_gfgd7")
