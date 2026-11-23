@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://q7jy1d8il1q" path="res://models/ship_crystal.glb" id="2_tk35k"]
 
 [node name="ShipCrystal" type="Node3D" unique_id=1547445990]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_88lfp")
 
 [node name="ship_crystal2" parent="." unique_id=62585376 instance=ExtResource("2_tk35k")]

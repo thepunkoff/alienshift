@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://xtv4ppv5ygsa"]
+
+[ext_resource type="Texture2D" uid="uid://c0dvox4dgc41" path="res://models/crystals_crystalls_texture.png" id="1_st21n"]
+
+[resource]
+resource_name = "Material.002"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_st21n")
+roughness = 0.5

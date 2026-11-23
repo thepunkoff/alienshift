@@ -2,6 +2,7 @@ extends Node
 
 @onready var _buttons_parent: Node = $CanvasLayer/HBoxContainer
 @onready var _game_over_label: Label = $CanvasLayer/GameOverLabel
+@onready var _try_again_button: Button = $CanvasLayer/TryAgainButton
 
 @onready var _entities: Array[Node] = get_tree().get_nodes_in_group("entity")
 
@@ -55,25 +56,33 @@ func _ready() -> void:
 		button.pressed.connect(_activate.bind(button))
 	_summon.planet_eaten.connect(_end_game)
 	_game_over_label.visible_ratio = 0
+	_try_again_button.self_modulate.a = 0
+	_try_again_button.pressed.connect(get_tree().reload_current_scene)
 
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == KEY_SPACE and event.pressed == true:
 		_end_game()
+	if event is InputEventKey and event.keycode == KEY_ENTER and event.pressed == true:
+		_construction.added_people()
 
 
 func _activate(button: EntityButton) -> void:
 	button.set_pressed_order(_current_button_order)
 	_current_button_order += 1
-	button.disabled = true
+	button.set_meta("used", true)
+	for b in _button_entities:
+		b.disabled = true
 	var entity: Entity = _button_entities[button]
 	await entity.level_up()
 	await _evolve(entity)
-	await _try_end_game()
+	if not await _try_end_game():
+		for b in _button_entities:
+			b.disabled = b.get_meta("used", false)
+
 
 
 func _evolve(except: Entity) -> void:
-	##сначала взаимодействия, потом в самом конце апаем уровни, чтобы к следующему клику у нас они были нужного уровня для работы с взаимодейстиями
 	for entity: Entity in _entities:
 		if entity.level > 0:
 			await entity.run_synergies()
@@ -84,10 +93,11 @@ func _evolve(except: Entity) -> void:
 
 func _try_end_game():
 	for b: EntityButton in _buttons_parent.get_children():
-		if not b.disabled:
-			return
+		if not b.get_meta("used", false):
+			return false
 
 	await _end_game()
+	return true
 
 
 func _end_game():
@@ -104,4 +114,9 @@ func _end_game():
 		b.disabled = false
 		b.enable_score(i * 0.1)
 		i += 1
+
+	tween = create_tween()
+	tween.tween_property(_try_again_button, "self_modulate:a", 1, 0.7)
+	await tween.finished
+
 	_game_over_started = false

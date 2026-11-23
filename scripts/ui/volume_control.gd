@@ -3,8 +3,8 @@ extends PanelContainer
 @onready var volume_slider: HSlider = $HBoxContainer/VolumeSlider
 @onready var mute_button: Button = $HBoxContainer/MuteButton
 
-const ICON_MUTE = preload("uid://dwol28fowafaw")
-const ICON_SPEAKER = preload("uid://bklc7afb3rab1")
+const ICON_MUTE = preload("uid://ccul0ll57dc8p")
+const ICON_SPEAKER = preload("uid://dhvmhb4ve2ff1")
 const MASTER_BUS_NAME := "Master"
 const DEFAULT_VOLUME := 70.0
 const MAX_VOLUME := 100.0

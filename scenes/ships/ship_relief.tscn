@@ -2,10 +2,97 @@
 
 [ext_resource type="Script" uid="uid://cn1oiniq0732f" path="res://scripts/ships/ship_relief.gd" id="1_xo5uv"]
 [ext_resource type="PackedScene" uid="uid://doj0u1rva5y5f" path="res://models/ship_relief.glb" id="1_xvgyx"]
+[ext_resource type="Material" uid="uid://b45m57cyc8i00" path="res://materials/bomb.tres" id="3_676g4"]
+[ext_resource type="Texture2D" uid="uid://cg15bq7i0bavv" path="res://graphics/nuclear.png" id="4_7udqf"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xo5uv"]
+radius = 0.108
+height = 0.62
+
+[sub_resource type="PrismMesh" id="PrismMesh_xo5uv"]
+left_to_right = 0.0
+size = Vector3(0.122, 0.282, 0.027)
+
+[sub_resource type="PrismMesh" id="PrismMesh_676g4"]
+left_to_right = 1.0
+size = Vector3(0.122, 0.282, 0.027)
+
+[sub_resource type="Animation" id="Animation_pk1ym"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bomb:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bomb")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_7udqf"]
+resource_name = "drop_bomb"
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bomb")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.7889944, 0, 1, 1, 0, -4.414, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bomb:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.30892327, 1.3700835, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pk1ym"]
+_data = {
+&"RESET": SubResource("Animation_pk1ym"),
+&"drop_bomb": SubResource("Animation_7udqf")
+}
 
 [node name="ShipRelief" type="Node3D" unique_id=915160757]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 script = ExtResource("1_xo5uv")
 
 [node name="ship_relief2" parent="." unique_id=705752394 instance=ExtResource("1_xvgyx")]
+
+[node name="Bomb" type="MeshInstance3D" parent="." unique_id=1775173985]
+transform = Transform3D(0.558, 0, 0, 0, 0.558, 0, 0, 0, 0.558, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_xo5uv")
+surface_material_override/0 = ExtResource("3_676g4")
+
+[node name="RightWing" type="MeshInstance3D" parent="Bomb" unique_id=292903894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.141, -0.10420728, 0)
+mesh = SubResource("PrismMesh_xo5uv")
+surface_material_override/0 = ExtResource("3_676g4")
+
+[node name="LeftWing" type="MeshInstance3D" parent="Bomb" unique_id=1234250376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.141, -0.10420728, 0)
+mesh = SubResource("PrismMesh_676g4")
+surface_material_override/0 = ExtResource("3_676g4")
+
+[node name="Icon" type="Sprite3D" parent="Bomb" unique_id=658280790]
+transform = Transform3D(0.177, 0, 0, 0, 0.177, 0, 0, 0, 0.177, 0, -0.0934484, 0.11234598)
+texture = ExtResource("4_7udqf")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=649466497]
+libraries/ = SubResource("AnimationLibrary_pk1ym")
 
 [editable path="ship_relief2"]

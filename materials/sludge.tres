@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://kf620qrarfc2"]
+
+[ext_resource type="Shader" uid="uid://biylj8fevvrf0" path="res://shaders/sludge_material.gdshader" id="1_mggh4"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_mggh4")

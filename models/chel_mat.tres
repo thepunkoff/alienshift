@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://u5eb3kujnrwu"]
+
+[ext_resource type="Texture2D" uid="uid://blwhs4j0xd7ad" path="res://models/chel_chel_texture.png" id="1_88w6g"]
+
+[resource]
+resource_name = "chel_mat"
+cull_mode = 2
+albedo_texture = ExtResource("1_88w6g")

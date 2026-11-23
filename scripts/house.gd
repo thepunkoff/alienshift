@@ -1,0 +1,19 @@
+extends Node3D
+class_name House
+
+@onready var _house_mesh: MeshInstance3D = $house/house
+@onready var _chel: Node3D = $chel
+@onready var _chel_animation_player: AnimationPlayer= $chel/AnimationPlayer
+@onready var _chel_mesh: MeshInstance3D = $chel/rig/Skeleton3D/chel
+
+
+func release_chel():
+	var tween: Tween = create_tween()
+	tween.tween_property(_house_mesh, "blend_shapes/door_open", 1, 1)
+	await tween.finished
+	_chel_animation_player.play("chel_action")
+	tween.stop()
+	tween.tween_property(_chel, "position:z", 0.8, 2)
+	await _chel_animation_player.animation_finished
+	tween.tween_property(_chel_mesh, "blend_shapes/heart_face", 1, 0.2)
+	await tween.finished
