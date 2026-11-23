@@ -2,18 +2,38 @@
 
 [ext_resource type="Script" uid="uid://c3v6p6ed6b2lb" path="res://scripts/ui/entity_button.gd" id="1_0rud4"]
 [ext_resource type="FontFile" uid="uid://b5g7e7xq8d4wn" path="res://fonts/Oxanium-VariableFont_wght.ttf" id="2_0rud4"]
+[ext_resource type="Texture2D" uid="uid://ds5wfd3vr6lf1" path="res://graphics/climate.png" id="2_4nej8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14kd5"]
-bg_color = Color(0.039442074, 0.11081601, 0.18936256, 1)
+bg_color = Color(0.039215688, 0.10980392, 0.1882353, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.2509804, 0.10980392, 0.32156864, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 20
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.19607843)
+shadow_size = 3
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nej8"]
+bg_color = Color(0.039215688, 0.10980392, 0.1882353, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 16
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 16
+
+[sub_resource type="Gradient" id="Gradient_4nej8"]
+offsets = PackedFloat32Array(0.6800824, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.5764706)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xkueq"]
+gradient = SubResource("Gradient_4nej8")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="EntityButton" type="Control" unique_id=1723808063]
 custom_minimum_size = Vector2(80, 80)
@@ -22,7 +42,6 @@ anchors_preset = 0
 offset_right = 80.0
 offset_bottom = 80.0
 script = ExtResource("1_0rud4")
-tip_text = null
 
 [node name="Panel" type="Panel" parent="." unique_id=896072224]
 layout_mode = 1
@@ -34,7 +53,21 @@ grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_14kd5")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=2001094516]
+[node name="Panel" type="Panel" parent="Panel" unique_id=2041814520]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4nej8")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Panel" unique_id=2001094516]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 1
 anchors_preset = 7
@@ -43,8 +76,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -40.0
-offset_top = -80.0
+offset_top = -76.0
 offset_right = 40.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 2
@@ -52,12 +86,12 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 4
 
-[node name="Button" type="Button" parent="Panel/MarginContainer" unique_id=199696687]
+[node name="Button" type="Button" parent="Panel/Panel/MarginContainer" unique_id=199696687]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/Button" unique_id=1661605793]
+[node name="TextureRect" type="TextureRect" parent="Panel/Panel/MarginContainer/Button" unique_id=1661605793]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,10 +99,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = ExtResource("2_4nej8")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Order" type="Label" parent="Panel/MarginContainer/Button" unique_id=662769181]
+[node name="Order" type="Label" parent="Panel/Panel/MarginContainer/Button" unique_id=662769181]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -87,6 +122,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_trim_flags = 128
 
+[node name="Vignette" type="TextureRect" parent="Panel/Panel/MarginContainer/Button" unique_id=685685116]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_xkueq")
+
 [node name="Score" type="Label" parent="Panel" unique_id=368771437]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -101,6 +145,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Tip" type="Label" parent="." unique_id=1682044168]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -113,7 +158,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 0.8206361)
 theme_override_font_sizes/font_size = 15
-text = "Climatologists gfgdsfhdfh gfdagd"
 horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 2

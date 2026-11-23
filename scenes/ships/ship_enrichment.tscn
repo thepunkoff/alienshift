@@ -38,7 +38,7 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_57grl"]
+[sub_resource type="QuadMesh" id="QuadMesh_t1wc6"]
 material = SubResource("StandardMaterial3D_57grl")
 
 [node name="ShipEnrichment" type="Node3D" unique_id=1434045125]
@@ -55,6 +55,6 @@ layers = 16
 emitting = false
 speed_scale = 1.55
 process_material = SubResource("ParticleProcessMaterial_t1wc6")
-draw_pass_1 = SubResource("RibbonTrailMesh_57grl")
+draw_pass_1 = SubResource("QuadMesh_t1wc6")
 
 [editable path="ship_enrichment2"]

@@ -12,7 +12,7 @@ script = ExtResource("1_rk7hg")
 
 [node name="chel" parent="." unique_id=699990529 instance=ExtResource("2_qtlar")]
 
-[node name="Skeleton3D" parent="chel/rig" parent_id_path=PackedInt32Array(699990529, 113325750) index="0" unique_id=116006248]
+[node name="Skeleton3D" parent="chel/rig" parent_id_path=PackedInt32Array(699990529, 210602350) index="0" unique_id=1681123998]
 bones/3/rotation = Quaternion(1, 0, 3.413358e-06, 0)
 bones/8/rotation = Quaternion(2.1827868e-08, -5.5969576e-07, 3.296591e-06, 1)
 bones/9/rotation = Quaternion(-1.6068812e-08, -1.1001496e-07, 0.03014989, 0.99954545)

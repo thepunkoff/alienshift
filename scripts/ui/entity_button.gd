@@ -6,11 +6,11 @@ signal pressed
 
 @export var tip_text: String = ""
 
-@onready var texture_rect: TextureRect = $Panel/MarginContainer/Button/TextureRect
-@onready var button: Button = $Panel/MarginContainer/Button
-@onready var panel: Panel = $Panel
+@onready var texture_rect: TextureRect = $Panel/Panel/MarginContainer/Button/TextureRect
+@onready var button: Button = $Panel/Panel/MarginContainer/Button
+@onready var panel: Panel = $Panel/Panel
 @onready var score_label: Label = $Panel/Score
-@onready var order_label: Label = $Panel/MarginContainer/Button/Order
+@onready var order_label: Label = $Panel/Panel/MarginContainer/Button/Order
 @onready var tip_label: Label = $Tip
 @onready var initial_button_pos_y: float = position.y
 
