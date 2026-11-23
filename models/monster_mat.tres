@@ -6,3 +6,5 @@
 resource_name = "monster_mat"
 cull_mode = 2
 albedo_texture = ExtResource("1_ahxtt")
+emission_enabled = true
+emission_texture = ExtResource("1_ahxtt")

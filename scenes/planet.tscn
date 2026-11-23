@@ -8,11 +8,35 @@
 [ext_resource type="Material" uid="uid://cwdy4123l7c0k" path="res://materials/water.tres" id="4_0k1rn"]
 [ext_resource type="PackedScene" uid="uid://5b06kme2wbil" path="res://models/grass.glb" id="5_48b8c"]
 [ext_resource type="PackedScene" uid="uid://b5qtf2ldf86wi" path="res://models/dirt.glb" id="6_3s4jt"]
+[ext_resource type="Texture2D" uid="uid://37m7vb37qvt2" path="res://graphics/steam.png" id="6_kp5tw"]
 [ext_resource type="Material" uid="uid://btnpmy1rsesht" path="res://materials/dirt.tres" id="7_1wmcx"]
 [ext_resource type="PackedScene" uid="uid://cltuvppy4ov1c" path="res://models/crystals.glb" id="8_m5dqw"]
 [ext_resource type="PackedScene" uid="uid://f16y5muaykns" path="res://models/sludge_new.glb" id="9_8dfcq"]
 [ext_resource type="Material" uid="uid://kf620qrarfc2" path="res://materials/sludge.tres" id="10_qw1i6"]
 [ext_resource type="Texture2D" uid="uid://dbvlw4dm1aaxm" path="res://graphics/fish.png" id="13_n1t4m"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kp5tw"]
+emission_shape_scale = Vector3(1, 0.416, 0.147)
+emission_shape = 3
+emission_box_extents = Vector3(0.556, 1, 1)
+gravity = Vector3(0, 0, 0.122)
+linear_accel_min = -2.2351742e-06
+linear_accel_max = -2.2351742e-06
+scale_min = 0.049999997
+scale_max = 0.13
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qa7os"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("6_kp5tw")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_qkmej"]
+material = SubResource("StandardMaterial3D_qa7os")
 
 [sub_resource type="Animation" id="Animation_11eka"]
 length = 0.001
@@ -161,13 +185,31 @@ _planet_radius = 2.02
 surface_material_override/0 = ExtResource("2_h8ms6")
 
 [node name="water" parent="." unique_id=648124364 instance=ExtResource("3_ggt7d")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 
 [node name="water" parent="water" index="0" unique_id=339963997]
 surface_material_override/0 = ExtResource("4_0k1rn")
 
+[node name="Steam" type="GPUParticles3D" parent="water" unique_id=1912953196]
+transform = Transform3D(0.8448552, 0.348292, -0.40609422, -0.33935422, 0.93569535, 0.09650473, 0.4135922, 0.056277245, 0.90872127, -0.8692181, 0.10965363, 1.7581965)
+emitting = false
+amount = 12
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_kp5tw")
+draw_pass_1 = SubResource("QuadMesh_qkmej")
+
+[node name="Steam2" type="GPUParticles3D" parent="water" unique_id=1817115001]
+transform = Transform3D(0.79492086, -0.21088393, 0.5688838, 0.03799084, 0.95311034, 0.30022985, -0.6055225, -0.21704657, 0.76565874, 1.1810944, 0.7093967, 1.3836784)
+emitting = false
+amount = 12
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_kp5tw")
+draw_pass_1 = SubResource("QuadMesh_qkmej")
+
 [node name="grass" parent="." unique_id=31342776 instance=ExtResource("5_48b8c")]
 
 [node name="grass" parent="grass" index="0" unique_id=1495135203]
+transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 0, 0, 0)
 blend_shapes/growing = 1.0
 
 [node name="dirt" parent="." unique_id=243842207 instance=ExtResource("6_3s4jt")]

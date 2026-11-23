@@ -1,38 +1,119 @@
 [gd_scene format=3 uid="uid://bkwl7yk5y73ye"]
 
+[ext_resource type="Script" uid="uid://luebly74j7pe" path="res://scripts/monster.gd" id="1_1cbnp"]
 [ext_resource type="PackedScene" uid="uid://cbid6ecchj2bb" path="res://models/monster_animations.glb" id="1_uwnm8"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_1cbnp"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_c47ug"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uwnm8"]
 animation = &"monster"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c47ug"]
+animation = &"monster_eating"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jlss8"]
+animation = &"sniff_and_eat_001"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1cbnp"]
 animation = &"eating"
 
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_c47ug"]
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gdl1p"]
+allow_transition_to_self = true
+input_0/name = "state_0"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "state_1"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_uwnm8"]
-graph_offset = Vector2(-689.0055, -105.01503)
+graph_offset = Vector2(-652.8816, -160.2796)
+nodes/output/position = Vector2(400, 40)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_1cbnp")
-nodes/Animation/position = Vector2(-220, -60)
+nodes/Animation/position = Vector2(-380, -200)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_uwnm8")
-"nodes/Animation 2/position" = Vector2(-220, 140)
-nodes/Blend2/node = SubResource("AnimationNodeBlend2_c47ug")
-nodes/Blend2/position = Vector2(-20, 0)
-node_connections = [&"output", 0, &"Blend2", &"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2"]
+"nodes/Animation 2/position" = Vector2(-380, -40)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_c47ug")
+nodes/Add2/position = Vector2(-100, -120)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_c47ug")
+"nodes/Animation 3/position" = Vector2(-400, 200)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_jlss8")
+"nodes/Animation 4/position" = Vector2(-400, 360)
+nodes/Transition/node = SubResource("AnimationNodeTransition_gdl1p")
+nodes/Transition/position = Vector2(160, 20)
+"nodes/Add2 2/node" = SubResource("AnimationNodeAdd2_1cbnp")
+"nodes/Add2 2/position" = Vector2(-80, 180)
+node_connections = [&"output", 0, &"Transition", &"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2", &"Transition", 0, &"Add2", &"Transition", 1, &"Add2 2", &"Add2 2", 0, &"Animation 3", &"Add2 2", 1, &"Animation 4"]
+
+[sub_resource type="Curve" id="Curve_1cbnp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.57902986, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_c47ug"]
+curve = SubResource("Curve_1cbnp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1cbnp"]
+direction = Vector3(0, -1, 0)
+spread = 67.339
+initial_velocity_max = 1.15
+linear_accel_min = -8.800002
+linear_accel_max = 17.789997
+scale_min = 0.14
+scale_max = 0.32999998
+color = Color(0.10980392, 0.9019608, 0.49411765, 1)
+alpha_curve = SubResource("CurveTexture_c47ug")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7025r"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.10980392, 0.9019608, 0.49411765, 1)
+metallic = 0.58
+roughness = 0.1
+emission_enabled = true
+emission = Color(0.10980392, 0.9019608, 0.49411765, 1)
+emission_energy_multiplier = 1.05
+billboard_keep_scale = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_c47ug"]
+material = SubResource("StandardMaterial3D_7025r")
 
 [node name="Monster" type="Node3D" unique_id=191126549]
+script = ExtResource("1_1cbnp")
 
 [node name="monster_animations" parent="." unique_id=1129856279 instance=ExtResource("1_uwnm8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.3295026, 0)
 
 [node name="monster" parent="monster_animations" index="0" unique_id=1439214282]
-transform = Transform3D(1, 0, 0, 0, 0.99977183, 0.021360135, 0, -0.021360135, 0.99977183, -0.056256827, 4.0987387, 0)
-blend_shapes/look = 0.46805078
-blend_shapes/eyes = 0.12962958
+transform = Transform3D(1, 0, 0, 0, 0.9990875, 0.042710524, 0, -0.042710524, 0.9990875, -0.112513654, 8.197477, 0)
+blend_shapes/look = 0.93610156
+blend_shapes/eyes = 0.25925916
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1112861218]
 root_node = NodePath("../monster_animations")
 tree_root = SubResource("AnimationNodeBlendTree_uwnm8")
 anim_player = NodePath("../monster_animations/AnimationPlayer")
-parameters/Blend2/blend_amount = 0.5
+parameters/Add2/add_amount = 1.0
+parameters/Transition/current_state = "state_0"
+parameters/Transition/transition_request = ""
+parameters/Transition/current_index = 0
+"parameters/Add2 2/add_amount" = 1.0
+
+[node name="Slime" type="GPUParticles3D" parent="." unique_id=1601167409]
+transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 2.4720306, 1.446892)
+layers = 16
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB(-2.434, -1.872, -2.899, 4.739, 3.491, 5.372)
+process_material = SubResource("ParticleProcessMaterial_1cbnp")
+draw_pass_1 = SubResource("SphereMesh_c47ug")
 
 [editable path="monster_animations"]

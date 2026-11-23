@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://dnrjmu5h7emg3" path="res://scenes/ships/ship_pvo.tscn" id="20_gxtfn"]
 [ext_resource type="PackedScene" uid="uid://cboqdp0shm28y" path="res://scenes/ships/ship_relief.tscn" id="22_twgab"]
 [ext_resource type="PackedScene" uid="uid://cdwbec3xanud5" path="res://scenes/ships/ship_summon.tscn" id="24_02fa5"]
+[ext_resource type="PackedScene" uid="uid://bkwl7yk5y73ye" path="res://scenes/monster.tscn" id="25_nepv3"]
 
 [sub_resource type="Animation" id="Animation_bhx41"]
 resource_name = "appear"
@@ -377,10 +378,17 @@ point_count = 5
 [sub_resource type="Curve3D" id="Curve3D_05nbr"]
 bake_interval = 10.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -16.991852, 32.335327, -243.20686, -4.526, 0, 0, -1.891, 0, 0, -10.2981, 5.8808556, -34.450844, 0, 0, 0, 0, 0, 0, -0.1013515, 0.48259985, 6.3641143, 0, 0, 0, 0, 0, 0, 0.019, 2.8118973, 1.5661719, 0, 0, 0, 0, 0, 0, -2.8851328, 3.1303446, 0.9510975),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -16.991852, 32.335327, -243.20686, -4.526, 0, 0, 0, 0, 0, -10.2981, 5.8808556, -34.450844, 0, 0, 0, 0, 0, 0, -3.8560545, 0.6069603, 0.9510975),
+"tilts": PackedFloat32Array(0, 0, 0)
 }
-point_count = 5
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_0sl42"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -16.991852, 32.335327, -243.20686, 0, 0, 0, 0, 0, 0, 0.078, 0, 0.302),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p57ef"]
 shader = ExtResource("7_u5sy4")
@@ -753,10 +761,11 @@ loop = false
 [node name="ShipRelief" parent="Relief/Path3D2/PathFollow3D" unique_id=98974581 instance=ExtResource("22_twgab")]
 transform = Transform3D(0.49998778, 0, 0, 0, 0.4999925, 0, 0, 0, 0.49999982, 0, 0, 0)
 
-[node name="Summon" type="Node" parent="." unique_id=227231354 node_paths=PackedStringArray("core", "climate") groups=["entity"]]
+[node name="Summon" type="Node" parent="." unique_id=227231354 node_paths=PackedStringArray("core", "climate", "planet") groups=["entity"]]
 script = ExtResource("14_sgl2t")
 core = NodePath("../Core")
 climate = NodePath("../Climate")
+planet = NodePath("../Planet")
 
 [node name="Path3D" type="Path3D" parent="Summon" unique_id=243414667]
 curve = SubResource("Curve3D_05nbr")
@@ -770,6 +779,18 @@ loop = false
 
 [node name="Hover" parent="Summon" unique_id=1058349149 node_paths=PackedStringArray("target") instance=ExtResource("5_qnb83")]
 target = NodePath("../Path3D/PathFollow3D/ShipSummon")
+
+[node name="Path3D2" type="Path3D" parent="Summon" unique_id=2038271937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4056251, -0.66181517)
+curve = SubResource("Curve3D_0sl42")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Summon/Path3D2" unique_id=738027227]
+transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, -16.991852, 32.335327, -243.20686)
+rotation_mode = 0
+loop = false
+
+[node name="Monster" parent="Summon/Path3D2/PathFollow3D" unique_id=191126549 instance=ExtResource("25_nepv3")]
+transform = Transform3D(1.0000088, 0, 0, 0, 1.0000042, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1026976489]
 transform = Transform3D(0.27858496, 0.88134605, 0.38160127, -0.6094361, -0.14486268, 0.7794887, 0.74227893, -0.44971538, 0.49676746, 4.3110504, 2.752436, -1.3894801)
@@ -865,11 +886,3 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_1kice")
 text = "Try again?"
-
-[editable path="Planet"]
-[editable path="Planet/planet"]
-[editable path="Planet/water"]
-[editable path="Planet/grass"]
-[editable path="Planet/dirt"]
-[editable path="Planet/crystals"]
-[editable path="Planet/sludge_new"]

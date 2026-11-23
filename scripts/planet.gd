@@ -8,7 +8,10 @@ signal landscape_changed
 
 @onready var _planet = $planet/planet
 @onready var _grass: MeshInstance3D = $grass/grass
-@onready var _crystals = $crystals
+@onready var _crystals: Node3D = $crystals
+@onready var _water: Node3D = $water
+@onready var _steam_1: GPUParticles3D = $water/Steam
+@onready var _steam_2: GPUParticles3D = $water/Steam2
 @onready var _dirt_base = $dirt
 @onready var _sludge_base = $sludge_new
 @onready var _sludge_animation_tree: AnimationTree = $sludge_new/AnimationTree
@@ -46,6 +49,8 @@ func change_landscape():
 func grow_grass():
 	var tween: Tween = create_tween()
 	tween.tween_property(_grass, "blend_shapes/growing", 1, 1.5)
+	tween.parallel()
+	tween.tween_property(_grass, "scale", Vector3.ONE, 1.5)
 	await tween.finished
 
 
@@ -85,6 +90,22 @@ func add_sludge():
 	_sludge_animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	await _sludge_animation_tree.animation_finished
 	_sludge_animation_tree.active = false
+
+
+func add_water():
+	var tween: Tween = create_tween()
+	tween.tween_property(_water, "scale", Vector3.ONE, 1)
+	await tween.finished
+
+
+func evaporate_water():
+	var tween: Tween = create_tween()
+	tween.tween_property(_water, "scale", Vector3.ONE * 0.9, 3)
+	_steam_1.emitting = true
+	_steam_2.emitting = true
+	await tween.finished
+	_steam_1.emitting = false
+	_steam_2.emitting = false
 
 
 func open_mountain():
