@@ -69,4 +69,3 @@ func _fly_away():
 	tween.parallel()
 	tween.tween_property(_ship, "rotation", Vector3.ONE, .5)
 	await tween.finished
-

@@ -8,5 +8,3 @@ transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("1_st21n")
 roughness = 0.5
-emission_enabled = true
-emission_texture = ExtResource("1_st21n")

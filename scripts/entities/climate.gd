@@ -58,7 +58,6 @@ func install_domes() -> void:
 	await get_tree().create_timer(0.1).timeout
 	await _ship_2.enable_dome()
 
-
 func form_atmosphere() -> void:
 	print("Корабли закачивают дым в купола")
 	var tween: Tween = create_tween()

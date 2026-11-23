@@ -11,4 +11,3 @@ func drop_crystals():
 		tween.tween_property(_mesh, "blend_shapes/crystals_drop", 1, .5)
 		await tween.finished
 		_mesh.set_blend_shape_value(_mesh.find_blend_shape_by_name("crystals_drop"), 0)
-
