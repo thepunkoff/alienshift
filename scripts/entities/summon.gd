@@ -27,8 +27,6 @@ func _ready() -> void:
 	_ship_path_follow.progress_ratio = 0
 	_monster_path_follow.progress_ratio = 0
 
-	summon_monster()
-
 
 func run_level_up(new_lvl: int, new_state: State):
 	if new_state == null:
@@ -63,7 +61,7 @@ func summon_monster() -> void:
 	tween.tween_property(_ship_path_follow, "progress_ratio", 0, 3)
 	await tween.finished
 
-	if core.state.name == Core.STATE_PUT_INSIDE:
+	if core.state.name != Core.STATE_PUT_INSIDE:
 		print("Монстр съедает планету")
 		_monster.eat()
 		await _monster.started_eating
@@ -76,6 +74,7 @@ func summon_monster() -> void:
 		planet_eaten.emit()
 	else:
 		await _monster.sniff()
+		await get_tree().create_timer(1).timeout
 		tween = create_tween()
 		tween.tween_property(_monster_path_follow, "progress_ratio", 0, 2)
 		await tween.finished

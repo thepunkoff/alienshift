@@ -107,7 +107,7 @@ func throw_meteor() -> void:
 	var tween: Tween = create_tween()
 	tween.tween_property(_meteor_path_follow, "progress_ratio", 1, meteor_time)
 	await tween.finished
-	_explode(_meteor.global_position)
+	_explode()
 
 
 func _look_at(a: Node3D, b: Node3D):
@@ -116,7 +116,7 @@ func _look_at(a: Node3D, b: Node3D):
 	a.global_basis = a.global_basis * Basis(rot)
 
 
-func _explode(global_pos: Vector3):
+func _explode():
 	var gpos: Vector3 = _explosion.global_position
 	_meteor.remove_child(_explosion)
 	add_child(_explosion)

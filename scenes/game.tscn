@@ -35,11 +35,11 @@
 [ext_resource type="PackedScene" uid="uid://csxtvdwgn6d34" path="res://scenes/ships/ship_purifying.tscn" id="18_js0lu"]
 [ext_resource type="FontFile" uid="uid://b5g7e7xq8d4wn" path="res://fonts/Oxanium-VariableFont_wght.ttf" id="19_264po"]
 [ext_resource type="Texture2D" uid="uid://t0lctbvoqgnn" path="res://graphics/summon.png" id="19_qnb83"]
-[ext_resource type="AudioStream" uid="uid://doklk1r2mhc48" path="res://assets/music/main_theme.mp3" id="28_sww3w"]
 [ext_resource type="PackedScene" uid="uid://dnrjmu5h7emg3" path="res://scenes/ships/ship_pvo.tscn" id="20_gxtfn"]
 [ext_resource type="PackedScene" uid="uid://cboqdp0shm28y" path="res://scenes/ships/ship_relief.tscn" id="22_twgab"]
 [ext_resource type="PackedScene" uid="uid://cdwbec3xanud5" path="res://scenes/ships/ship_summon.tscn" id="24_02fa5"]
 [ext_resource type="PackedScene" uid="uid://bkwl7yk5y73ye" path="res://scenes/monster.tscn" id="25_nepv3"]
+[ext_resource type="AudioStream" uid="uid://doklk1r2mhc48" path="res://assets/music/main_theme.mp3" id="28_sww3w"]
 
 [sub_resource type="Animation" id="Animation_bhx41"]
 resource_name = "appear"
@@ -924,11 +924,3 @@ text = "Try again?"
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1649134837]
 stream = ExtResource("28_sww3w")
 autoplay = true
-
-[editable path="Planet"]
-[editable path="Planet/planet"]
-[editable path="Planet/water"]
-[editable path="Planet/grass"]
-[editable path="Planet/dirt"]
-[editable path="Planet/crystals"]
-[editable path="Planet/sludge_new"]
