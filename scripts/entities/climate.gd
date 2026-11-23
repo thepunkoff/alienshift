@@ -29,6 +29,7 @@ func run_synergies() -> void:
 
 func install_domes() -> void:
 	print("Корабли прилетают и устанавливают купола")
+	SFX.play("hit")
 	pass
 
 func form_atmosphere() -> void:

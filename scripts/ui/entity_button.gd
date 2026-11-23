@@ -4,12 +4,14 @@ class_name EntityButton
 
 signal pressed
 
+@export var tip_text: String = ""
+
 @onready var texture_rect: TextureRect = $Panel/MarginContainer/Button/TextureRect
 @onready var button: Button = $Panel/MarginContainer/Button
 @onready var panel: Panel = $Panel
 @onready var score_label: Label = $Panel/Score
 @onready var order_label: Label = $Panel/MarginContainer/Button/Order
-
+@onready var tip_label: Label = $Tip
 @onready var initial_button_pos_y: float = position.y
 
 var hover_tween: Tween
@@ -59,6 +61,8 @@ func _ready() -> void:
 	button.pressed.connect(pressed.emit)
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
+	tip_label.hide()
+	tip_label.text = tip_text
 
 
 func _on_mouse_entered():
@@ -67,6 +71,7 @@ func _on_mouse_entered():
 	hover_tween = create_tween()
 	var pos_y: float = position.y
 	hover_tween.tween_property(self, "position:y", pos_y - 5, 0.1)
+	tip_label.show()
 
 
 func _on_mouse_exited():
@@ -74,3 +79,4 @@ func _on_mouse_exited():
 		hover_tween.kill()
 	hover_tween = create_tween()
 	hover_tween.tween_property(self, "position:y", initial_button_pos_y, 0.1)
+	tip_label.hide()

@@ -22,6 +22,7 @@ anchors_preset = 0
 offset_right = 80.0
 offset_bottom = 80.0
 script = ExtResource("1_0rud4")
+tip_text = null
 
 [node name="Panel" type="Panel" parent="." unique_id=896072224]
 layout_mode = 1
@@ -68,6 +69,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Order" type="Label" parent="Panel/MarginContainer/Button" unique_id=662769181]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,10 +100,20 @@ text = "LVL X"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="." unique_id=1682044168]
-visible = false
+[node name="Tip" type="Label" parent="." unique_id=1682044168]
 layout_mode = 1
-offset_right = 41.0
-offset_bottom = 9.0
-theme_override_font_sizes/font_size = 6
-text = "Climatologists"
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -59.0
+offset_right = 12.0
+offset_bottom = -67.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.8206361)
+theme_override_font_sizes/font_size = 15
+text = "Climatologists gfgdsfhdfh gfdagd"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
