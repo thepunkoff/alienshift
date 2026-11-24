@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dy2kmtdecu2fx"]
+
+[ext_resource type="Script" uid="uid://drvqjts0o4tu7" path="res://scripts/sounds/sfx.gd" id="1_vu6sb"]
+[ext_resource type="Script" uid="uid://cjvte1murqrue" path="res://scripts/sounds/sound.gd" id="2_wm80g"]
+[ext_resource type="AudioStream" uid="uid://bpyra32eaqfel" path="res://assets/music/sfx/sound-hitting-metal.wav" id="3_cvcos"]
+
+[sub_resource type="Resource" id="Resource_yyxft"]
+script = ExtResource("2_wm80g")
+name_sound = &"hit"
+sound = ExtResource("3_cvcos")
+metadata/_custom_type_script = "uid://cjvte1murqrue"
+
+[node name="SfxLibrary" type="Node2D" unique_id=1005291426]
+script = ExtResource("1_vu6sb")
+sounds = Array[ExtResource("2_wm80g")]([SubResource("Resource_yyxft")])
