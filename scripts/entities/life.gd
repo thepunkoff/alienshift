@@ -47,7 +47,7 @@ func sow_seeds() -> void:
 	await tween.finished
 
 	tween = create_tween()
-	tween.tween_property(_ship, "transform:basis", Helpers.aligned_to_planet(_ship), Helpers.duration(1))
+	tween.tween_property(_ship, "quaternion", Helpers.local_quaternion(_ship, Helpers.aligned_to_planet(_ship)), Helpers.duration(1))
 	await tween.finished
 
 	await _ship.extend_needle()

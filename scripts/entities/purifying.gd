@@ -51,7 +51,7 @@ func cleanse_with_radiation() -> void:
 	await tween.finished
 
 	tween = create_tween()
-	tween.tween_property(_ship, "global_basis", Helpers.aligned_to_planet(_ship), Helpers.duration(.5))
+	tween.tween_property(_ship, "quaternion", Helpers.local_quaternion(_ship, Helpers.aligned_to_planet(_ship)), Helpers.duration(.5))
 	await tween.finished
 
 	await _ship.enable_ray()
@@ -66,7 +66,7 @@ func cleanse_core() -> void:
 	var spot: Vector3 = _core_purifying_position.global_position
 	var aim: Basis = Helpers.aligned_to(_ship, core.get_node("Core").global_position, spot)
 	tween.tween_property(_ship, "global_position", spot, Helpers.duration(.5))
-	tween.tween_property(_ship, "global_basis", aim, Helpers.duration(.5))
+	tween.tween_property(_ship, "quaternion", Helpers.local_quaternion(_ship, aim), Helpers.duration(.5))
 	await tween.finished
 
 	await _ship.enable_ray()

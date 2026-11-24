@@ -2,11 +2,56 @@
 
 [ext_resource type="Script" uid="uid://54yncbvtbfim" path="res://scripts/ships/ship_purifying.gd" id="1_u3m6u"]
 [ext_resource type="PackedScene" uid="uid://c50lvdlfbb7tf" path="res://models/ship_purifying.glb" id="2_b7oqi"]
+[ext_resource type="Texture2D" uid="uid://b5a3h21j24yn" path="res://graphics/star_thin.png" id="3_b7oqi"]
+
+[sub_resource type="Gradient" id="Gradient_b7oqi"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.24906115)
+colors = PackedColorArray(0.4532772, 1.0061116, 0.6596044, 1, 0.9137255, 0.8784314, 0.38431373, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tkbvv"]
+gradient = SubResource("Gradient_b7oqi")
+
+[sub_resource type="Curve" id="Curve_tc75r"]
+_data = [Vector2(0, 0.14821863), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nt1hy"]
+curve = SubResource("Curve_tc75r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8n2ge"]
+emission_shape = 1
+emission_sphere_radius = 0.53
+direction = Vector3(0, 1, 0)
+initial_velocity_max = 6.47
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_nt1hy")
+color_initial_ramp = SubResource("GradientTexture1D_tkbvv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u3m6u"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_b7oqi")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_u3m6u"]
+material = SubResource("StandardMaterial3D_u3m6u")
 
 [node name="ShipPurifying" type="Node3D" unique_id=1684163355]
 transform = Transform3D(0.721, 0, 0, 0, 0.721, 0, 0, 0, 0.721, 0, 0, 0)
 script = ExtResource("1_u3m6u")
 
 [node name="ship_purifying2" parent="." unique_id=203978773 instance=ExtResource("2_b7oqi")]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=917502348]
+transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, -2.1413312, 0.09106448)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_8n2ge")
+draw_pass_1 = SubResource("QuadMesh_u3m6u")
 
 [editable path="ship_purifying2"]

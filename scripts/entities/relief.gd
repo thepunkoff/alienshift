@@ -56,9 +56,9 @@ func bombs_created_relief():
 	await tween.finished
 
 	tween = create_tween()
-	tween.tween_property(_ship, "global_basis", Helpers.aligned_to_planet(_ship), Helpers.duration(1))
+	tween.tween_property(_ship, "quaternion", Helpers.local_quaternion(_ship, Helpers.aligned_to_planet(_ship)), Helpers.duration(1))
 	tween.parallel()
-	tween.tween_property(_ship_2, "global_basis", Helpers.aligned_to_planet(_ship_2), Helpers.duration(1))
+	tween.tween_property(_ship_2, "quaternion", Helpers.local_quaternion(_ship_2, Helpers.aligned_to_planet(_ship_2)), Helpers.duration(1))
 	await tween.finished
 
 	_ship.bomb_dropped.connect(planet.change_landscape)
@@ -72,7 +72,7 @@ func bombs_created_relief():
 	tween.parallel()
 	tween.tween_property(_ship_path_follow_2, "progress_ratio", 0, Helpers.duration(3))
 	tween.parallel()
-	tween.tween_property(_ship, "global_basis", Basis.IDENTITY, Helpers.duration(1))
+	tween.tween_property(_ship, "quaternion", Helpers.local_quaternion(_ship, Basis.IDENTITY), Helpers.duration(1))
 	tween.parallel()
-	tween.tween_property(_ship_2, "global_basis", Basis.IDENTITY, Helpers.duration(1))
+	tween.tween_property(_ship_2, "quaternion", Helpers.local_quaternion(_ship_2, Basis.IDENTITY), Helpers.duration(1))
 	await tween.finished

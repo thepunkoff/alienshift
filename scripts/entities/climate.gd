@@ -63,9 +63,9 @@ func install_domes() -> void:
 	await tween_2.finished
 
 	var align: Tween = create_tween()
-	align.tween_property(_ship_1, "global_basis", Helpers.aligned_to_planet(_ship_1), Helpers.duration(0.5))
+	align.tween_property(_ship_1, "quaternion", Helpers.local_quaternion(_ship_1, Helpers.aligned_to_planet(_ship_1)), Helpers.duration(0.5))
 	align.parallel()
-	align.tween_property(_ship_2, "global_basis", Helpers.aligned_to_planet(_ship_2), Helpers.duration(0.5))
+	align.tween_property(_ship_2, "quaternion", Helpers.local_quaternion(_ship_2, Helpers.aligned_to_planet(_ship_2)), Helpers.duration(0.5))
 	await align.finished
 
 	await _approach(dome_approach, dome_scale)

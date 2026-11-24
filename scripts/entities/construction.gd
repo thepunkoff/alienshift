@@ -50,7 +50,7 @@ func lower_houses() -> void:
 	await tween.finished
 
 	tween = create_tween()
-	tween.tween_property(_ship, "global_basis", Helpers.aligned_to_planet(_ship), Helpers.duration(0.5))
+	tween.tween_property(_ship, "quaternion", Helpers.local_quaternion(_ship, Helpers.aligned_to_planet(_ship)), Helpers.duration(0.5))
 	await tween.finished
 
 	var init: Vector3 = _ship.position

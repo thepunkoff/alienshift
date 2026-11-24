@@ -68,7 +68,7 @@ func bury_fossils():
 	_ship_path_follow.remove_child(_ship)
 	_ship_path_follow_2.add_child(_ship)
 	tween = create_tween()
-	tween.tween_property(_ship, "global_basis", Helpers.aligned_to_planet(_ship), Helpers.duration(.5))
+	tween.tween_property(_ship, "quaternion", Helpers.local_quaternion(_ship, Helpers.aligned_to_planet(_ship)), Helpers.duration(.5))
 	await tween.finished
 	_align_ship_to_planet = true
 

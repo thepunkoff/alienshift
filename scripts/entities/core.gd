@@ -90,7 +90,7 @@ func take_out():
 	await tween.finished
 
 	tween = create_tween()
-	tween.tween_property(_ship, "transform:basis", _aligned_to_planet(_ship), Helpers.duration(0.5))
+	tween.tween_property(_ship, "quaternion", Helpers.local_quaternion(_ship, _aligned_to_planet(_ship)), Helpers.duration(0.5))
 	await tween.finished
 
 	await _ship.extend_drill()

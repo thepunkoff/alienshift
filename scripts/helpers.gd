@@ -18,6 +18,16 @@ static func aligned_to(node: Node3D, target: Vector3, from: Vector3 = node.globa
 	return b.rotated(z, angle)  # roll around the node's own Z
 
 
+# Converts a global-space rotation into the node's local `quaternion`,
+# so it can be tweened: tween_property(node, "quaternion", ..., t).
+# Tweening a Basis lerps its numbers and shrinks the node mid-turn;
+# quaternions slerp and leave scale untouched.
+static func local_quaternion(node: Node3D, global_b: Basis) -> Quaternion:
+	var parent := node.get_parent_node_3d()
+	var b := global_b if parent == null else parent.global_basis.inverse() * global_b
+	return b.get_rotation_quaternion()
+
+
 func duration(d: float) -> float:
 	var game := get_tree().current_scene as Game
 	return 0. if game and game.skip_animations else d
