@@ -47,7 +47,11 @@ func run_after_evolve() -> void:
 func cleanse_with_radiation() -> void:
 	print("Огромный корабль-пушка прилетает и облучает планету радиацией")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(3))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(2))
+	await tween.finished
+
+	tween = create_tween()
+	tween.tween_property(_ship, "global_basis", Helpers.aligned_to_planet(_ship), Helpers.duration(.5))
 	await tween.finished
 
 	await _ship.enable_ray()
@@ -59,8 +63,10 @@ func cleanse_core() -> void:
 	await _ship.disable_ray()
 
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship, "global_position", _core_purifying_position.global_position, Helpers.duration(.5))
-	tween.tween_property(_ship, "rotation", _core_purifying_position.rotation, Helpers.duration(.5))
+	var spot: Vector3 = _core_purifying_position.global_position
+	var aim: Basis = Helpers.aligned_to(_ship, core.get_node("Core").global_position, spot)
+	tween.tween_property(_ship, "global_position", spot, Helpers.duration(.5))
+	tween.tween_property(_ship, "global_basis", aim, Helpers.duration(.5))
 	await tween.finished
 
 	await _ship.enable_ray()
@@ -71,8 +77,8 @@ func _fly_away():
 	await _ship.disable_ray()
 
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress", _path.curve.get_closest_offset(_path.curve.get_point_position(3)), Helpers.duration(.5))
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(3))
+	tween.tween_property(_ship, "position", Vector3.ZERO, Helpers.duration(.5))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
 	tween.parallel()
-	tween.tween_property(_ship, "rotation", Vector3.ONE, Helpers.duration(.5))
+	tween.tween_property(_ship, "rotation:z", 0, Helpers.duration(.5))
 	await tween.finished

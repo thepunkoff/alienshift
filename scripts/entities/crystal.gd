@@ -27,18 +27,10 @@ func _ready():
 
 
 
-@onready var cam: Camera3D = get_viewport().get_camera_3d()
 func _process(delta: float) -> void:
 
 	if _align_ship_to_planet:
-		_ship.transform.basis = Helpers.aligned_to_planet(_ship)
-		# _ship.look_at(cam.position, Vector3.UP, true)
-		# direction to the camera, in the parent's local space
-		var parent := _ship.get_parent_node_3d()
-		var dir := parent.global_basis.inverse() * (cam.global_position - _ship.global_position)
-
-		# rotation around X that points +Z toward the camera (in the YZ plane)
-		_ship.rotation.x = atan2(-dir.y, dir.z)
+		_ship.global_basis = Helpers.aligned_to_planet(_ship)
 
 
 func run_level_up(new_lvl: int, new_state: State):
@@ -70,13 +62,13 @@ func run_after_evolve() -> void:
 func bury_fossils():
 	print("Высаживаются человечки и закапывают светящиеся кристаллы в землю")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(6))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(1.9))
 	await tween.finished
 
 	_ship_path_follow.remove_child(_ship)
 	_ship_path_follow_2.add_child(_ship)
 	tween = create_tween()
-	tween.tween_property(_ship, "transform:basis", Helpers.aligned_to_planet(_ship), Helpers.duration(.5))
+	tween.tween_property(_ship, "global_basis", Helpers.aligned_to_planet(_ship), Helpers.duration(.5))
 	await tween.finished
 	_align_ship_to_planet = true
 
@@ -102,10 +94,10 @@ func bury_fossils():
 	_ship_path_follow.add_child(_ship)
 	_align_ship_to_planet = false
 	tween = create_tween()
-	tween.tween_property(_ship, "rotation", Vector3.ZERO, Helpers.duration(1))
+	tween.tween_property(_ship, "rotation:z", 0, Helpers.duration(1))
 
 	tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(6))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(1.9))
 	await tween.finished
 
 func mineralization_occurred():

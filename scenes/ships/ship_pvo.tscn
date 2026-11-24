@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dwcosmnv2ig2g" path="res://models/ship_pvo.glb" id="1_shy36"]
 
 [node name="ShipPvo" type="Node3D" unique_id=1007449951]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.441, 0, 0, 0, 0.441, 0, 0, 0, 0.441, 0, 0, 0)
 script = ExtResource("1_i6h61")
 
 [node name="ship_pvo2" parent="." unique_id=376711933 instance=ExtResource("1_shy36")]

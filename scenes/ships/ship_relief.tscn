@@ -68,7 +68,7 @@ _data = {
 }
 
 [node name="ShipRelief" type="Node3D" unique_id=915160757]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+transform = Transform3D(0.847, 0, 0, 0, 0.847, 0, 0, 0, 0.847, 0, 0, 0)
 script = ExtResource("1_xo5uv")
 
 [node name="ship_relief2" parent="." unique_id=705752394 instance=ExtResource("1_xvgyx")]

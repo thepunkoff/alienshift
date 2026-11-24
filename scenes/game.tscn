@@ -58,12 +58,18 @@ _data = {
 }
 
 [sub_resource type="Curve3D" id="Curve3D_bhx41"]
-bake_interval = 10.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.909, 7.672, 13.436, 0, 0, 0, 0, 0, 0, -1.5953956, 1.2741792, 5.230636, -0.763, 0, 0, 0, 0, 0, -2.6148548, -1.5987976, 2.729094, 0, 0, 0, 0, 0, 0, -1.312087, -2.8432965, 0.45768714, 0, 0, 0, 0, 0, 0, 1.8831203, -2.1749632, -1.0581398, 0, 0, 0, 0, 0, 0, 2.6595733, -0.75859976, -1.8079832, 0, 0, 0, 0, 0, 0, 1.5132961, 0.9262829, 0.27182102, 0, 0, 0, 0, 0, 0, 0.019, 2.487681, 1.5661719),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, -1.2667, 2.2, 0.4, 13, -10, 0, 0.9333, -1.5333, -0.2667, -0.9333, 1.5333, 0.2667, 9.2, -3.4, 1.2, 0.6667, -0.5667, 0.2, -0.6667, 0.5667, -0.2, 7.4, -0.8, 1.6, 0.7333, -0.2667, 0.5333, 0, 0, 0, 5.2, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 8
+point_count = 4
+
+[sub_resource type="Curve3D" id="Curve3D_climate2"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 2.1667, -0.4667, 0.2, -16, 4, 1, -1.4667, 0.5333, -0.1, 1.4667, -0.5333, 0.1, -9.5, 2.6, 1.6, -0.7167, 0.4333, 0.2667, 0.7167, -0.4333, -0.2667, -7.2, 0.8, 1.6, -0.6667, 0.2667, 0.5333, 0, 0, 0, -5.2, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
 
 [sub_resource type="SphereMesh" id="SphereMesh_qnb83"]
 
@@ -72,9 +78,8 @@ transparency = 1
 albedo_color = Color(0.8039216, 1, 1, 0.27450982)
 
 [sub_resource type="Curve3D" id="Curve3D_sww3w"]
-bake_interval = 10.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.909, 7.672, 13.436, 0, 0, 0, 0, 0, 0, -3.0278382, 3.243318, 7.3409348, 0, 0, 0, 0, 0, 0, 1.5367, 1.6408887, 3.6036303, 0, 0, 0, 0, 0, 0, 0.019, 1.902, 1.5661719),
+"points": PackedVector3Array(0, 0, 0, 1, -1.8, 0.6667, -10, 10, -1, -0.7, 1.1667, -0.4, 0.7, -1.1667, 0.4, -7, 4.6, 1, -0.4663, 0.4427, 0.1667, 0.4663, -0.4427, -0.1667, -5.8, 3, 1.4, -0.5327, 0.352, 0.4667, 0, 0, 0, -4.202, 1.944, 0),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
@@ -101,7 +106,7 @@ shader_parameter/crack_pulse_amount = 0.25
 shader_parameter/crack_seed = 0.057
 shader_parameter/crack_edge_width = 0.04
 shader_parameter/crack_edge_color = Color(0.12, 0.03, 0.03, 1)
-shader_parameter/brightness = 1.5000000712500001
+shader_parameter/brightness = 1.50000007125
 shader_parameter/desaturate = 0.2
 shader_parameter/tint = Color(0.5764706, 1, 0.5411765, 1)
 shader_parameter/dim_cracks = false
@@ -129,7 +134,7 @@ tracks/0/enabled = true
 tracks/0/path = NodePath(".")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 1.418382, 1.9936066, 1.5347719, 1, 1, 1.5069667, 2.0697637, 1.6219292, 2, 1, 1.418382, 1.9936066, 1.5347719)
+tracks/0/keys = PackedFloat32Array(0, 1, 1.418382, 1.9936066, -0.051006317, 1, 1, 1.5924878, 2.2081027, -0.10427325, 2, 1, 1.418382, 1.9936066, -0.051006317)
 
 [sub_resource type="Animation" id="Animation_u5sy4"]
 resource_name = "take_out"
@@ -140,7 +145,7 @@ tracks/0/enabled = true
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2, 1, 1.418382, 1.9936066, 1.5347719)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 2, 1, 1.418382, 1.9936066, -0.051006317)
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gee14"]
 _data = {
@@ -150,33 +155,24 @@ _data = {
 }
 
 [sub_resource type="Curve3D" id="Curve3D_sgl2t"]
-bake_interval = 10.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.909, 7.672, 13.436, 0, 0, 0, 0, 0, 0, 1.3232552, 3.9008613, 7.9793634, -0.763, 0, 0, 0, 0, 0, -4.468568, 3.5751119, 2.991468, 0, 0, 0, 0, 0, 0, 4.2561893, 0.5121579, -0.124714375, 0, 0, 0, 0, 0, 0, -0.9543152, 1.0262814, -3.9076898, 0, 0, 0, 0, 0, 0, -4.107088, -1.1733859, 0.6320524, 0, 0, 0, 0, 0, 0, 0.2576952, -1.1169522, 3.5208144, 0, 0, 0, 0, 0, 0, 1.9804404, 1.468199, 2.120833),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, -2.1667, -1.8333, 0.3333, 14, 12, 0, 1.7, 1.2667, -0.2333, -1.7, -1.2667, 0.2333, 7.5, 6.5, 1, 0.8795, 0.5862, 0.1667, -0.8795, -0.5862, -0.1667, 3.8, 4.4, 1.4, 0.5257, 0.4723, 0.4667, 0, 0, 0, 2.223, 2.983, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 8
+point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_suyxu"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.909, 7.672, 13.436, 0, 0, 0, 0, 0, 0, -1.3505472, 0.043108463, 6.1563597, -0.763, 0, 0, 0, 0, 0, -1.9191437, 2.3327165, 3.4020782, 0, 0, 0, 0, 0, 0, 4.69361, -0.22798109, -3.3759475, 0, 0, 0, 0, 0, 0, -2.9064546, -2.831831, -2.4169993, 0, 0, 0, 0, 0, 0, -1.362855, -4.305031, 1.1589518, 0, 0, 0, 0, 0, 0, 3.974266, -1.2014167, 3.5208144, 0, 0, 0, 0, 0, 0, -0.6977248, 1.3218374, 1.684643),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 3, 0.2667, 0.5333, -17, -6, 0, -2.1333, -0.2333, -0.3, 2.1333, 0.2333, 0.3, -8, -5.2, 1.6, -0.9628, -0.3695, 0.2667, 0.9628, 0.3695, -0.2667, -4.2, -4.6, 1.8, -0.659, -0.539, 0.6, 0, 0, 0, -2.223, -2.983, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 8
+point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_qouja"]
 closed = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.7746863, 1.2197855, 0.69449264, 0, 0, 0, 0, 0, 0, 1.8803984, 1.3534753, 0.58410966, 0, 0, 0, 0, 0, 0, -0.054122806, 2.0663888, 0.20958698),
-"tilts": PackedFloat32Array(3.0927234, -1.0838494, 0)
-}
-point_count = 3
-
-[sub_resource type="Curve3D" id="Curve3D_wljb1"]
-closed = true
-_data = {
-"points": PackedVector3Array(0, 0.886, 0, 0, 1, 1, -0.6977248, 1.3218374, 1.684643, 0, 0.422, 1.413, 0.798, 5.324, 0, 1.6414448, -2.3394232, 2.659193, 0, 0, 0, 0, 0.544, 0, -0.66465783, 1.7389808, -1.1852505),
-"tilts": PackedFloat32Array(3.0927234, -1.0838494, 0)
+"points": PackedVector3Array(0.2833, -0.1833, 0.05, -0.2833, 0.1833, -0.05, -2.223, -2.983, 0, -0.3038, -0.2305, -0.4, 0.3038, 0.2305, 0.4, -2.4339838, -0.6101469, 1.5529085, 0.0205, 0.4138, 0.35, -0.0205, -0.4138, -0.35, -0.39895907, -1.9510916, 1.9607656),
+"tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
 
@@ -219,33 +215,29 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_sgl2t")
 
 [sub_resource type="Curve3D" id="Curve3D_v2yb1"]
-bake_interval = 10.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -11.231846, 6.0570807, 0.4071579, 0, 0, 0, 0, 0, 0, -4.057681, 5.9230795, 0.41317844, -0.763, 0, 0, 0, 0, 0, 1.8113921, 5.268848, -1.2304125, 0, 0, 0, 0, 0, 0, 3.790348, 3.9362369, 1.0576754, 0, 0, 0, 0, 0, 0, 0.01567936, 3.0609035, 0.8981974, 0, 0, 0, 0, 0, 0, -7.0282516, 2.0682197, -1.2040229, 0, 0, 0, 0, 0, 0, -5.1732216, 1.57759, -0.04285717, 0, 0, 0, 0, 0, 0, -2.0574017, 1.3375986, -0.09229684),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0.0667, -1.4667, -0.0667, -4, 11, 2, -0.1833, 1.0667, 0.0667, 0.1833, -1.0667, -0.0667, -3.8, 6.6, 1.8, -0.2632, 0.6027, 0.3, 0.2632, -0.6027, -0.3, -2.9, 4.6, 1.6, -0.2263, 0.5387, 0.5333, 0, 0, 0, -2.221, 2.984, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 8
+point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_js0lu"]
-bake_interval = 10.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.33060074, 10.419132, 0.4071579, 0, 0, 0, 0, 0, 0, 8.4212265, -0.09895325, 0.41317844, -0.763, 0, 0, 0, 0, 0, -6.92076, 8.22583, -1.2304125, 0, 0, 0, 0, 0, 0, -2.4584239, 1.292337, 1.0576754),
+"points": PackedVector3Array(0, 0, 0, -1.8, 1.6, 0.7333, 7, -11, 0, 0.5, -1.0667, -0.3333, -0.5, 1.0667, 0.3333, 1.6, -6.2, 2.2, -0.1035, -0.536, 0.3667, 0.1035, 0.536, -0.3667, 4, -4.6, 2, 0.593, -0.5387, 0.6667, 0, 0, 0, 2.221, -2.984, 0),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_gxtfn"]
-bake_interval = 10.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 8.414318, 9.226465, 0.4071579, 0, 0, 0, 0, 0, 0, -1.3615215, 4.240191, 0.41317844, -0.763, 0, 0, 0, 0, 0, 1.8342228, 3.5410442, -1.2304125, 0, 0, 0, 0, 0, 0, 0.016600847, 1.7237048, 0.9849906),
+"points": PackedVector3Array(0, 0, 0, -2.3333, 0.0333, 0.3333, 16, 3.5, 0, 1.6333, 0.0833, -0.2333, -1.6333, -0.0833, 0.2333, 9, 3.6, 1, 0.7995, 0.2762, 0.1667, -0.7995, -0.2762, -0.1667, 6.2, 3, 1.4, 0.6657, 0.3523, 0.4667, 0, 0, 0, 3.0353065, 1.4934704, -0.0488324),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_twgab"]
-bake_interval = 10.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -0.36443293, -13.8194275, 0.4071579, 0, 0, 0, 0, 0, 0, -4.010639, 3.2293377, 0.41317844, -0.763, 0, 0, 0, 0, 0, 2.3242245, 4.426503, -1.2304125, 0, 0, 0, 0, 0, 0, 0.016600847, 1.8460727, 0.007638812),
+"points": PackedVector3Array(0, 0, 0, -0.4, -1, 0.1, 3, 9, 1, 0.6667, 0.8333, -0.1, -0.6667, -0.8333, 0.1, 1.8, 6, 1.3, 0.3, 0.65, 0.2167, -0.3, -0.65, -0.2167, -1, 4, 1.6, -0.3333, 0.6333, 0.5333, 0, 0, 0, 0, 2.1, 0),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
@@ -388,28 +380,25 @@ _data = {
 point_count = 2
 
 [sub_resource type="Curve3D" id="Curve3D_8ool0"]
-bake_interval = 10.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.909, 7.672, 13.436, 0, 0, 0, 0, 0, 0, 1.662777, 0.5121579, 3.9175942, 0, 0, 0, 0, 0, 0, 2.3691247, 2.154318, 0.45947862, 0, 0, 0, 0, 0, 0, 0.019, 2.8118973, 1.5661719, 0, 0, 0, 0, 0, 0, -2.8851328, 3.1303446, 0.9510975),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 2.3333, -0.8667, 0.5333, -16, 1, 1, -1.6, 0.5667, -0.2333, 1.6, -0.5667, 0.2333, -9, -1.6, 2.6, -0.7995, 0.0572, 0.4333, 0.7995, -0.0572, -0.4333, -6.4, -2.4, 2.4, -0.7323, -0.1523, 0.8, 0, 0, 0, -4.647075, -2.1758492, -0.025294423),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 5
+point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_pr1ej"]
-bake_interval = 10.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 3.909, 7.672, 13.436, 0, 0, 0, 0, 0, 0, 1.662777, 0.5121579, 3.9175942, 0, 0, 0, 0, 0, 0, 2.3691247, 2.154318, 0.45947862, 0, 0, 0, 0, 0, 0, 0.019, 2.8118973, 1.5661719, 0, 0, 0, 0, 0, 0, -2.9293015, 2.9252837, 0.9510975),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, -2.3333, 0.2667, 0.2667, 16, -5, 1, 1.6333, -0.3, -0.1333, -1.6333, 0.3, 0.1333, 9, -4.2, 1.8, 0.7997, -0.376, 0.3, -0.7997, 0.376, -0.3, 6.2, -3.2, 1.8, 0.666, -0.4187, 0.6, 0, 0, 0, 4.5133796, -2.281884, -0.03670433),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 5
+point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_05nbr"]
-bake_interval = 10.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -16.991852, 32.335327, -243.20686, -4.526, 0, 0, 0, 0, 0, -10.2981, 5.8808556, -34.450844, 0, 0, 0, 0, 0, 0, -3.8560545, 0.6069603, 0.9510975),
-"tilts": PackedFloat32Array(0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 2.3333, 1.1333, 0.3333, -13, -10, 0, -1.9, -0.85, -0.2333, 1.9, 0.85, 0.2333, -6, -5.209677, 1.1510309, -1, -0.55, 0.1667, 1, 0.55, -0.1667, -3.690946, -3.3295462, 1.5705984, -0.5333, -0.5333, 0.4667, 0, 0, 0, -4.5093555, -0.59046894, 0.2943365),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
 }
-point_count = 3
+point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_0sl42"]
 _data = {
@@ -445,10 +434,10 @@ shader_parameter/twinkle_amount = 0.1190000056525
 shader_parameter/star_seed = 1
 shader_parameter/rotation_speed = 1.0
 shader_parameter/rotation_axis = Vector3(0, 1, 0)
-shader_parameter/orthographic_mode = false
+shader_parameter/orthographic_mode = true
 shader_parameter/ortho_camera_forward = Vector3(0, -0.108, -0.994)
 shader_parameter/ortho_camera_size = 9.131
-shader_parameter/ortho_fov = 50.0
+shader_parameter/ortho_fov = 70.0000032775
 shader_parameter/ortho_parallax = 0.0
 
 [sub_resource type="Sky" id="Sky_u5sy4"]
@@ -467,7 +456,8 @@ correct_order = [NodePath("CanvasLayer/HBoxContainer/Core"), NodePath("CanvasLay
 
 [node name="Camera" type="Camera3D" parent="." unique_id=780614332]
 transform = Transform3D(1, 0, 0, 0, 0.994151, 0.107999206, 0, -0.107999206, 0.994151, 0, 0.269, 9.051)
-size = 9.131
+projection = 1
+size = 11.571
 
 [node name="Planet" parent="." unique_id=969387141 instance=ExtResource("2_pl11u")]
 
@@ -478,28 +468,26 @@ script = ExtResource("7_5newe")
 libraries/ = SubResource("AnimationLibrary_qnb83")
 
 [node name="Path3D" type="Path3D" parent="Climate" unique_id=816228413]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2395616, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
 curve = SubResource("Curve3D_bhx41")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Climate/Path3D" unique_id=564103004]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, 3.909, 7.672, 13.436)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -10, 0)
 rotation_mode = 0
 loop = false
 
 [node name="ShipClimate" parent="Climate/Path3D/PathFollow3D" unique_id=1547168477 instance=ExtResource("3_bhx41")]
-transform = Transform3D(1.0000002, 0, 0, 0, 1.0000005, 0, 0, 0, 1.0000002, 0, 0, 0)
 
 [node name="Path3D2" type="Path3D" parent="Climate" unique_id=540741312]
-transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, -1.256, 0)
-curve = SubResource("Curve3D_bhx41")
+transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
+curve = SubResource("Curve3D_climate2")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Climate/Path3D2" unique_id=290898853]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, 3.909, 7.672, 13.436)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 4, 1)
 rotation_mode = 0
 loop = false
 
 [node name="ShipClimate" parent="Climate/Path3D2/PathFollow3D" unique_id=181455484 instance=ExtResource("3_bhx41")]
-transform = Transform3D(1.0000002, 0, 0, 0, 1.0000005, 0, 0, 0, 1.0000002, 0, 0, 0)
 
 [node name="Atmosphere" type="MeshInstance3D" parent="Climate" unique_id=1051912816]
 mesh = SubResource("SphereMesh_qnb83")
@@ -519,11 +507,11 @@ life = NodePath("../Life")
 planet = NodePath("../Planet")
 
 [node name="Path3D" type="Path3D" parent="Construction" unique_id=1697706639]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.256, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
 curve = SubResource("Curve3D_sww3w")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Construction/Path3D" unique_id=1216774666]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, 3.909, 7.672, 13.436)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10, -1)
 rotation_mode = 0
 loop = false
 
@@ -533,23 +521,23 @@ loop = false
 script = ExtResource("2_yqjtg")
 
 [node name="Core" type="MeshInstance3D" parent="Core" unique_id=574797616]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.49999997, 0, 0, 0, 0.5, 0, 0, 0, 0.50000006, 0, 0, 0)
 mesh = SubResource("SphereMesh_lbhrr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Core/Core" unique_id=19252481]
 libraries/ = SubResource("AnimationLibrary_gee14")
 
 [node name="Path3D" type="Path3D" parent="Core" unique_id=1575001776]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.256, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
 curve = SubResource("Curve3D_sgl2t")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Core/Path3D" unique_id=1736331689]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, 3.909, 7.672, 13.436)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 12, 0)
 rotation_mode = 0
 loop = false
 
 [node name="ShipCore" parent="Core/Path3D/PathFollow3D" unique_id=2067125825 instance=ExtResource("9_suyxu")]
-transform = Transform3D(0.99996567, 0, 0, 0, 0.99998456, 0, 0, 0, 0.9999971, 0, 0, 0)
+transform = Transform3D(1.036, 0, 0, 0, 1.0359999, 0, 0, 0, 1.036, 0, 0, 0)
 
 [node name="Crystal" type="Node" parent="." unique_id=180190775 node_paths=PackedStringArray("summon", "planet") groups=["entity"]]
 script = ExtResource("3_lbhrr")
@@ -557,34 +545,24 @@ summon = NodePath("../Summon")
 planet = NodePath("../Planet")
 
 [node name="Path3D" type="Path3D" parent="Crystal" unique_id=488520954]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.256, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
 curve = SubResource("Curve3D_suyxu")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Crystal/Path3D" unique_id=2115391111]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, 3.909, 7.672, 13.436)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, -6, 0)
 rotation_mode = 0
 loop = false
 
 [node name="ShipCrystal" parent="Crystal/Path3D/PathFollow3D" unique_id=1547445990 instance=ExtResource("11_sgl2t")]
 
 [node name="Path3D2" type="Path3D" parent="Crystal" unique_id=614247683]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.256, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
 curve = SubResource("Curve3D_qouja")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Crystal/Path3D2" unique_id=1576789897]
-transform = Transform3D(0.9999921, 0, 0, 0, 0.9999826, 0, 0, 0, 0.9999547, -0.0541228, 2.0663888, 0.20958698)
-progress = 5.7546377
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.223, -2.983, 0)
 rotation_mode = 0
 loop = false
-tilt_enabled = false
-
-[node name="Path3D3" type="Path3D" parent="Crystal" unique_id=787567558]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.256, 0)
-curve = SubResource("Curve3D_wljb1")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="Crystal/Path3D3" unique_id=580829374]
-transform = Transform3D(0.9999921, 0, 0, 0, 0.9999826, 0, 0, 0, 0.9999547, -0.6977248, 1.3218374, 1.684643)
-rotation_mode = 0
 tilt_enabled = false
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Crystal" unique_id=1402197139]
@@ -599,11 +577,11 @@ crystal = NodePath("../Crystal")
 planet = NodePath("../Planet")
 
 [node name="Path3D" type="Path3D" parent="Enrichment" unique_id=1172756541]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.256, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
 curve = SubResource("Curve3D_v2yb1")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Enrichment/Path3D" unique_id=912297248]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, -11.231846, 6.0570807, 0.4071579)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 11, 2)
 rotation_mode = 0
 loop = false
 
@@ -619,34 +597,34 @@ summon = NodePath("../Summon")
 planet = NodePath("../Planet")
 
 [node name="Path3D" type="Path3D" parent="Life" unique_id=1331952682]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.256, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
 curve = SubResource("Curve3D_js0lu")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Life/Path3D" unique_id=1042411125]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, -0.33060074, 10.419132, 0.4071579)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -11, 0)
 rotation_mode = 0
 loop = false
 
 [node name="ShipLife" parent="Life/Path3D/PathFollow3D" unique_id=199775063 instance=ExtResource("16_v2yb1")]
-transform = Transform3D(0.29999998, 0, 0, 0, 0.29999998, 0, 0, 0, 0.29999995, 0, 0, 0)
 
 [node name="Purifying" type="Node" parent="." unique_id=843564201 node_paths=PackedStringArray("core") groups=["entity"]]
 script = ExtResource("11_sww3w")
 core = NodePath("../Core")
 
 [node name="Path3D" type="Path3D" parent="Purifying" unique_id=780270357]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.256, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
 curve = SubResource("Curve3D_gxtfn")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Purifying/Path3D" unique_id=908334945]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, 8.414318, 9.226465, 0.4071579)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0353062, 1.4934702, -0.04883241)
+progress = 13.805874
 rotation_mode = 0
 loop = false
 
 [node name="ShipPurifying" parent="Purifying/Path3D/PathFollow3D" unique_id=1684163355 instance=ExtResource("18_js0lu")]
 
 [node name="Marker3D" type="Marker3D" parent="Purifying" unique_id=867199311]
-transform = Transform3D(0.75743955, -0.5385989, 0.3690479, -0.009036547, 0.55653733, 0.8307732, -0.6528427, -0.6325955, 0.41667655, 0.78578943, 2.6606977, 0.8137132)
+transform = Transform3D(-0.26043704, 0.96549064, 0, -0.96549076, -0.260437, 0, 0, 0, 0.9999999, 3.0353062, 1.4934702, -0.04883241)
 
 [node name="Pvo" type="Node" parent="." unique_id=2051376375 node_paths=PackedStringArray("relief", "life", "planet") groups=["entity"]]
 script = ExtResource("12_suyxu")
@@ -655,11 +633,11 @@ life = NodePath("../Life")
 planet = NodePath("../Planet")
 
 [node name="Path3D" type="Path3D" parent="Pvo" unique_id=1663367352]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.256, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
 curve = SubResource("Curve3D_twgab")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Pvo/Path3D" unique_id=1544235829]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, -0.36443293, -13.8194275, 0.4071579)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 9, 1)
 rotation_mode = 0
 loop = false
 
@@ -773,27 +751,26 @@ script = ExtResource("4_iywne")
 planet = NodePath("../Planet")
 
 [node name="Path3D" type="Path3D" parent="Relief" unique_id=1733710596]
+transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
 curve = SubResource("Curve3D_8ool0")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Relief/Path3D" unique_id=115242043]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, 3.909, 7.672, 13.436)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 1, 1)
 rotation_mode = 0
 loop = false
 
 [node name="ShipRelief" parent="Relief/Path3D/PathFollow3D" unique_id=915160757 instance=ExtResource("22_twgab")]
-transform = Transform3D(0.49998778, 0, 0, 0, 0.49999252, 0, 0, 0, 0.49999985, 0, 0, 0)
 
 [node name="Path3D2" type="Path3D" parent="Relief" unique_id=1786269179]
-transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
 curve = SubResource("Curve3D_pr1ej")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Relief/Path3D2" unique_id=158549977]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, 3.909, 7.672, 13.436)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, -5, 1)
 rotation_mode = 0
 loop = false
 
 [node name="ShipRelief" parent="Relief/Path3D2/PathFollow3D" unique_id=98974581 instance=ExtResource("22_twgab")]
-transform = Transform3D(0.49998778, 0, 0, 0, 0.4999925, 0, 0, 0, 0.49999982, 0, 0, 0)
 
 [node name="Summon" type="Node" parent="." unique_id=227231354 node_paths=PackedStringArray("core", "climate", "planet") groups=["entity"]]
 script = ExtResource("14_sgl2t")
@@ -802,10 +779,12 @@ climate = NodePath("../Climate")
 planet = NodePath("../Planet")
 
 [node name="Path3D" type="Path3D" parent="Summon" unique_id=243414667]
+transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
 curve = SubResource("Curve3D_05nbr")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Summon/Path3D" unique_id=2132331204]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, -16.991852, 32.335327, -243.20686)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.509356, -0.590469, 0.29433656)
+progress = 15.087928
 rotation_mode = 0
 loop = false
 

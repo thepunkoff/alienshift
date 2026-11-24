@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://boa3x60gqxnl4" path="res://models/ship_climate.glb" id="2_x16y7"]
 
 [node name="ShipClimate" type="Node3D" unique_id=1547168477]
+transform = Transform3D(0.651, 0, 0, 0, 0.651, 0, 0, 0, 0.651, 0, 0, 0)
 script = ExtResource("1_v5dcs")
 
 [node name="ship_climate2" parent="." unique_id=619175887 instance=ExtResource("2_x16y7")]

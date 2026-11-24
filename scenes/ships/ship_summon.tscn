@@ -92,7 +92,7 @@ nodes/OneShot/position = Vector2(0, 120)
 node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Animation", &"OneShot", 1, &"Animation 2"]
 
 [node name="ShipSummon" type="Node3D" unique_id=1644426378]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.469, 0, 0, 0, 0.469, 0, 0, 0, 0.469, 0, 0, 0)
 script = ExtResource("1_1up5q")
 
 [node name="ship_summon2" parent="." unique_id=710268839 instance=ExtResource("2_3njwo")]

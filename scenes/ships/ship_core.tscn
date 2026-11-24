@@ -43,6 +43,7 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_p61p5")
 
 [node name="ShipCore" type="Node3D" unique_id=2067125825]
+transform = Transform3D(1.036, 0, 0, 0, 1.036, 0, 0, 0, 1.036, 0, 0, 0)
 script = ExtResource("1_p61p5")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1282862310]

@@ -7,6 +7,7 @@ extends Node
 
 var last_pos: Vector3
 var last_pos_ready: bool = false
+var _last_wobble: Basis = Basis.IDENTITY
 
 func _ready() -> void:
 	while true:
@@ -31,10 +32,8 @@ func _process(delta: float) -> void:
 
 	var disp: Vector3 = (target.position - last_pos)
 	var vel: Vector3 = disp / delta
-	vel = Vector3(vel.x, 0, vel.z)
-	var dir: Vector3 = vel.normalized() if vel.length() > 0 else Vector3.BACK
-	var quat: Quaternion = Quaternion(Vector3.UP, dir)
-	var weight = max_rotation_weight * vel.length() / (PI / 2 / radius)
-	quat = Quaternion.IDENTITY.slerp(quat, weight)
-	target.basis = Basis(quat)
+	var weight: float = max_rotation_weight * vel.x / (PI / 2 / radius)
+	var wobble := Basis(Vector3.BACK, -weight * PI / 2)
+	target.basis = target.basis * _last_wobble.inverse() * wobble
+	_last_wobble = wobble
 	last_pos = target.position

@@ -1,9 +1,13 @@
 extends Node
 
 static func aligned_to_planet(node: Node3D) -> Basis:
+	return aligned_to(node, Vector3.ZERO)
+
+
+static func aligned_to(node: Node3D, target: Vector3, from: Vector3 = node.global_position) -> Basis:
 	var b := node.global_basis
 	var z := b.z.normalized()
-	var dir := -node.global_position
+	var dir := target - from
 
 	# keep only the part of dir that lies in the node's XY plane
 	dir -= z * dir.dot(z)

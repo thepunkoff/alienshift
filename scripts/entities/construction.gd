@@ -46,15 +46,25 @@ func run_after_evolve() -> void:
 func lower_houses() -> void:
 	print("Спускаются дома на краниках")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(4))
-	tween.tween_interval(Helpers.duration(0.5))
-	tween.tween_property(_ship, "position:y", _ship.position.y - 0.6, Helpers.duration(2))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(2.2))
+	await tween.finished
+
+	tween = create_tween()
+	tween.tween_property(_ship, "global_basis", Helpers.aligned_to_planet(_ship), Helpers.duration(0.5))
+	await tween.finished
+
+	var init: Vector3 = _ship.position
+	tween = create_tween()
+	tween.tween_property(_ship, "position", init - _ship.transform.basis.y.normalized() * 0.6, Helpers.duration(2))
 	await tween.finished
 	_chel_house = await planet.grow_houses()
 
 	tween = create_tween()
 	tween.tween_interval(Helpers.duration(0.5))
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(4))
+	tween.tween_property(_ship, "position", init, Helpers.duration(1))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2.2))
+	tween.parallel()
+	tween.tween_property(_ship, "rotation:z", 0, Helpers.duration(1))
 	await tween.finished
 
 
