@@ -432,7 +432,6 @@ Button/colors/font_color = Color(0.8, 0.7764706, 0.58431375, 1)
 
 [node name="Game" type="Node" unique_id=1463540394 node_paths=PackedStringArray("correct_order")]
 script = ExtResource("1_uwrxv")
-skip_animations = true
 correct_order = [NodePath("CanvasLayer/HBoxContainer/Core"), NodePath("CanvasLayer/HBoxContainer/Crystal"), NodePath("CanvasLayer/HBoxContainer/Purifying"), NodePath("CanvasLayer/HBoxContainer/Relief"), NodePath("CanvasLayer/HBoxContainer/Climate"), NodePath("CanvasLayer/HBoxContainer/Pvo"), NodePath("CanvasLayer/HBoxContainer/Summon"), NodePath("CanvasLayer/HBoxContainer/Enrichment"), NodePath("CanvasLayer/HBoxContainer/Life"), NodePath("CanvasLayer/HBoxContainer/Construction")]
 
 [node name="Camera" type="Camera3D" parent="." unique_id=780614332]
