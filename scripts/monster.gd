@@ -18,7 +18,7 @@ func sniff():
 func eat():
 	_animation_tree.set("parameters/Transition/transition_request", "state_1")
 	_animation_tree.active = true
-	get_tree().create_timer(1.38).timeout.connect(started_eating.emit)
+	get_tree().create_timer(Helpers.duration(1.38)).timeout.connect(started_eating.emit)
 	await _animation_tree.animation_finished
 	_animation_tree.active = false
 	eaten.emit()

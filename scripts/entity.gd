@@ -64,3 +64,4 @@ func get_level_by_name(n: String):
 
 @abstract func run_level_up(new_lvl: int, new_state: State)
 @abstract func run_synergies()
+@abstract func run_after_evolve()

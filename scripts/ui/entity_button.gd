@@ -8,8 +8,9 @@ signal pressed
 
 @onready var texture_rect: TextureRect = $Panel/Panel/MarginContainer/Button/TextureRect
 @onready var button: Button = $Panel/Panel/MarginContainer/Button
-@onready var panel: Panel = $Panel/Panel
 @onready var score_label: Label = $Panel/Score
+@onready var panel_outer: Panel = $Panel
+@onready var panel: Panel = $Panel/Panel
 @onready var order_label: Label = $Panel/Panel/MarginContainer/Button/Order
 @onready var tip_label: Label = $Tip
 @onready var initial_button_pos_y: float = position.y
@@ -38,9 +39,9 @@ func enable_score(delay: float):
 	order_label.text = str(get_meta("order", ""))
 	var tween: Tween = create_tween()
 	tween.tween_interval(delay)
-	tween.tween_property(panel, "size:y", 115, 0.2)
+	tween.tween_property(panel_outer, "size:y", 115, 0.2)
 	tween.parallel()
-	tween.tween_property(panel, "position:y", -35, 0.2)
+	tween.tween_property(panel_outer, "position:y", -35, 0.2)
 	tween.parallel()
 	tween.tween_property(score_label, "self_modulate:a", 1, 0.2)
 	tween.parallel()

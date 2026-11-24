@@ -12,7 +12,7 @@ func extend_drill():
 	if drill_tween:
 		drill_tween.kill()
 	drill_tween = create_tween()
-	drill_tween.tween_property(_mesh, "blend_shapes/drill", 1, 1)
+	drill_tween.tween_property(_mesh, "blend_shapes/drill", 1, Helpers.duration(1))
 	await drill_tween.finished
 
 
@@ -20,7 +20,7 @@ func remove_drill():
 	if drill_tween:
 		drill_tween.kill()
 	drill_tween = create_tween()
-	drill_tween.tween_property(_mesh, "blend_shapes/drill", 0, 1)
+	drill_tween.tween_property(_mesh, "blend_shapes/drill", 0, Helpers.duration(1))
 	await drill_tween.finished
 
 
@@ -28,5 +28,5 @@ func enable_light():
 	if light_tween:
 		light_tween.kill()
 	light_tween = create_tween()
-	light_tween.tween_property(_mesh, "blend_shapes/light", 1, 1)
+	light_tween.tween_property(_mesh, "blend_shapes/light", 1, Helpers.duration(1))
 	await light_tween.finished

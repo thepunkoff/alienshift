@@ -14,8 +14,8 @@ func drop_bomb():
 	bomb_dropped.emit()
 
 	var tween: Tween = create_tween()
-	tween.tween_property(_mesh, "blend_shapes/clouds", 1, 0.6)
-	tween.tween_property(_mesh, "blend_shapes/clouds2", 1, 0.6)
+	tween.tween_property(_mesh, "blend_shapes/clouds", 1, Helpers.duration(0.6))
+	tween.tween_property(_mesh, "blend_shapes/clouds2", 1, Helpers.duration(0.6))
 	await tween.finished
 	_mesh.set_blend_shape_value(_mesh.find_blend_shape_by_name("clouds"), 0)
 	_mesh.set_blend_shape_value(_mesh.find_blend_shape_by_name("clouds2"), 0)

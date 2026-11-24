@@ -37,18 +37,22 @@ func run_synergies() -> void:
 	_added_people = true
 
 
+func run_after_evolve() -> void:
+	pass
+
+
 func lower_houses() -> void:
 	print("Спускаются дома на краниках")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, 4)
-	tween.tween_interval(0.5)
-	tween.tween_property(_ship, "position:y", _ship.position.y - 0.6, 2)
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(4))
+	tween.tween_interval(Helpers.duration(0.5))
+	tween.tween_property(_ship, "position:y", _ship.position.y - 0.6, Helpers.duration(2))
 	await tween.finished
-	_chel_house = await planet.grow_houses_static()
+	_chel_house = await planet.grow_houses()
 
 	tween = create_tween()
-	tween.tween_interval(0.5)
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, 4)
+	tween.tween_interval(Helpers.duration(0.5))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(4))
 	await tween.finished
 
 

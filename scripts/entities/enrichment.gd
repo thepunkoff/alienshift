@@ -16,6 +16,7 @@ func _ready() -> void:
 		3: State.create(STATE_VEGETATION_GROWN),
 	})
 
+
 var _died_vegetation: bool = false
 
 func run_level_up(new_lvl: int, new_state: State):
@@ -36,21 +37,26 @@ func run_synergies() -> void:
 		await died_vegetation()
 		_died_vegetation = true
 
+
+func run_after_evolve() -> void:
+	pass
+
+
 func enrich_soil() -> void:
 	print("Прилетают машины со шлангами, льют розовую густую капающую жижу на планету, и она впитывается")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, 6)
-	tween.tween_interval(.7)
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(6))
+	tween.tween_interval(Helpers.duration(.7))
 	await tween.finished
 
 	await _ship.prepare_hose()
-	await get_tree().create_timer(.5).timeout
+	await get_tree().create_timer(Helpers.duration(.5)).timeout
 
 	planet.add_sludge()
 	await _ship.drain_liquid()
 
 	tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, 6)
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(6))
 	await tween.finished
 
 

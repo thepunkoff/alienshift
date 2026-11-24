@@ -13,7 +13,7 @@ func drain_liquid():
 		liquid_tween.kill()
 	_particles.emitting = true
 	liquid_tween = create_tween()
-	liquid_tween.tween_property(_mesh, "blend_shapes/liquid", 1, 3)
+	liquid_tween.tween_property(_mesh, "blend_shapes/liquid", 1, Helpers.duration(3))
 	await liquid_tween.finished
 	_particles.emitting = false
 
@@ -22,5 +22,5 @@ func prepare_hose():
 	if hose_tween:
 		hose_tween.kill()
 	hose_tween = create_tween()
-	hose_tween.tween_property(_mesh, "blend_shapes/hose", 1, 1)
+	hose_tween.tween_property(_mesh, "blend_shapes/hose", 1, Helpers.duration(1))
 	await hose_tween.finished

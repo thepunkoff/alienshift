@@ -41,16 +41,16 @@ func _ready() -> void:
 
 func change_landscape():
 	var tween: Tween = create_tween()
-	tween.tween_property(_planet, "blend_shapes/relief", 1, 3)
+	tween.tween_property(_planet, "blend_shapes/relief", 1, Helpers.duration(3))
 	await tween.finished
 	landscape_changed.emit()
 
 
 func grow_grass():
 	var tween: Tween = create_tween()
-	tween.tween_property(_grass, "blend_shapes/growing", 1, 1.5)
+	tween.tween_property(_grass, "blend_shapes/growing", 0, Helpers.duration(1.5))
 	tween.parallel()
-	tween.tween_property(_grass, "scale", Vector3.ONE, 1.5)
+	tween.tween_property(_grass, "scale", Vector3.ONE, Helpers.duration(1.5))
 	await tween.finished
 
 
@@ -59,34 +59,34 @@ func die_grass():
 	var mat: StandardMaterial3D = _grass.mesh.get("surface_0/material") as StandardMaterial3D
 	var dup: Resource = mat.duplicate()
 	_grass.mesh.set("surface0/material", dup)
-	tween.tween_property(dup, "albedo_color", Color.html("#df6e27"), 2)
+	tween.tween_property(dup, "albedo_color", Color.html("#df6e27"), Helpers.duration(2))
 	await tween.finished
 
 
 func grow_crystals():
 	var tween: Tween = create_tween()
 	tween.set_trans(Tween.TRANS_ELASTIC)
-	tween.tween_property(_crystals, "scale", Vector3.ONE, 1)
+	tween.tween_property(_crystals, "scale", Vector3.ONE, Helpers.duration(1))
 	await tween.finished
 
 
 func add_dirt():
 	var tween: Tween = create_tween()
 	tween.set_trans(Tween.TRANS_ELASTIC)
-	tween.tween_property(_dirt_base, "scale", 1, 1)
+	tween.tween_property(_dirt_base, "scale", 1, Helpers.duration(1))
 	tween.parallel()
 	_dirt_animation_player.play("dirt_wobble")
-	tween.tween_property(_dirt_sub, "blend_shapes/wobble_big", -1, 1)
-	tween.tween_property(_dirt_sub, "blend_shapes/wobble_big", 0.4, 1)
+	tween.tween_property(_dirt_sub, "blend_shapes/wobble_big", -1, Helpers.duration(1))
+	tween.tween_property(_dirt_sub, "blend_shapes/wobble_big", 0.4, Helpers.duration(1))
 	await tween.finished
 
 
 func add_sludge():
 	var tween: Tween = create_tween()
-	tween.tween_property(_sludge_base, "scale", Vector3.ONE, 1)
+	tween.tween_property(_sludge_base, "scale", Vector3.ONE, Helpers.duration(1))
 	await tween.finished
 	_sludge_animation_tree.active = true
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(Helpers.duration(1)).timeout
 	_sludge_animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 	await _sludge_animation_tree.animation_finished
 	_sludge_animation_tree.active = false
@@ -94,13 +94,13 @@ func add_sludge():
 
 func add_water():
 	var tween: Tween = create_tween()
-	tween.tween_property(_water, "scale", Vector3.ONE, 1)
+	tween.tween_property(_water, "scale", Vector3.ONE, Helpers.duration(1))
 	await tween.finished
 
 
 func evaporate_water():
 	var tween: Tween = create_tween()
-	tween.tween_property(_water, "scale", Vector3.ONE * 0.9, 3)
+	tween.tween_property(_water, "scale", Vector3.ONE * 0.9, Helpers.duration(3))
 	_steam_1.emitting = true
 	_steam_2.emitting = true
 	await tween.finished
@@ -110,9 +110,9 @@ func evaporate_water():
 
 func open_mountain():
 	var tween: Tween = create_tween()
-	tween.tween_property(_planet, "blend_shapes/relief", 0, 3)
+	tween.tween_property(_planet, "blend_shapes/relief", 0, Helpers.duration(3))
 	tween.parallel()
-	tween.tween_property(_planet, "blend_shapes/pvo_lid", 1, 3)
+	tween.tween_property(_planet, "blend_shapes/pvo_lid", 1, Helpers.duration(3))
 	await tween.finished
 
 
@@ -122,7 +122,7 @@ func add_fish():
 
 
 ## Возвращает ссылку на домик, откуда будет выбегать чел.
-func grow_houses_static() -> House:
+func grow_houses() -> House:
 	var last_tween: Tween
 	var chel_house: House
 
@@ -131,7 +131,7 @@ func grow_houses_static() -> House:
 		_align_to_planet(house)
 		last_tween = create_tween()
 		var target: Vector3 = house.position.normalized() * _planet_radius
-		last_tween.tween_property(house, "position", target, 1 + (i * 0.1))
+		last_tween.tween_property(house, "position", target, Helpers.duration(1 + (i * 0.1)))
 		if house.has_meta("chel_house"):
 			chel_house = house
 		i += 1

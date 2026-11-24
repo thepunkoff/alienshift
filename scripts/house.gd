@@ -9,11 +9,11 @@ class_name House
 
 func release_chel():
 	var tween: Tween = create_tween()
-	tween.tween_property(_house_mesh, "blend_shapes/door_open", 1, 1)
+	tween.tween_property(_house_mesh, "blend_shapes/door_open", 1, Helpers.duration(1))
 	await tween.finished
 	_chel_animation_player.play("chel_action")
-	tween.stop()
-	tween.tween_property(_chel, "position:z", 0.8, 2)
+	create_tween().tween_property(_chel, "position:z", 0.8, Helpers.duration(2))
 	await _chel_animation_player.animation_finished
-	tween.tween_property(_chel_mesh, "blend_shapes/heart_face", 1, 0.2)
+	tween = create_tween()
+	tween.tween_property(_chel_mesh, "blend_shapes/heart_face", 1, Helpers.duration(0.2))
 	await tween.finished

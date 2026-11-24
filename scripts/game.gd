@@ -1,4 +1,7 @@
 extends Node
+class_name Game
+
+@export var skip_animations: bool = false
 
 @onready var _buttons_parent: Node = $CanvasLayer/HBoxContainer
 @onready var _game_over_label: Label = $CanvasLayer/GameOverLabel
@@ -48,7 +51,10 @@ extends Node
 	_life_button: _life,
 	_summon_button: _summon,
 }
-var _game_over_started := false
+
+@export var correct_order: Array[EntityButton] = []
+
+var _end_game_started := false
 var _current_button_order: int = 1
 
 func _ready() -> void:
@@ -68,14 +74,22 @@ func _input(event: InputEvent) -> void:
 
 
 func _activate(button: EntityButton) -> void:
+	if _end_game_started:
+		return
+
 	button.set_pressed_order(_current_button_order)
 	_current_button_order += 1
+
 	button.set_meta("used", true)
 	for b in _button_entities:
 		b.disabled = true
 	var entity: Entity = _button_entities[button]
 	await entity.level_up()
+	if _end_game_started:
+		return
 	await _evolve(entity)
+	if _end_game_started:
+		return
 	if not await _try_end_game():
 		for b in _button_entities:
 			b.disabled = b.get_meta("used", false)
@@ -84,12 +98,23 @@ func _activate(button: EntityButton) -> void:
 
 func _evolve(except: Entity) -> void:
 	for entity: Entity in _entities:
-		if entity.level > 0:
-			await entity.run_synergies()
-
-	for entity: Entity in _entities:
 		if entity != except and entity.level > 0:
 			await entity.level_up()
+			if _end_game_started:
+				return
+
+	for entity: Entity in _entities:
+		if entity.level > 0:
+			await entity.run_synergies()
+			if _end_game_started:
+				return
+
+	for entity: Entity in _entities:
+		if entity.level > 0:
+			await entity.run_after_evolve()
+			if _end_game_started:
+				return
+
 
 func _try_end_game():
 	for b: EntityButton in _buttons_parent.get_children():
@@ -101,22 +126,31 @@ func _try_end_game():
 
 
 func _end_game():
-	if _game_over_started:
+	if _end_game_started:
 		return
-	_game_over_started = true
+	_end_game_started = true
 
-	var tween: Tween = create_tween()
-	tween.tween_property(_game_over_label, "visible_ratio", 1, 2)
-	await tween.finished
+	if _is_order_correct():
+		print("win")
+		_game_over_label.text = "You Win!"
 
 	var i: int = 0
 	for b: EntityButton in _buttons_parent.get_children():
 		b.disabled = false
+		b.button.disabled = true
 		b.enable_score(i * 0.1)
 		i += 1
 
-	tween = create_tween()
+	var tween: Tween = create_tween()
+	tween.tween_property(_game_over_label, "visible_ratio", 1, 2)
 	tween.tween_property(_try_again_button, "self_modulate:a", 1, 0.7)
 	await tween.finished
 
-	_game_over_started = false
+	_end_game_started = false
+
+
+func _is_order_correct() -> bool:
+	for press in correct_order.size():
+		if correct_order[press].get_meta("order", -1) != press + 1:
+			return false
+	return true

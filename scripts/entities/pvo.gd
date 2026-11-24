@@ -57,10 +57,14 @@ func run_synergies() -> void:
 		_meteorites_shot = true
 
 
+func run_after_evolve() -> void:
+	pass
+
+
 func ship_appear() -> void:
 	print("Корабли c ПВО системами подлетают к планете")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, 3)
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(3))
 	await tween.finished
 
 
@@ -71,19 +75,19 @@ func pvo_installed() -> void:
 	_pvo.show()
 
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, 3)
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(3))
 	await tween.finished
 
 
 func pvo_flew_away() -> void:
 	print("ПВО улетают, т.к. не находят гор, на которые можно приземлиться")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship, "rotation:y", deg_to_rad(40), .5)
-	tween.tween_interval(.5)
-	tween.tween_property(_ship, "rotation:y", deg_to_rad(-40), .5)
-	tween.tween_interval(.5)
-	tween.tween_property(_ship, "rotation:y", 0, .5)
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, 3)
+	tween.tween_property(_ship, "rotation:y", deg_to_rad(40), Helpers.duration(.5))
+	tween.tween_interval(Helpers.duration(.5))
+	tween.tween_property(_ship, "rotation:y", deg_to_rad(-40), Helpers.duration(.5))
+	tween.tween_interval(Helpers.duration(.5))
+	tween.tween_property(_ship, "rotation:y", 0, Helpers.duration(.5))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(3))
 	await tween.finished
 
 
@@ -98,14 +102,14 @@ func throw_meteor() -> void:
 		var bullet_time: float = bullet_time_base + (2 - i) * 0.5
 		var tween_bullet: Tween = create_tween()
 		var delay: float = meteor_time - bullet_time
-		tween_bullet.tween_interval(delay)
+		tween_bullet.tween_interval(Helpers.duration(delay))
 		tween_bullet.tween_callback(bullet.show)
-		tween_bullet.tween_property(pf, "progress_ratio", 1, bullet_time)
+		tween_bullet.tween_property(pf, "progress_ratio", 1, Helpers.duration(bullet_time))
 		tween_bullet.tween_callback(bullet.hide)
 		i += 1
 
 	var tween: Tween = create_tween()
-	tween.tween_property(_meteor_path_follow, "progress_ratio", 1, meteor_time)
+	tween.tween_property(_meteor_path_follow, "progress_ratio", 1, Helpers.duration(meteor_time))
 	await tween.finished
 	_explode()
 

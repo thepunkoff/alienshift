@@ -39,36 +39,40 @@ func run_level_up(new_lvl: int, new_state: State):
 			push_error("PlanetCore state not expected: '%s'." % [new_state.name])
 
 
-func run_synergies():
+func run_synergies() -> void:
+	pass
+
+
+func run_after_evolve() -> void:
 	pass
 
 
 func bombs_created_relief():
 	print("Сбрасывают атомные бомбы, появляются впадины и горы")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, 3)
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(3))
 	tween.parallel()
-	tween.tween_property(_ship_path_follow_2, "progress_ratio", 1, 3)
+	tween.tween_property(_ship_path_follow_2, "progress_ratio", 1, Helpers.duration(3))
 	await tween.finished
 
 	tween = create_tween()
-	tween.tween_property(_ship, "global_basis", Helpers.aligned_to_planet(_ship), 1)
+	tween.tween_property(_ship, "global_basis", Helpers.aligned_to_planet(_ship), Helpers.duration(1))
 	tween.parallel()
-	tween.tween_property(_ship_2, "global_basis", Helpers.aligned_to_planet(_ship_2), 1)
+	tween.tween_property(_ship_2, "global_basis", Helpers.aligned_to_planet(_ship_2), Helpers.duration(1))
 	await tween.finished
 
 	_ship.bomb_dropped.connect(planet.change_landscape)
 	_ship.drop_bomb()
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(Helpers.duration(0.8)).timeout
 	_ship_2.drop_bomb()
 	await planet.landscape_changed
 
 	tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, 3)
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(3))
 	tween.parallel()
-	tween.tween_property(_ship_path_follow_2, "progress_ratio", 0, 3)
+	tween.tween_property(_ship_path_follow_2, "progress_ratio", 0, Helpers.duration(3))
 	tween.parallel()
-	tween.tween_property(_ship, "global_basis", Basis.IDENTITY, 1)
+	tween.tween_property(_ship, "global_basis", Basis.IDENTITY, Helpers.duration(1))
 	tween.parallel()
-	tween.tween_property(_ship_2, "global_basis", Basis.IDENTITY, 1)
+	tween.tween_property(_ship_2, "global_basis", Basis.IDENTITY, Helpers.duration(1))
 	await tween.finished

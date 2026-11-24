@@ -227,7 +227,6 @@ libraries/ = SubResource("AnimationLibrary_11eka")
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
 [node name="sludge_new" parent="." unique_id=1241830028 instance=ExtResource("9_8dfcq")]
-visible = false
 
 [node name="sludge_baked" parent="sludge_new" index="0" unique_id=140985686]
 surface_material_override/0 = ExtResource("10_qw1i6")
@@ -245,6 +244,7 @@ parameters/OneShot/request = 0
 
 [node name="House" parent="." unique_id=27364319 groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(0.27185985, 0.10470999, -0.07161039, -0.123009, 0.25898278, -0.08829898, 0.031000243, 0.1093789, 0.27762428, 0.7050476, 1.7438171, 0.7364845)
+metadata/chel_house = true
 
 [node name="House2" parent="." unique_id=1511804874 groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(-0.24800941, 0.07115211, -0.15306444, -0.15950838, -0.009807321, 0.25389153, 0.05521255, 0.29127514, 0.045938883, 0.4790906, -0.06603611, 1.9612523)

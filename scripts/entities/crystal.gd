@@ -51,7 +51,7 @@ func run_level_up(new_lvl: int, new_state: State):
 			push_error("Fossils state not expected: '%s'." % [new_state.name])
 
 
-func run_synergies():
+func run_synergies() -> void:
 	if _fossils_bloomed:
 		return
 
@@ -60,34 +60,38 @@ func run_synergies():
 		_fossils_bloomed = true
 
 
+func run_after_evolve() -> void:
+	pass
+
+
 func bury_fossils():
 	print("Высаживаются человечки и закапывают светящиеся кристаллы в землю")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, 6)
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(6))
 	await tween.finished
 
 	_ship_path_follow.remove_child(_ship)
 	_ship_path_follow_2.add_child(_ship)
 	tween = create_tween()
-	tween.tween_property(_ship, "transform:basis", Helpers.aligned_to_planet(_ship), .5)
+	tween.tween_property(_ship, "transform:basis", Helpers.aligned_to_planet(_ship), Helpers.duration(.5))
 	await tween.finished
 	_align_ship_to_planet = true
 
 	await _ship.drop_crystals()
 
 	tween = create_tween()
-	tween.tween_property(_ship_path_follow_2, "progress", _path.curve.get_closest_offset(_path.curve.get_point_position(1)), 2)
+	tween.tween_property(_ship_path_follow_2, "progress", _path.curve.get_closest_offset(_path.curve.get_point_position(1)), Helpers.duration(2))
 	await tween.finished
 	await _ship.drop_crystals()
 
 	tween = create_tween()
-	tween.tween_property(_ship_path_follow_2, "progress", _path.curve.get_closest_offset(_path.curve.get_point_position(2)), 2)
+	tween.tween_property(_ship_path_follow_2, "progress", _path.curve.get_closest_offset(_path.curve.get_point_position(2)), Helpers.duration(2))
 
 	await tween.finished
 	await _ship.drop_crystals()
 
 	tween = create_tween()
-	tween.tween_property(_ship_path_follow_2, "progress", _path.curve.get_baked_length(), 1)
+	tween.tween_property(_ship_path_follow_2, "progress", _path.curve.get_baked_length(), Helpers.duration(1))
 	await tween.finished
 
 
@@ -95,10 +99,10 @@ func bury_fossils():
 	_ship_path_follow.add_child(_ship)
 	_align_ship_to_planet = false
 	tween = create_tween()
-	tween.tween_property(_ship, "rotation", Vector3.ZERO, 1)
+	tween.tween_property(_ship, "rotation", Vector3.ZERO, Helpers.duration(1))
 
 	tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, 6)
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(6))
 	await tween.finished
 
 func mineralization_occurred():

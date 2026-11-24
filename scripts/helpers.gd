@@ -1,5 +1,4 @@
 extends Node
-class_name Helpers
 
 static func aligned_to_planet(node: Node3D) -> Basis:
 	var b := node.global_basis
@@ -13,3 +12,8 @@ static func aligned_to_planet(node: Node3D) -> Basis:
 
 	var angle := (-b.y).signed_angle_to(dir.normalized(), z)
 	return b.rotated(z, angle)  # roll around the node's own Z
+
+
+func duration(d: float) -> float:
+	var game := get_tree().current_scene as Game
+	return 0. if game and game.skip_animations else d

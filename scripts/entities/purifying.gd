@@ -25,7 +25,7 @@ func run_level_up(new_lvl: int, new_state: State):
 		STATE_RADIATION_CLEANSING:
 			await cleanse_with_radiation()
 
-func run_synergies():
+func run_synergies() -> void:
 	if _core_interaction_processed :
 		return
 
@@ -37,14 +37,19 @@ func run_synergies():
 
 	await _fly_away();
 
+
+func run_after_evolve() -> void:
+	pass
+
+
 func cleanse_with_radiation() -> void:
 	print("Огромный корабль-пушка прилетает и облучает планету радиацией")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, 3)
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(3))
 	await tween.finished
 
 	await _ship.enable_ray()
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(Helpers.duration(2)).timeout
 
 
 func cleanse_core() -> void:
@@ -52,8 +57,8 @@ func cleanse_core() -> void:
 	await _ship.disable_ray()
 
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship, "global_position", _core_purifying_position.global_position, .5)
-	tween.tween_property(_ship, "rotation", _core_purifying_position.rotation, .5)
+	tween.tween_property(_ship, "global_position", _core_purifying_position.global_position, Helpers.duration(.5))
+	tween.tween_property(_ship, "rotation", _core_purifying_position.rotation, Helpers.duration(.5))
 	await tween.finished
 
 	await _ship.enable_ray()
@@ -64,8 +69,8 @@ func _fly_away():
 	await _ship.disable_ray()
 
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress", _path.curve.get_closest_offset(_path.curve.get_point_position(3)), .5)
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, 3)
+	tween.tween_property(_ship_path_follow, "progress", _path.curve.get_closest_offset(_path.curve.get_point_position(3)), Helpers.duration(.5))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(3))
 	tween.parallel()
-	tween.tween_property(_ship, "rotation", Vector3.ONE, .5)
+	tween.tween_property(_ship, "rotation", Vector3.ONE, Helpers.duration(.5))
 	await tween.finished

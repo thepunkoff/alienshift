@@ -72,30 +72,34 @@ func run_level_up(new_lvl: int, new_state: State):
 			push_error("PlanetCore state not expected: '%s'." % [new_state.name])
 
 
-func run_synergies():
+func run_synergies() -> void:
+	pass
+
+
+func run_after_evolve() -> void:
 	pass
 
 
 func take_out():
 	print("Прилетает большой космический корабль, бурит скважину и достает ядро из планеты и зависает с ним")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, 4)
-	tween.tween_interval(0.5)
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(4))
+	tween.tween_interval(Helpers.duration(0.5))
 	await tween.finished
 
 	tween = create_tween()
-	tween.tween_property(_ship, "transform:basis", _aligned_to_planet(_ship), 0.5)
+	tween.tween_property(_ship, "transform:basis", _aligned_to_planet(_ship), Helpers.duration(0.5))
 	await tween.finished
 
 	await _ship.extend_drill()
 
 	tween = create_tween()
-	tween.tween_interval(0.2)
+	tween.tween_interval(Helpers.duration(0.2))
 	var init: Vector3 = _ship.position
 	var target: Vector3 = _ship.position - _ship.transform.basis.y * 0.6
-	tween.tween_property(_ship, "position", target, 2)
-	tween.tween_interval(0.5)
-	tween.tween_property(_ship, "position", init, 2)
+	tween.tween_property(_ship, "position", target, Helpers.duration(2))
+	tween.tween_interval(Helpers.duration(0.5))
+	tween.tween_property(_ship, "position", init, Helpers.duration(2))
 	await tween.finished
 
 	await _ship.remove_drill()
@@ -112,7 +116,7 @@ func crack():
 	var mat := _core.get_active_material(0).duplicate() as StandardMaterial3D
 	_core.set_surface_override_material(0, mat)
 	var tween: Tween = create_tween()
-	tween.tween_property(mat, "albedo_color", Color.RED, 1.0)
+	tween.tween_property(mat, "albedo_color", Color.RED, Helpers.duration(1.0))
 	await tween.finished
 
 
@@ -122,14 +126,14 @@ func put_inside():
 	await _core_animation_player.animation_finished
 
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, 4)
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(4))
 	await tween.finished
 
 
 func core_purified():
 	var mat := _core.get_active_material(0)
 	var tween: Tween = create_tween()
-	tween.tween_property(mat, "albedo_color", Color.ORANGE, 1.0)
+	tween.tween_property(mat, "albedo_color", Color.ORANGE, Helpers.duration(1.0))
 	await tween.finished
 
 
@@ -137,7 +141,7 @@ func core_dimmed():
 	print("Очищение рано сработало на ядро, ядро тускнеет")
 	var mat := _core.get_active_material(0)
 	var tween: Tween = create_tween()
-	tween.tween_property(mat, "albedo_color", Color.DARK_GRAY, 1.0)
+	tween.tween_property(mat, "albedo_color", Color.DARK_GRAY, Helpers.duration(1.0))
 	await tween.finished
 
 

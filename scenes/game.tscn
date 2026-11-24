@@ -430,8 +430,10 @@ sky = SubResource("Sky_u5sy4")
 [sub_resource type="Theme" id="Theme_1kice"]
 Button/colors/font_color = Color(0.8, 0.7764706, 0.58431375, 1)
 
-[node name="Game" type="Node" unique_id=1463540394]
+[node name="Game" type="Node" unique_id=1463540394 node_paths=PackedStringArray("correct_order")]
 script = ExtResource("1_uwrxv")
+skip_animations = true
+correct_order = [NodePath("CanvasLayer/HBoxContainer/Core"), NodePath("CanvasLayer/HBoxContainer/Crystal"), NodePath("CanvasLayer/HBoxContainer/Purifying"), NodePath("CanvasLayer/HBoxContainer/Relief"), NodePath("CanvasLayer/HBoxContainer/Climate"), NodePath("CanvasLayer/HBoxContainer/Pvo"), NodePath("CanvasLayer/HBoxContainer/Summon"), NodePath("CanvasLayer/HBoxContainer/Enrichment"), NodePath("CanvasLayer/HBoxContainer/Life"), NodePath("CanvasLayer/HBoxContainer/Construction")]
 
 [node name="Camera" type="Camera3D" parent="." unique_id=780614332]
 transform = Transform3D(1, 0, 0, 0, 0.994151, 0.107999206, 0, -0.107999206, 0.994151, 0, 0.269, 9.051)
@@ -836,14 +838,13 @@ offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Climate" parent="CanvasLayer/HBoxContainer" unique_id=1723808063 instance=ExtResource("9_0tnpc")]
+[node name="Summon" parent="CanvasLayer/HBoxContainer" unique_id=606658212 instance=ExtResource("9_0tnpc")]
 layout_mode = 2
-tip_text = "Nubes Gemiurg"
-texture = ExtResource("10_vtaks")
+tip_text = "Chtonic Summoner"
+texture = ExtResource("19_qnb83")
 
 [node name="Construction" parent="CanvasLayer/HBoxContainer" unique_id=1536897161 instance=ExtResource("9_0tnpc")]
 layout_mode = 2
-tooltip_text = "udsfasd"
 tip_text = "Spaceshack Constructor"
 texture = ExtResource("11_264po")
 
@@ -882,10 +883,10 @@ layout_mode = 2
 tip_text = "Nuclear Landscaper"
 texture = ExtResource("18_bhx41")
 
-[node name="Summon" parent="CanvasLayer/HBoxContainer" unique_id=606658212 instance=ExtResource("9_0tnpc")]
+[node name="Climate" parent="CanvasLayer/HBoxContainer" unique_id=1723808063 instance=ExtResource("9_0tnpc")]
 layout_mode = 2
-tip_text = "Chtonic Summoner"
-texture = ExtResource("19_qnb83")
+tip_text = "Nubes Gemiurg"
+texture = ExtResource("10_vtaks")
 
 [node name="GameOverLabel" type="Label" parent="CanvasLayer" unique_id=435123468]
 anchors_preset = 8
@@ -905,6 +906,8 @@ theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("19_264po")
 theme_override_font_sizes/font_size = 49
 text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TryAgainButton" type="Button" parent="CanvasLayer" unique_id=281272413]
 anchors_preset = 8
