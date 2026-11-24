@@ -52,6 +52,6 @@ amount = 20
 process_material = SubResource("ParticleProcessMaterial_0505w")
 draw_pass_1 = SubResource("QuadMesh_p61p5")
 
-[node name="ship_core_new" parent="." unique_id=225768432 instance=ExtResource("4_e0vw7")]
+[node name="ship_core2" parent="." unique_id=225768432 instance=ExtResource("4_e0vw7")]
 
-[editable path="ship_core_new"]
+[editable path="ship_core2"]

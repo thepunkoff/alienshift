@@ -237,7 +237,7 @@ point_count = 4
 [sub_resource type="Curve3D" id="Curve3D_gxtfn"]
 bake_interval = 10.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 8.414318, 9.226465, 0.4071579, 0, 0, 0, 0, 0, 0, -1.3615215, 4.240191, 0.41317844, -0.763, 0, 0, 0, 0, 0, 1.8342228, 3.5410442, -1.2304125, 0, 0, 0, 0, 0, 0, 0.016600847, 1.8460727, 0.007638812),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 8.414318, 9.226465, 0.4071579, 0, 0, 0, 0, 0, 0, -1.3615215, 4.240191, 0.41317844, -0.763, 0, 0, 0, 0, 0, 1.8342228, 3.5410442, -1.2304125, 0, 0, 0, 0, 0, 0, 0.016600847, 1.7237048, 0.9849906),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
@@ -445,6 +445,11 @@ shader_parameter/twinkle_amount = 0.1190000056525
 shader_parameter/star_seed = 1
 shader_parameter/rotation_speed = 1.0
 shader_parameter/rotation_axis = Vector3(0, 1, 0)
+shader_parameter/orthographic_mode = false
+shader_parameter/ortho_camera_forward = Vector3(0, -0.108, -0.994)
+shader_parameter/ortho_camera_size = 9.131
+shader_parameter/ortho_fov = 50.0
+shader_parameter/ortho_parallax = 0.0
 
 [sub_resource type="Sky" id="Sky_u5sy4"]
 sky_material = SubResource("ShaderMaterial_p57ef")

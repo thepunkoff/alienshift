@@ -45,6 +45,22 @@ uniform float rotation_speed = 1.0; // degrees per second
 // Axis the sky spins around (normalized in shader; Y = spin around the vertical).
 uniform vec3 rotation_axis = vec3(0.0, 1.0, 0.0);
 
+// ---- Orthographic camera support ----
+// With an orthographic camera Godot feeds the sky an extreme wide-angle
+// EYEDIR (~150 deg wide, scaled by Camera3D.size), which badly distorts it. When enabled,
+// the screen position is recovered from EYEDIR and the sky is re-projected
+// through a normal lens with ortho_fov.
+// The sky shader can't see the camera, so mirror it in the uniforms below.
+uniform bool orthographic_mode = false;
+// Camera's forward direction (-Z of its basis, world space).
+uniform vec3 ortho_camera_forward = vec3(0.0, -0.108, -0.994);
+// Camera3D.size (used to normalize screen position to -1..1 vertically).
+uniform float ortho_camera_size = 9.131;
+// Vertical field of view of the re-projected sky. Smaller = stars bigger.
+uniform float ortho_fov : hint_range(1.0, 170.0) = 50.0;
+// How much the sky scrolls when the camera moves (0 = fixed backdrop).
+uniform float ortho_parallax = 0.0;
+
 // Rodrigues rotation of v around unit axis k by angle a.
 vec3 rotate_axis(vec3 v, vec3 k, float a) {
 	float c = cos(a);
@@ -156,6 +172,24 @@ vec4 star_layer(vec3 dir, float density, float size, float amount, bool sparkle,
 
 void sky() {
 	vec3 dir = normalize(EYEDIR);
+
+	// Cubemap passes (reflections/ambient) keep the native EYEDIR.
+	if (orthographic_mode && !AT_CUBEMAP_PASS) {
+		vec3 fwd = normalize(ortho_camera_forward);
+		vec3 world_up = abs(fwd.y) < 0.999 ? vec3(0.0, 1.0, 0.0) : vec3(0.0, 0.0, -1.0);
+		vec3 right = normalize(cross(fwd, world_up));
+		vec3 up = cross(right, fwd);
+
+		// Native ortho EYEDIR ~ (x * size/2 * aspect, y * size/2, -1) in view
+		// space (measured), so tangent / forward is linear in screen position.
+		vec2 t = vec2(dot(dir, right), dot(dir, up)) / max(dot(dir, fwd), 1e-5);
+		// Normalize: +-1 at top/bottom edge of the screen.
+		vec2 ndc = t / (ortho_camera_size * 0.5);
+		ndc += vec2(dot(POSITION, right), dot(POSITION, up)) * ortho_parallax;
+
+		vec2 v = ndc * tan(radians(ortho_fov) * 0.5);
+		dir = normalize(fwd + v.x * right + v.y * up);
+	}
 
 	// Background gradient, optionally banded.
 	float g = clamp(dir.y * 0.5 + 0.5, 0.0, 1.0);
