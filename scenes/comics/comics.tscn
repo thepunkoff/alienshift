@@ -6,6 +6,22 @@
 [ext_resource type="Texture2D" uid="uid://52pg764hjo1c" path="res://assets/comics/frame3.png" id="4_lp8cy"]
 [ext_resource type="Texture2D" uid="uid://bcshhy0evvcy4" path="res://assets/comics/frame4.png" id="5_glfpi"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iktpb"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7kmf6"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_idd7m"]
 length = 0.001
 tracks/0/type = "value"
@@ -119,7 +135,7 @@ tracks/8/keys = {
 
 [sub_resource type="Animation" id="Animation_nwnbf"]
 resource_name = "final_text_show"
-length = 0.5
+length = 1.5
 step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -128,7 +144,7 @@ tracks/0/path = NodePath("../FinalText:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -136,6 +152,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_qv3v0"]
 resource_name = "frame1_show"
+length = 3.0
 step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -144,7 +161,7 @@ tracks/0/path = NodePath("Image:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -156,7 +173,7 @@ tracks/1/path = NodePath("Text:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 1.5, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -164,6 +181,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ueko2"]
 resource_name = "frame2_show"
+length = 3.0
 step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -172,7 +190,7 @@ tracks/0/path = NodePath("../Frame2/Image:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -184,7 +202,7 @@ tracks/1/path = NodePath("../Frame2/Text:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 1.5, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -192,6 +210,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_csf6k"]
 resource_name = "frame3_show"
+length = 3.0
 step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -200,7 +219,7 @@ tracks/0/path = NodePath("../Frame3/Image:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -212,7 +231,7 @@ tracks/1/path = NodePath("../Frame3/Text:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 1.5, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -220,6 +239,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_hwd38"]
 resource_name = "frame4_show"
+length = 3.0
 step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -228,7 +248,7 @@ tracks/0/path = NodePath("../Frame4/Image:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -240,7 +260,7 @@ tracks/1/path = NodePath("../Frame4/Text:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 1.5, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -265,10 +285,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7kmf6")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=524447122]
-root_node = NodePath("../Frame1")
-libraries/ = SubResource("AnimationLibrary_dfow5")
-
 [node name="Background" type="ColorRect" parent="." unique_id=363790447]
 layout_mode = 1
 anchors_preset = 15
@@ -280,32 +296,26 @@ color = Color(0, 0, 0, 1)
 
 [node name="Frame1" type="Control" parent="." unique_id=733355038]
 anchors_preset = 0
-offset_left = 327.0
-offset_top = 43.0
-offset_right = 596.0
-offset_bottom = 257.0
-scale = Vector2(0.7059894, 0.7059894)
 
 [node name="Image" type="TextureRect" parent="Frame1" unique_id=1767900963]
 modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 22.0
-offset_bottom = -4.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_iktpb")
-expand_mode = 1
-
-[node name="Text" type="ColorRect" parent="Frame1" unique_id=713454464]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 0
-offset_left = 51.0
-offset_top = 171.0
-offset_right = 209.0
-offset_bottom = 221.0
+offset_left = 129.0
+offset_top = 19.0
+offset_right = 6829.0
+offset_bottom = 4019.0
+scale = Vector2(0.065, 0.065)
+texture = ExtResource("2_iktpb")
+
+[node name="Text" type="Panel" parent="Frame1" unique_id=245653442]
+modulate = Color(1, 1, 1, 0)
+z_index = 9
+layout_mode = 0
+offset_left = 94.0
+offset_top = 31.0
+offset_right = 204.0
+offset_bottom = 81.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iktpb")
 
 [node name="Label" type="Label" parent="Frame1/Text" unique_id=645671295]
 layout_mode = 1
@@ -318,18 +328,13 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 34
-text = "\"Finally!\""
+theme_override_font_sizes/font_size = 25
+text = "Finally!"
 horizontal_alignment = 1
 
 [node name="Frame2" type="Control" parent="." unique_id=1915460167]
 z_index = 1
 anchors_preset = 0
-offset_left = 525.0
-offset_top = 112.0
-offset_right = 794.0
-offset_bottom = 326.0
-scale = Vector2(0.7059894, 0.7059894)
 
 [node name="Image" type="TextureRect" parent="Frame2" unique_id=1897627469]
 modulate = Color(1, 1, 1, 0)
@@ -337,20 +342,25 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 22.0
-offset_bottom = -4.0
+offset_left = 622.0
+offset_top = 21.0
+offset_right = 7322.0
+offset_bottom = 4021.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.065, 0.065)
 texture = ExtResource("3_4oeph")
-expand_mode = 1
+stretch_mode = 5
 
-[node name="Text" type="ColorRect" parent="Frame2" unique_id=2046190208]
+[node name="Text" type="Panel" parent="Frame2" unique_id=740925436]
 modulate = Color(1, 1, 1, 0)
+z_index = 2
 layout_mode = 0
-offset_left = 14.0
-offset_top = 191.0
-offset_right = 282.0
-offset_bottom = 278.0
+offset_left = 873.0
+offset_top = 218.0
+offset_right = 1128.0
+offset_bottom = 268.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iktpb")
 
 [node name="Label" type="Label" parent="Frame2/Text" unique_id=2041270948]
 layout_mode = 1
@@ -363,39 +373,41 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 29
+theme_override_font_sizes/font_size = 21
 text = "My first day on the job!"
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Frame3" type="Control" parent="." unique_id=567288035]
 anchors_preset = 0
-offset_left = 328.0
-offset_top = 214.0
-offset_right = 597.0
-offset_bottom = 428.0
-scale = Vector2(0.7059894, 0.7059894)
 
 [node name="Image" type="TextureRect" parent="Frame3" unique_id=1328391434]
 modulate = Color(1, 1, 1, 0)
+z_index = 8
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 22.0
-offset_bottom = -4.0
+offset_left = 132.0
+offset_top = 297.0
+offset_right = 6832.0
+offset_bottom = 5258.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.065, 0.065)
 texture = ExtResource("4_lp8cy")
-expand_mode = 1
+stretch_mode = 5
 
-[node name="Text" type="ColorRect" parent="Frame3" unique_id=353018222]
+[node name="Text" type="Panel" parent="Frame3" unique_id=1917836580]
 modulate = Color(1, 1, 1, 0)
+z_index = 8
 layout_mode = 0
-offset_left = 13.0
-offset_top = 174.0
-offset_right = 275.0
-offset_bottom = 260.0
+offset_left = 24.0
+offset_top = 555.0
+offset_right = 389.0
+offset_bottom = 605.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iktpb")
 
 [node name="Label" type="Label" parent="Frame3/Text" unique_id=1811964121]
 layout_mode = 1
@@ -408,39 +420,40 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 21
 text = "Time to terraform my first planet!"
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Frame4" type="Control" parent="." unique_id=272834891]
 anchors_preset = 0
-offset_left = 526.0
-offset_top = 322.0
-offset_right = 795.0
-offset_bottom = 536.0
-scale = Vector2(0.7059894, 0.7059894)
 
 [node name="Image" type="TextureRect" parent="Frame4" unique_id=1715845214]
 modulate = Color(1, 1, 1, 0)
+z_index = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 22.0
-offset_bottom = -4.0
+offset_left = 627.0
+offset_top = 300.0
+offset_right = 7327.0
+offset_bottom = 5261.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.065, 0.065)
 texture = ExtResource("5_glfpi")
-expand_mode = 1
+stretch_mode = 5
 
-[node name="Text" type="ColorRect" parent="Frame4" unique_id=482723376]
+[node name="Text" type="Panel" parent="Frame4" unique_id=913772355]
 modulate = Color(1, 1, 1, 0)
+z_index = 1
 layout_mode = 0
-offset_left = -219.55002
-offset_top = 178.47293
-offset_right = 281.62204
-offset_bottom = 264.47293
+offset_left = 596.0
+offset_top = 575.0
+offset_right = 1146.0
+offset_bottom = 625.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iktpb")
 
 [node name="Label" type="Label" parent="Frame4/Text" unique_id=845832553]
 layout_mode = 1
@@ -453,24 +466,31 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 29
-text = "Just need to deploy work shifts in the right order!"
+theme_override_font_sizes/font_size = 21
+text = "Just need to deploy the work shifts in the right order."
 horizontal_alignment = 1
-autowrap_mode = 3
 
-[node name="FinalText" type="ColorRect" parent="." unique_id=19330382]
+[node name="FinalText" type="Panel" parent="." unique_id=892094727]
 modulate = Color(1, 1, 1, 0)
+z_index = 13
 layout_mode = 0
-offset_left = 473.0
-offset_top = 552.0
-offset_right = 546.0
-offset_bottom = 594.0
+offset_left = 499.0
+offset_top = 240.0
+offset_right = 699.0
+offset_bottom = 340.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7kmf6")
 
 [node name="Label" type="Label" parent="FinalText" unique_id=966710638]
 layout_mode = 0
-offset_top = -1.0
-offset_right = 73.0
-offset_bottom = 41.0
+offset_left = 20.0
+offset_right = 183.0
+offset_bottom = 92.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 67
 text = "Easy!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=524447122]
+root_node = NodePath("../Frame1")
+libraries/ = SubResource("AnimationLibrary_dfow5")
