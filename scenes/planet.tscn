@@ -227,6 +227,7 @@ libraries/ = SubResource("AnimationLibrary_11eka")
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
 [node name="sludge_new" parent="." unique_id=1241830028 instance=ExtResource("9_8dfcq")]
+visible = false
 
 [node name="sludge_baked" parent="sludge_new" index="0" unique_id=140985686]
 surface_material_override/0 = ExtResource("10_qw1i6")
@@ -244,28 +245,36 @@ parameters/OneShot/request = 0
 
 [node name="House" parent="." unique_id=27364319 groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(0.27185985, 0.10470999, -0.07161039, -0.123009, 0.25898278, -0.08829898, 0.031000243, 0.1093789, 0.27762428, 0.7050476, 1.7438171, 0.7364845)
+visible = false
 metadata/chel_house = true
 
 [node name="House2" parent="." unique_id=1511804874 groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(-0.24800941, 0.07115211, -0.15306444, -0.15950838, -0.009807321, 0.25389153, 0.05521255, 0.29127514, 0.045938883, 0.4790906, -0.06603611, 1.9612523)
+visible = false
 
 [node name="House3" parent="." unique_id=197381467 groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(0.23810306, -0.13963705, 0.11750926, 0.065432504, 0.24563874, 0.15931164, -0.17036878, -0.100812204, 0.22541378, -0.9402226, 1.6539676, -0.67880213)
+visible = false
 
 [node name="House4" parent="." unique_id=226501783 groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(-0.25093043, -0.15965442, 0.03929875, 0.13393971, -0.15689991, 0.21781315, -0.09536287, 0.19973202, 0.20251676, -1.0750068, -1.0564591, 1.3448621)
+visible = false
 
 [node name="House5" parent="." unique_id=1340703231 groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(0.09114595, -0.2733235, -0.083586425, 0.28136984, 0.070384964, 0.07666144, -0.05023381, -0.10168693, 0.2777343, -1.840378, 0.47392574, -0.68469185)
+visible = false
 
 [node name="House6" parent="." unique_id=838802341 groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(-0.1357786, 0.18434651, -0.19385703, -0.24320145, -0.1756187, 0.003336774, -0.11143266, 0.15866458, 0.22892866, 1.2412663, -1.1824994, 1.0683414)
+visible = false
 
 [node name="House7" parent="." unique_id=2004842834 groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(0.15307356, 0.19653392, 0.16716132, -0.2397322, 0.18019326, 0.0076726833, -0.095378, -0.13749477, 0.24899444, 1.3233287, 1.2133007, -0.92579806)
+visible = false
 
 [node name="House8" parent="." unique_id=315292112 groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(0.24915051, -0.10832694, 0.12723722, 0.16657305, 0.14278997, -0.20460807, 0.013321213, 0.24057497, 0.17873512, -0.7294012, 0.9614524, 1.6198713)
+visible = false
 
 [node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="." unique_id=829250652]
 cull_mask = 4293918736

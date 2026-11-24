@@ -58,13 +58,15 @@ func summon_monster() -> void:
 	tween.tween_property(_monster_path_follow, "progress_ratio", 1, Helpers.duration(2))
 	await tween.finished
 
-	_monster_waiting = true
+	await _monster_visit()
+	# _monster_waiting = true
 
 
 func run_after_evolve() -> void:
-	if _monster_waiting:
-		await _monster_visit()
-		_monster_waiting = false
+	pass
+	# if _monster_waiting:
+	# 	await _monster_visit()
+	# 	_monster_waiting = false
 
 
 func _monster_visit() -> void:
