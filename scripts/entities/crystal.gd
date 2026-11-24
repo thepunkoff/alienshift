@@ -22,6 +22,9 @@ func _ready():
 		7: State.create(STATE_MINERALIZATION_OCCURRED)
 	})
 
+	_ship_path_follow.progress_ratio = 0
+	_ship_path_follow_2.progress_ratio = 0
+
 
 
 @onready var cam: Camera3D = get_viewport().get_camera_3d()

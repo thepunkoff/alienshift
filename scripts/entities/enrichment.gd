@@ -16,6 +16,8 @@ func _ready() -> void:
 		3: State.create(STATE_VEGETATION_GROWN),
 	})
 
+	_ship_path_follow.progress_ratio = 0
+
 
 var _died_vegetation: bool = false
 

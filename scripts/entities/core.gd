@@ -42,6 +42,8 @@ func _ready():
 		6: State.create(STATE_PUT_INSIDE)
 	})
 
+	_ship_path_follow.progress_ratio = 0
+
 
 # @onready var cam: Camera3D = get_viewport().get_camera_3d()
 # func _process(delta: float) -> void:

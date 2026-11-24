@@ -18,6 +18,8 @@ func _ready() -> void:
 		1: State.create(STATE_HOUSES_LOWERED),
 	})
 
+	_ship_path_follow.progress_ratio = 0
+
 
 func run_level_up(new_lvl: int, new_state: State):
 	if new_state == null:
