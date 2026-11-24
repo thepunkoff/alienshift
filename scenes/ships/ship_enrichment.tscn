@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dehim1fhjoikj"]
 
 [ext_resource type="Script" uid="uid://1lubu3o6w1tu" path="res://scripts/ships/ship_enrichment.gd" id="1_t1wc6"]
-[ext_resource type="PackedScene" uid="uid://fat208xfndrp" path="res://models/ship_enrichment.glb" id="2_57grl"]
+[ext_resource type="PackedScene" uid="uid://cg7vexmtmjy1u" path="res://models/ship_enrichment_new.glb" id="3_57grl"]
 
 [sub_resource type="Gradient" id="Gradient_t1wc6"]
 colors = PackedColorArray(1, 0.19215687, 0.7254902, 1, 1, 0.71377236, 0.98715895, 1)
@@ -14,7 +14,7 @@ emission_shape = 1
 emission_sphere_radius = 0.18
 angle_min = -44.49999
 angle_max = 42.700012
-gravity = Vector3(0, 0, 0)
+gravity = Vector3(0, -0.981, 0)
 scale_min = 0.19999999
 scale_max = 0.29999998
 color_ramp = SubResource("GradientTexture1D_t1wc6")
@@ -41,21 +41,49 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_t1wc6"]
 material = SubResource("StandardMaterial3D_57grl")
 
+[sub_resource type="Animation" id="Animation_57grl"]
+length = 0.001
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ship_enrichment2/ship_enrichment:cat_move")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0)
+
+[sub_resource type="Animation" id="Animation_t1wc6"]
+resource_name = "cat_move"
+loop_mode = 1
+tracks/0/type = "blend_shape"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ship_enrichment2/ship_enrichment:cat_move")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.5, 0.5, 1, -0.5, 1, 1, 0.5)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_57grl"]
+_data = {
+&"RESET": SubResource("Animation_57grl"),
+&"cat_move": SubResource("Animation_t1wc6")
+}
+
 [node name="ShipEnrichment" type="Node3D" unique_id=1434045125]
 transform = Transform3D(0.861, 0, 0, 0, 0.861, 0, 0, 0, 0.861, 0, 0, 0)
 script = ExtResource("1_t1wc6")
 
-[node name="ship_enrichment2" parent="." unique_id=1611072272 instance=ExtResource("2_57grl")]
-
-[node name="ship_enrichment" parent="ship_enrichment2" index="0" unique_id=454004343]
-blend_shapes/hose = 1.0
-
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=55307437]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2377892, -0.56832683, 0)
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 1.435203, -0.6294166, 0)
 layers = 16
 emitting = false
 speed_scale = 1.55
 process_material = SubResource("ParticleProcessMaterial_t1wc6")
 draw_pass_1 = SubResource("QuadMesh_t1wc6")
+
+[node name="ship_enrichment2" parent="." unique_id=643671757 instance=ExtResource("3_57grl")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1191672952]
+libraries/ = SubResource("AnimationLibrary_57grl")
+autoplay = &"cat_move"
 
 [editable path="ship_enrichment2"]

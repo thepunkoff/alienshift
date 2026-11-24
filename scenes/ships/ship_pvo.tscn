@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dnrjmu5h7emg3"]
 
 [ext_resource type="Script" uid="uid://n5yt7awar5ou" path="res://scripts/ships/ship_pvo.gd" id="1_i6h61"]
-[ext_resource type="PackedScene" uid="uid://dwcosmnv2ig2g" path="res://models/ship_pvo.glb" id="1_shy36"]
+[ext_resource type="PackedScene" uid="uid://bq8gbprqsdshj" path="res://models/ship_pvo_new.glb" id="3_qbufu"]
 
 [node name="ShipPvo" type="Node3D" unique_id=1007449951]
 transform = Transform3D(0.441, 0, 0, 0, 0.441, 0, 0, 0, 0.441, 0, 0, 0)
 script = ExtResource("1_i6h61")
 
-[node name="ship_pvo2" parent="." unique_id=376711933 instance=ExtResource("1_shy36")]
+[node name="ship_pvo2" parent="." unique_id=1666610205 instance=ExtResource("3_qbufu")]
 
 [editable path="ship_pvo2"]

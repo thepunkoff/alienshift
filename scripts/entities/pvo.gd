@@ -11,6 +11,7 @@ const STATE_SHIPS_APPROACHING := "ships_approaching"
 @onready var _ship_path_follow: PathFollow3D = $Path3D/PathFollow3D
 @onready var _meteor_path_follow: PathFollow3D = $Path3D2/PathFollow3D
 @onready var _pvo: Node3D = $Pvo
+@onready var _pvo_drop_target: Marker3D = $Marker3D
 @onready var _meteor: Node3D = $Path3D2/PathFollow3D/Meteor
 @onready var _bullet1_path_follow: PathFollow3D = $Path3D3/PathFollow3D
 @onready var _bullet2_path_follow: PathFollow3D = $Path3D4/PathFollow3D
@@ -35,6 +36,8 @@ func _ready() -> void:
 	_bullet1_path_follow.progress_ratio = 0
 	_bullet2_path_follow.progress_ratio = 0
 	_bullet3_path_follow.progress_ratio = 0
+
+	_pvo.hide()
 
 
 func run_level_up(new_lvl: int, new_state: State):
@@ -77,11 +80,19 @@ func ship_appear() -> void:
 func pvo_installed() -> void:
 	print("ПВО приземляются на горы, горы открываются как крышки, и ПВО устанавливаются в них")
 	await planet.open_mountain()
-	await _ship.drop_pvo()
+	await _drop_pvo()
 	_pvo.show()
 
 	var tween: Tween = create_tween()
 	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(3))
+	await tween.finished
+
+
+func _drop_pvo():
+	_pvo.show()
+	var tween: Tween = create_tween()
+	tween.tween_property(_pvo, "position", _pvo_drop_target.position, Helpers.duration(1))
+	tween.set_trans(Tween.TRANS_BOUNCE)
 	await tween.finished
 
 

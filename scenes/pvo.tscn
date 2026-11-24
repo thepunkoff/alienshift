@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dap0w8dmjfsad"]
+
+[ext_resource type="PackedScene" uid="uid://cqphhk21xd8qe" path="res://models/pvo.glb" id="1_ta7mt"]
+
+[node name="Pvo" type="Node3D" unique_id=1341935641]
+
+[node name="pvo" parent="." unique_id=1755467536 instance=ExtResource("1_ta7mt")]
+
+[editable path="pvo"]

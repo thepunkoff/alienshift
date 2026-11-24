@@ -9,6 +9,7 @@ const STATE_VEGETATION_GROWN := "vegetation_grown"
 
 @onready var _ship: ShipEnrichment = $Path3D/PathFollow3D/ShipEnrichment
 @onready var _ship_path_follow: PathFollow3D = $Path3D/PathFollow3D
+@onready var _bubbles: GPUParticles3D = $GPUParticles3D
 
 func _ready() -> void:
 	register_states({
@@ -47,7 +48,7 @@ func run_after_evolve() -> void:
 func enrich_soil() -> void:
 	print("Прилетают машины со шлангами, льют розовую густую капающую жижу на планету, и она впитывается")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(6))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(2))
 	tween.tween_interval(Helpers.duration(.7))
 	await tween.finished
 
@@ -55,10 +56,12 @@ func enrich_soil() -> void:
 	await get_tree().create_timer(Helpers.duration(.5)).timeout
 
 	planet.add_sludge()
+	_bubbles.emitting = true
 	await _ship.drain_liquid()
+	_bubbles.emitting = false
 
 	tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(6))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
 	await tween.finished
 
 
