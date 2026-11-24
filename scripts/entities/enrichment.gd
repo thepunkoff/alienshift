@@ -56,9 +56,10 @@ func enrich_soil() -> void:
 	await get_tree().create_timer(Helpers.duration(.5)).timeout
 
 	planet.add_sludge()
-	_bubbles.emitting = true
 	await _ship.drain_liquid()
-	_bubbles.emitting = false
+	_bubbles.emitting = true
+
+	get_tree().create_timer(2).timeout.connect(_bubbles.set_emitting.bind(false))
 
 	tween = create_tween()
 	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
