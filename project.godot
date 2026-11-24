@@ -22,8 +22,8 @@ buses/default_bus_layout="uid://dbirded1emju"
 
 [autoload]
 
-SFX="*uid://drvqjts0o4tu7"
 Helpers="*uid://ii7lbx06tc7d"
+SFX="*uid://dy2kmtdecu2fx"
 
 [display]
 
