@@ -34,10 +34,12 @@ var align_houses_action: Callable = _align_houses_to_sphere
 func _ready() -> void:
 	if not Engine.is_editor_hint():
 		for house: Node3D in get_tree().get_nodes_in_group("house"):
+			house.show()
 			house.position = house.position.normalized() # топим внутри планеты
 
-		_sludge_animation_tree.active = false
-		_sludge_base.scale = Vector3.ONE * 0.85
+	_sludge_base.show()
+	_sludge_animation_tree.active = false
+	_sludge_base.scale = Vector3.ONE * 0.85
 
 func change_landscape():
 	var tween: Tween = create_tween()

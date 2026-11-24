@@ -5,6 +5,7 @@ class_name EntityButton
 signal pressed
 
 @export var tip_text: String = ""
+@export var entity: Entity
 
 @onready var texture_rect: TextureRect = $Panel/Panel/MarginContainer/Button/TextureRect
 @onready var button: Button = $Panel/Panel/MarginContainer/Button
@@ -31,12 +32,12 @@ var disabled: bool = false:
 		disabled = value
 		if button and panel and texture_rect:
 			button.disabled = value
-			panel.self_modulate = Color.GRAY if value else Color.WHITE
-			texture_rect.self_modulate = Color.GRAY if value else Color.WHITE
+			panel_outer.modulate = Color.html("#838383") if value else Color.WHITE
 
 
 func enable_score(delay: float):
 	order_label.text = str(get_meta("order", ""))
+	score_label.text = "LVL %d" % [entity.level]
 	var tween: Tween = create_tween()
 	tween.tween_interval(delay)
 	tween.tween_property(panel_outer, "size:y", 115, 0.2)

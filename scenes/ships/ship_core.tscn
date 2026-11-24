@@ -1,11 +1,57 @@
 [gd_scene format=3 uid="uid://bmvlgbs3ir8qv"]
 
 [ext_resource type="Script" uid="uid://bvmjnm05pvj58" path="res://scripts/ships/ship_core.gd" id="1_p61p5"]
-[ext_resource type="PackedScene" uid="uid://b2sj4pto7vnke" path="res://models/ship_core.glb" id="2_bcom5"]
+[ext_resource type="Texture2D" uid="uid://37m7vb37qvt2" path="res://graphics/steam.png" id="3_bcom5"]
+[ext_resource type="PackedScene" uid="uid://cm71txc48yaqn" path="res://models/ship_core_new.glb" id="4_e0vw7"]
+
+[sub_resource type="Gradient" id="Gradient_e0vw7"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.5393978, 1)
+colors = PackedColorArray(0.55868196, 0.41778475, 0.15090317, 1, 0.5966669, 0.49941844, 0.547104, 1, 0.44988388, 0.33007956, 0.4364582, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_68l0s"]
+gradient = SubResource("Gradient_e0vw7")
+
+[sub_resource type="Curve" id="Curve_bcom5"]
+_data = [Vector2(0, 0.4052987), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e0vw7"]
+curve = SubResource("Curve_bcom5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0505w"]
+emission_shape = 1
+emission_sphere_radius = 0.53
+direction = Vector3(0, 1, 0)
+initial_velocity_max = 6.47
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_e0vw7")
+color_initial_ramp = SubResource("GradientTexture1D_68l0s")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p61p5"]
+render_priority = 1
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_bcom5")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_p61p5"]
+material = SubResource("StandardMaterial3D_p61p5")
 
 [node name="ShipCore" type="Node3D" unique_id=2067125825]
 script = ExtResource("1_p61p5")
 
-[node name="ship_core2" parent="." unique_id=244220894 instance=ExtResource("2_bcom5")]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1282862310]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9368297, 0.0910645)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_0505w")
+draw_pass_1 = SubResource("QuadMesh_p61p5")
 
-[editable path="ship_core2"]
+[node name="ship_core_new" parent="." unique_id=225768432 instance=ExtResource("4_e0vw7")]
+
+[editable path="ship_core_new"]

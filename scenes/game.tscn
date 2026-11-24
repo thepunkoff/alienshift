@@ -12,6 +12,7 @@
 [ext_resource type="Shader" uid="uid://bbe0ja2p84h6q" path="res://shaders/space_sky.gdshader" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://bffg87kkq6ugr" path="res://scripts/entities/construction.gd" id="8_construct"]
 [ext_resource type="PackedScene" uid="uid://cyraid8nhxyk" path="res://scenes/ui/entity_button.tscn" id="9_0tnpc"]
+[ext_resource type="Shader" uid="uid://fynj3lal44tx" path="res://shaders/core.gdshader" id="9_8ool0"]
 [ext_resource type="Script" uid="uid://c5wvomhw3o5o3" path="res://scripts/entities/enrichment.gd" id="9_enrichment"]
 [ext_resource type="PackedScene" uid="uid://bmvlgbs3ir8qv" path="res://scenes/ships/ship_core.tscn" id="9_suyxu"]
 [ext_resource type="Script" uid="uid://dagaulcgtgxei" path="res://scripts/entities/life.gd" id="10_qnb83"]
@@ -78,10 +79,35 @@ _data = {
 }
 point_count = 4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbhrr"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m4url"]
+render_priority = 0
+shader = ExtResource("9_8ool0")
+shader_parameter/color_center = Color(1, 0.78, 0.35, 1)
+shader_parameter/color_mid = Color(0.95, 0.42, 0.12, 1)
+shader_parameter/color_rim = Color(0.55, 0.12, 0.08, 1)
+shader_parameter/band_mid = 0.45
+shader_parameter/band_center = 0.8
+shader_parameter/band_softness = 0.01
+shader_parameter/swirl_strength = 0.12
+shader_parameter/swirl_scale = 2.5
+shader_parameter/swirl_speed = 1.947
+shader_parameter/crack_amount = 0.0
+shader_parameter/crack_scale = 3.993
+shader_parameter/crack_width = 0.0050000002375
+shader_parameter/crack_color = Color(0, 0, 0, 1)
+shader_parameter/crack_intensity = 2.0
+shader_parameter/crack_pulse_speed = 2.0
+shader_parameter/crack_pulse_amount = 0.25
+shader_parameter/crack_seed = 0.057
+shader_parameter/crack_edge_width = 0.04
+shader_parameter/crack_edge_color = Color(0.12, 0.03, 0.03, 1)
+shader_parameter/brightness = 1.5000000712500001
+shader_parameter/desaturate = 0.2
+shader_parameter/tint = Color(0.5764706, 1, 0.5411765, 1)
+shader_parameter/dim_cracks = false
 
 [sub_resource type="SphereMesh" id="SphereMesh_lbhrr"]
-material = SubResource("StandardMaterial3D_lbhrr")
+material = SubResource("ShaderMaterial_m4url")
 
 [sub_resource type="Animation" id="Animation_lbhrr"]
 length = 0.001
@@ -837,55 +863,74 @@ offset_bottom = -21.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Summon" parent="CanvasLayer/HBoxContainer" unique_id=606658212 instance=ExtResource("9_0tnpc")]
+[node name="Summon" parent="CanvasLayer/HBoxContainer" unique_id=606658212 node_paths=PackedStringArray("entity") instance=ExtResource("9_0tnpc")]
 layout_mode = 2
 tip_text = "Chtonic Summoner"
+entity = NodePath("../../../Summon")
 texture = ExtResource("19_qnb83")
 
-[node name="Construction" parent="CanvasLayer/HBoxContainer" unique_id=1536897161 instance=ExtResource("9_0tnpc")]
+[node name="Construction" parent="CanvasLayer/HBoxContainer" unique_id=1536897161 node_paths=PackedStringArray("entity") instance=ExtResource("9_0tnpc")]
 layout_mode = 2
 tip_text = "Spaceshack Constructor"
+entity = NodePath("../../../Construction")
 texture = ExtResource("11_264po")
 
-[node name="Core" parent="CanvasLayer/HBoxContainer" unique_id=1664569202 instance=ExtResource("9_0tnpc")]
+[node name="Core" parent="CanvasLayer/HBoxContainer" unique_id=1664569202 node_paths=PackedStringArray("entity") instance=ExtResource("9_0tnpc")]
 layout_mode = 2
 tip_text = "Kernel Charger"
+entity = NodePath("../../../Core")
 texture = ExtResource("12_1kice")
 
-[node name="Crystal" parent="CanvasLayer/HBoxContainer" unique_id=2033335254 instance=ExtResource("9_0tnpc")]
+[node name="Crystal" parent="CanvasLayer/HBoxContainer" unique_id=2033335254 node_paths=PackedStringArray("entity") instance=ExtResource("9_0tnpc")]
 layout_mode = 2
 tip_text = "Geoalchemist"
+entity = NodePath("../../../Crystal")
 texture = ExtResource("13_5newe")
 
-[node name="Enrichment" parent="CanvasLayer/HBoxContainer" unique_id=1492331858 instance=ExtResource("9_0tnpc")]
+[node name="Enrichment" parent="CanvasLayer/HBoxContainer" unique_id=1492331858 node_paths=PackedStringArray("entity") instance=ExtResource("9_0tnpc")]
 layout_mode = 2
 tip_text = "Spooma Enricher"
+entity = NodePath("../../../Enrichment")
 texture = ExtResource("14_37s47")
 
-[node name="Life" parent="CanvasLayer/HBoxContainer" unique_id=189140017 instance=ExtResource("9_0tnpc")]
+[node name="Life" parent="CanvasLayer/HBoxContainer" unique_id=189140017 node_paths=PackedStringArray("entity") instance=ExtResource("9_0tnpc")]
 layout_mode = 2
 tip_text = " Fertility Terravaccinator"
+entity = NodePath("../../../Life")
 texture = ExtResource("15_bt5mj")
 
-[node name="Purifying" parent="CanvasLayer/HBoxContainer" unique_id=460608123 instance=ExtResource("9_0tnpc")]
+[node name="Purifying" parent="CanvasLayer/HBoxContainer" unique_id=460608123 node_paths=PackedStringArray("entity") instance=ExtResource("9_0tnpc")]
 layout_mode = 2
 tip_text = "Irradiator"
+entity = NodePath("../../../Purifying")
 texture = ExtResource("16_e1j6l")
 
-[node name="Pvo" parent="CanvasLayer/HBoxContainer" unique_id=922752817 instance=ExtResource("9_0tnpc")]
+[node name="Pvo" parent="CanvasLayer/HBoxContainer" unique_id=922752817 node_paths=PackedStringArray("entity") instance=ExtResource("9_0tnpc")]
 layout_mode = 2
 tip_text = "Gauss cannon operator"
+entity = NodePath("../../../Pvo")
 texture = ExtResource("17_pl11u")
 
-[node name="Relief" parent="CanvasLayer/HBoxContainer" unique_id=2032888911 instance=ExtResource("9_0tnpc")]
+[node name="Relief" parent="CanvasLayer/HBoxContainer" unique_id=2032888911 node_paths=PackedStringArray("entity") instance=ExtResource("9_0tnpc")]
 layout_mode = 2
 tip_text = "Nuclear Landscaper"
+entity = NodePath("../../../Relief")
 texture = ExtResource("18_bhx41")
 
-[node name="Climate" parent="CanvasLayer/HBoxContainer" unique_id=1723808063 instance=ExtResource("9_0tnpc")]
+[node name="Climate" parent="CanvasLayer/HBoxContainer" unique_id=1723808063 node_paths=PackedStringArray("entity") instance=ExtResource("9_0tnpc")]
 layout_mode = 2
 tip_text = "Nubes Gemiurg"
+entity = NodePath("../../../Climate")
 texture = ExtResource("10_vtaks")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=448677778]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [node name="GameOverLabel" type="Label" parent="CanvasLayer" unique_id=435123468]
 anchors_preset = 8

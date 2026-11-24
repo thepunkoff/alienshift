@@ -39,7 +39,7 @@ func _ready():
 	register_states({
 		1: State.create(STATE_TAKEN_OUT), # первое состояние - всегда уровень 1!
 		3: State.create(STATE_CRACKED),
-		7: State.create(STATE_PUT_INSIDE)
+		6: State.create(STATE_PUT_INSIDE)
 	})
 
 
@@ -94,12 +94,14 @@ func take_out():
 	await _ship.extend_drill()
 
 	tween = create_tween()
+	tween.tween_callback(_ship.enable_dust)
 	tween.tween_interval(Helpers.duration(0.2))
 	var init: Vector3 = _ship.position
 	var target: Vector3 = _ship.position - _ship.transform.basis.y * 0.6
 	tween.tween_property(_ship, "position", target, Helpers.duration(2))
 	tween.tween_interval(Helpers.duration(0.5))
 	tween.tween_property(_ship, "position", init, Helpers.duration(2))
+	tween.tween_callback(_ship.disable_dust)
 	await tween.finished
 
 	await _ship.remove_drill()
@@ -113,10 +115,10 @@ func take_out():
 
 func crack():
 	print("Ядро трескается")
-	var mat := _core.get_active_material(0).duplicate() as StandardMaterial3D
+	var mat := _core.get_active_material(0).duplicate() as ShaderMaterial
 	_core.set_surface_override_material(0, mat)
 	var tween: Tween = create_tween()
-	tween.tween_property(mat, "albedo_color", Color.RED, Helpers.duration(1.0))
+	tween.tween_property(mat, "shader_parameter/crack_amount", 1.0, 2.0)
 	await tween.finished
 
 
@@ -124,6 +126,8 @@ func put_inside():
 	print("Корабль возвращает ядро обратно")
 	_core_animation_player.play_backwards("take_out")
 	await _core_animation_player.animation_finished
+
+	await _ship.disable_light()
 
 	var tween: Tween = create_tween()
 	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(4))
@@ -133,7 +137,9 @@ func put_inside():
 func core_purified():
 	var mat := _core.get_active_material(0)
 	var tween: Tween = create_tween()
-	tween.tween_property(mat, "albedo_color", Color.ORANGE, Helpers.duration(1.0))
+	tween.tween_property(mat, "shader_parameter/crack_amount", 0, 2.0)
+	tween.parallel()
+	tween.tween_property(mat, "shader_parameter/tint", Color.WHITE, 2.0)
 	await tween.finished
 
 
@@ -141,7 +147,9 @@ func core_dimmed():
 	print("Очищение рано сработало на ядро, ядро тускнеет")
 	var mat := _core.get_active_material(0)
 	var tween: Tween = create_tween()
-	tween.tween_property(mat, "albedo_color", Color.DARK_GRAY, Helpers.duration(1.0))
+	tween.tween_property(mat, "shader_parameter/desaturate", 0.8, 2.0)
+	tween.parallel()
+	tween.tween_property(mat, "shader_parameter/brightness", 0.5, 2.0)
 	await tween.finished
 
 
