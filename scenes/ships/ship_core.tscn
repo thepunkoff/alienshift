@@ -9,7 +9,7 @@ interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.5393978, 1)
 colors = PackedColorArray(0.55868196, 0.41778475, 0.15090317, 1, 0.5966669, 0.49941844, 0.547104, 1, 0.44988388, 0.33007956, 0.4364582, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_68l0s"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bcom5"]
 gradient = SubResource("Gradient_e0vw7")
 
 [sub_resource type="Curve" id="Curve_bcom5"]
@@ -26,9 +26,9 @@ direction = Vector3(0, 1, 0)
 initial_velocity_max = 6.47
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_e0vw7")
-color_initial_ramp = SubResource("GradientTexture1D_68l0s")
+color_initial_ramp = SubResource("GradientTexture1D_bcom5")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p61p5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_68l0s"]
 render_priority = 1
 transparency = 1
 vertex_color_use_as_albedo = true
@@ -40,19 +40,19 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_p61p5"]
-material = SubResource("StandardMaterial3D_p61p5")
+material = SubResource("StandardMaterial3D_68l0s")
 
 [node name="ShipCore" type="Node3D" unique_id=2067125825]
 transform = Transform3D(1.036, 0, 0, 0, 1.036, 0, 0, 0, 1.036, 0, 0, 0)
 script = ExtResource("1_p61p5")
 
+[node name="ship_core2" parent="." unique_id=225768432 instance=ExtResource("4_e0vw7")]
+
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1282862310]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9368297, 0.0910645)
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -1.9368296, 0.09106449)
 emitting = false
 amount = 20
 process_material = SubResource("ParticleProcessMaterial_0505w")
 draw_pass_1 = SubResource("QuadMesh_p61p5")
-
-[node name="ship_core2" parent="." unique_id=225768432 instance=ExtResource("4_e0vw7")]
 
 [editable path="ship_core2"]
