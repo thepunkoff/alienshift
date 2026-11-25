@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://b5qtf2ldf86wi" path="res://models/dirt.glb" id="6_3s4jt"]
 [ext_resource type="Texture2D" uid="uid://37m7vb37qvt2" path="res://graphics/steam.png" id="6_kp5tw"]
 [ext_resource type="Material" uid="uid://btnpmy1rsesht" path="res://materials/dirt.tres" id="7_1wmcx"]
-[ext_resource type="Material" uid="uid://dkueiqmi3cywv" path="res://shaders/outline_material_black.tres" id="7_kp5tw"]
 [ext_resource type="PackedScene" uid="uid://cltuvppy4ov1c" path="res://models/crystals.glb" id="8_m5dqw"]
+[ext_resource type="Material" uid="uid://dkueiqmi3cywv" path="res://shaders/outline_material_black.tres" id="8_qa7os"]
 [ext_resource type="PackedScene" uid="uid://f16y5muaykns" path="res://models/sludge_new.glb" id="9_8dfcq"]
 [ext_resource type="Material" uid="uid://kf620qrarfc2" path="res://materials/sludge.tres" id="10_qw1i6"]
 [ext_resource type="Texture2D" uid="uid://dbvlw4dm1aaxm" path="res://graphics/fish.png" id="13_n1t4m"]
@@ -183,7 +183,7 @@ _planet_radius = 2.02
 
 [node name="planet" parent="." unique_id=482028196 instance=ExtResource("1_cktii")]
 
-[node name="planet" parent="planet" index="0" unique_id=1173549448]
+[node name="planet" parent="planet" index="0" unique_id=1236998037]
 surface_material_override/0 = ExtResource("2_h8ms6")
 
 [node name="water" parent="." unique_id=648124364 instance=ExtResource("3_ggt7d")]
@@ -209,17 +209,16 @@ process_material = SubResource("ParticleProcessMaterial_kp5tw")
 draw_pass_1 = SubResource("QuadMesh_qkmej")
 
 [node name="grass" parent="." unique_id=31342776 instance=ExtResource("5_48b8c")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
-[node name="grass" parent="grass" index="0" unique_id=1741579426]
+[node name="grass" parent="grass" index="0" unique_id=146140064]
 transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 0, 0, 0)
-material_overlay = ExtResource("7_kp5tw")
+material_overlay = ExtResource("8_qa7os")
 blend_shapes/growing = 1.0
 
 [node name="dirt" parent="." unique_id=243842207 instance=ExtResource("6_3s4jt")]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 
-[node name="dirt_baked" parent="dirt" index="0" unique_id=1458414823]
+[node name="dirt_baked" parent="dirt" index="0" unique_id=1591066732]
 blend_shapes/wobble_big = 0.4
 surface_material_override/0 = ExtResource("7_1wmcx")
 
@@ -230,12 +229,9 @@ libraries/ = SubResource("AnimationLibrary_11eka")
 [node name="crystals" parent="." unique_id=1567000235 instance=ExtResource("8_m5dqw")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
-[node name="crystals" parent="crystals" index="0" unique_id=1355333710]
-material_overlay = ExtResource("7_kp5tw")
-
 [node name="sludge_new" parent="." unique_id=1241830028 instance=ExtResource("9_8dfcq")]
 
-[node name="sludge_baked" parent="sludge_new" index="0" unique_id=938426105]
+[node name="sludge_baked" parent="sludge_new" index="0" unique_id=140985686]
 surface_material_override/0 = ExtResource("10_qw1i6")
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="sludge_new" unique_id=178350386]

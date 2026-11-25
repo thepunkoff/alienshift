@@ -10,7 +10,7 @@ script = ExtResource("1_i6h61")
 
 [node name="ship_pvo2" parent="." unique_id=1666610205 instance=ExtResource("3_qbufu")]
 
-[node name="ship_pvo_001" parent="ship_pvo2" index="0" unique_id=1678460243]
+[node name="ship_pvo_001" parent="ship_pvo2" index="0" unique_id=824146056]
 material_overlay = ExtResource("3_23k4q")
 
 [editable path="ship_pvo2"]
