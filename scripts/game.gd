@@ -7,6 +7,7 @@ class_name Game
 @onready var _game_over_label: Label = $CanvasLayer/GameOverLabel
 @onready var _try_again_button: Button = $CanvasLayer/TryAgainButton
 @onready var _dark: ColorRect = $CanvasLayer/ColorRect
+@onready var game_over_pictures: Control = $CanvasLayer/GameOverPictures
 
 @onready var _entities: Array[Node] = get_tree().get_nodes_in_group("entity")
 
@@ -70,6 +71,10 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == KEY_SPACE and event.pressed == true:
 		_end_game()
+	if event is InputEventKey and event.keycode == KEY_0 and event.pressed == true:
+		_end_game_test(true)	
+	if event is InputEventKey and event.keycode == KEY_1 and event.pressed == true:
+		_end_game_test(false)		
 
 
 func _activate(button: EntityButton) -> void:
@@ -128,9 +133,13 @@ func _end_game():
 		return
 	_end_game_started = true
 
-	if _is_order_correct():
+	var is_win = _is_order_correct()
+
+	if is_win:
 		print("win")
 		_game_over_label.text = "You Win!"
+
+	game_over_pictures.play_game_over(is_win)
 
 	var i: int = 0
 	for b: EntityButton in _buttons_parent.get_children():
@@ -148,6 +157,32 @@ func _end_game():
 
 	_end_game_started = false
 
+func _end_game_test(is_win: bool):
+	if _end_game_started:
+		return
+	_end_game_started = true
+
+	if is_win:
+		print("win")
+		_game_over_label.text = "You Win!"
+
+	game_over_pictures.play_game_over(is_win)
+
+	var i: int = 0
+	for b: EntityButton in _buttons_parent.get_children():
+		b.disabled = false
+		b.button.disabled = true
+		b.enable_score(i * 0.1)
+		i += 1
+
+	var tween: Tween = create_tween()
+	tween.tween_property(_game_over_label, "visible_ratio", 1, 2)
+	tween.parallel()
+	tween.tween_property(_dark, "color", Color.html("#00000040"), 0.7)
+	tween.tween_property(_try_again_button, "self_modulate:a", 1, 0.7)
+	await tween.finished
+
+	_end_game_started = false
 
 func _is_order_correct() -> bool:
 	for press in correct_order.size():
