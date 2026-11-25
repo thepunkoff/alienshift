@@ -3,6 +3,16 @@
 [ext_resource type="Script" uid="uid://drvqjts0o4tu7" path="res://scripts/sounds/sfx.gd" id="1_vu6sb"]
 [ext_resource type="Script" uid="uid://cjvte1murqrue" path="res://scripts/sounds/sound.gd" id="2_wm80g"]
 [ext_resource type="AudioStream" uid="uid://bpyra32eaqfel" path="res://assets/music/sfx/sound-hitting-metal.wav" id="3_cvcos"]
+[ext_resource type="AudioStream" uid="uid://jceda0b43bsy" path="res://assets/music/sfx/crystal_ship_deploy.mp3" id="4_wm80g"]
+[ext_resource type="AudioStream" uid="uid://blu60o0i084k8" path="res://assets/music/sfx/monster_summon.WAV" id="5_us8u7"]
+[ext_resource type="AudioStream" uid="uid://d1g1fp7cjljwq" path="res://assets/music/sfx/monster_roar.WAV" id="6_tcbph"]
+[ext_resource type="AudioStream" uid="uid://bh850eimg55th" path="res://assets/music/sfx/water.mp3" id="7_d6ffk"]
+[ext_resource type="AudioStream" uid="uid://dhb2cfpqv2750" path="res://assets/music/sfx/evaporation.WAV" id="8_el45r"]
+[ext_resource type="AudioStream" uid="uid://cgq70choannh6" path="res://assets/music/slime_deploy.mp3" id="9_us8u7"]
+[ext_resource type="AudioStream" uid="uid://balx6pjy3s4ua" path="res://assets/music/sfx/slime_absorb.mp3" id="10_us8u7"]
+[ext_resource type="AudioStream" uid="uid://capgc0t30pwye" path="res://assets/music/sfx/drill.MP3" id="11_tcbph"]
+[ext_resource type="AudioStream" uid="uid://bvhga4d3xrqme" path="res://assets/music/sfx/core_light.mp3" id="12_ymqyt"]
+[ext_resource type="AudioStream" uid="uid://drxanwb17mkq8" path="res://assets/music/sfx/crack.MP3" id="13_4nfqj"]
 
 [sub_resource type="Resource" id="Resource_yyxft"]
 script = ExtResource("2_wm80g")
@@ -10,6 +20,66 @@ name_sound = &"hit"
 sound = ExtResource("3_cvcos")
 metadata/_custom_type_script = "uid://cjvte1murqrue"
 
+[sub_resource type="Resource" id="Resource_cvcos"]
+script = ExtResource("2_wm80g")
+name_sound = &"crystal_ship_deploy"
+sound = ExtResource("4_wm80g")
+metadata/_custom_type_script = "uid://cjvte1murqrue"
+
+[sub_resource type="Resource" id="Resource_bfjp3"]
+script = ExtResource("2_wm80g")
+name_sound = &"monster_summon"
+sound = ExtResource("5_us8u7")
+metadata/_custom_type_script = "uid://cjvte1murqrue"
+
+[sub_resource type="Resource" id="Resource_el45r"]
+script = ExtResource("2_wm80g")
+name_sound = &"monster_roar"
+sound = ExtResource("6_tcbph")
+metadata/_custom_type_script = "uid://cjvte1murqrue"
+
+[sub_resource type="Resource" id="Resource_us8u7"]
+script = ExtResource("2_wm80g")
+name_sound = &"water"
+sound = ExtResource("7_d6ffk")
+metadata/_custom_type_script = "uid://cjvte1murqrue"
+
+[sub_resource type="Resource" id="Resource_tcbph"]
+script = ExtResource("2_wm80g")
+name_sound = &"evaporation"
+sound = ExtResource("8_el45r")
+metadata/_custom_type_script = "uid://cjvte1murqrue"
+
+[sub_resource type="Resource" id="Resource_ymqyt"]
+script = ExtResource("2_wm80g")
+name_sound = &"slime_deploy"
+sound = ExtResource("9_us8u7")
+metadata/_custom_type_script = "uid://cjvte1murqrue"
+
+[sub_resource type="Resource" id="Resource_4nfqj"]
+script = ExtResource("2_wm80g")
+name_sound = &"slime_absorb"
+sound = ExtResource("10_us8u7")
+metadata/_custom_type_script = "uid://cjvte1murqrue"
+
+[sub_resource type="Resource" id="Resource_5plkd"]
+script = ExtResource("2_wm80g")
+name_sound = &"drill"
+sound = ExtResource("11_tcbph")
+metadata/_custom_type_script = "uid://cjvte1murqrue"
+
+[sub_resource type="Resource" id="Resource_bafq2"]
+script = ExtResource("2_wm80g")
+name_sound = &"core_light"
+sound = ExtResource("12_ymqyt")
+metadata/_custom_type_script = "uid://cjvte1murqrue"
+
+[sub_resource type="Resource" id="Resource_h3i77"]
+script = ExtResource("2_wm80g")
+name_sound = &"crack"
+sound = ExtResource("13_4nfqj")
+metadata/_custom_type_script = "uid://cjvte1murqrue"
+
 [node name="SfxLibrary" type="Node2D" unique_id=1005291426]
 script = ExtResource("1_vu6sb")
-sounds = Array[ExtResource("2_wm80g")]([SubResource("Resource_yyxft")])
+sounds = Array[ExtResource("2_wm80g")]([SubResource("Resource_yyxft"), SubResource("Resource_cvcos"), SubResource("Resource_bfjp3"), SubResource("Resource_el45r"), SubResource("Resource_us8u7"), SubResource("Resource_tcbph"), SubResource("Resource_ymqyt"), SubResource("Resource_4nfqj"), SubResource("Resource_5plkd"), SubResource("Resource_bafq2"), SubResource("Resource_h3i77")])

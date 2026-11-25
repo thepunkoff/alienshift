@@ -2,11 +2,16 @@
 
 [ext_resource type="Script" uid="uid://daypp2d1dnyyu" path="res://scripts/ships/ship_climate.gd" id="1_v5dcs"]
 [ext_resource type="PackedScene" uid="uid://boa3x60gqxnl4" path="res://models/ship_climate.glb" id="2_x16y7"]
+[ext_resource type="Material" uid="uid://dow8fllvtcfwl" path="res://shaders/outline_material.tres" id="3_x16y7"]
 
 [node name="ShipClimate" type="Node3D" unique_id=1547168477]
 transform = Transform3D(0.651, 0, 0, 0, 0.651, 0, 0, 0, 0.651, 0, 0, 0)
 script = ExtResource("1_v5dcs")
 
 [node name="ship_climate2" parent="." unique_id=619175887 instance=ExtResource("2_x16y7")]
+
+[node name="ship_climate" parent="ship_climate2" index="0" unique_id=491291939]
+material_overlay = ExtResource("3_x16y7")
+cast_shadow = 0
 
 [editable path="ship_climate2"]

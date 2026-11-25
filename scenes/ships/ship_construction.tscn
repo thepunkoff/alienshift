@@ -9,6 +9,4 @@ script = ExtResource("1_bkwon")
 
 [node name="ship_construction2" parent="." unique_id=1891709183 instance=ExtResource("2_nbv7e")]
 
-[node name="ship_construction" parent="ship_construction2" index="0" unique_id=1478311255]
-
 [editable path="ship_construction2"]

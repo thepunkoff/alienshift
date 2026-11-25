@@ -58,6 +58,7 @@ func run_after_evolve() -> void:
 
 func bury_fossils():
 	print("Высаживаются человечки и закапывают светящиеся кристаллы в землю")
+	SFX.play("crystal_ship_deploy")
 	var tween: Tween = create_tween()
 	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(1.9))
 	await tween.finished

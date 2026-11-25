@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://co25uqmo2kp8v" path="res://models/house.glb" id="1_d7po0"]
 [ext_resource type="Script" uid="uid://ctnpiask1v1xj" path="res://scripts/house.gd" id="1_rk7hg"]
 [ext_resource type="PackedScene" uid="uid://5nk66i6uklpe" path="res://models/chel.glb" id="2_qtlar"]
+[ext_resource type="Material" uid="uid://dkueiqmi3cywv" path="res://shaders/outline_material_black.tres" id="3_se78b"]
 
 [node name="House" type="Node3D" unique_id=27364319]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
@@ -10,9 +11,12 @@ script = ExtResource("1_rk7hg")
 
 [node name="house" parent="." unique_id=27069113 instance=ExtResource("1_d7po0")]
 
+[node name="house" parent="house" index="0" unique_id=327597002]
+material_overlay = ExtResource("3_se78b")
+
 [node name="chel" parent="." unique_id=699990529 instance=ExtResource("2_qtlar")]
 
-[node name="Skeleton3D" parent="chel/rig" parent_id_path=PackedInt32Array(699990529, 210602350) index="0" unique_id=1681123998]
+[node name="Skeleton3D" parent="chel/rig" parent_id_path=PackedInt32Array(699990529, 109425860) index="0" unique_id=1718295361]
 bones/3/rotation = Quaternion(1, 0, 3.413358e-06, 0)
 bones/8/rotation = Quaternion(2.1827868e-08, -5.5969576e-07, 3.296591e-06, 1)
 bones/9/rotation = Quaternion(-1.6068812e-08, -1.1001496e-07, 0.03014989, 0.99954545)

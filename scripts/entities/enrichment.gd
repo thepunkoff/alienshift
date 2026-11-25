@@ -56,7 +56,9 @@ func enrich_soil() -> void:
 	await get_tree().create_timer(Helpers.duration(.5)).timeout
 
 	planet.add_sludge()
+	SFX.play("slime_deploy")
 	await _ship.drain_liquid()
+	SFX.play("slime_absorb")
 	_bubbles.emitting = true
 
 	get_tree().create_timer(2).timeout.connect(_bubbles.set_emitting.bind(false))

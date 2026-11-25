@@ -5,6 +5,10 @@
 [resource]
 resource_name = "Material.007"
 cull_mode = 2
+shading_mode = 2
+specular_mode = 2
+disable_ambient_light = true
+albedo_color = Color(0, 0, 0, 1)
 albedo_texture = ExtResource("1_gfgd7")
 emission_enabled = true
 emission_texture = ExtResource("1_gfgd7")

@@ -48,6 +48,7 @@
 [ext_resource type="Script" uid="uid://rxra6esreje5" path="res://scripts/ui/game_over_animation.gd" id="43_fedci"]
 [ext_resource type="Texture2D" uid="uid://03pu0253dl7r" path="res://assets/end_game/win.png" id="43_h3rex"]
 [ext_resource type="Texture2D" uid="uid://cn8b308vlop5a" path="res://assets/end_game/extra_win.png" id="44_fedci"]
+[ext_resource type="AudioStream" uid="uid://b1ty3pgierrp8" path="res://assets/music/hmmmd.mp3" id="43_05nbr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xkm6b"]
 
@@ -1380,3 +1381,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_1kice")
 text = "Try again?"
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1649134837]
+stream = ExtResource("43_05nbr")
+volume_db = -34.405
+autoplay = true
