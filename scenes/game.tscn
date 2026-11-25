@@ -43,7 +43,6 @@
 [ext_resource type="PackedScene" uid="uid://bkwl7yk5y73ye" path="res://scenes/monster.tscn" id="25_nepv3"]
 [ext_resource type="Texture2D" uid="uid://buvu3vm07vcv2" path="res://assets/end_game/loss.png" id="41_oaba0"]
 [ext_resource type="Texture2D" uid="uid://bnrd0jc0fioe0" path="res://assets/end_game/extra_loss.png" id="42_458eo"]
-[ext_resource type="AudioStream" uid="uid://b1ty3pgierrp8" path="res://assets/music/hmmmd.mp3" id="43_05nbr"]
 [ext_resource type="Script" uid="uid://rxra6esreje5" path="res://scripts/ui/game_over_animation.gd" id="43_fedci"]
 [ext_resource type="Texture2D" uid="uid://03pu0253dl7r" path="res://assets/end_game/win.png" id="43_h3rex"]
 [ext_resource type="Texture2D" uid="uid://cn8b308vlop5a" path="res://assets/end_game/extra_win.png" id="44_fedci"]
@@ -1356,8 +1355,3 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_1kice")
 text = "Try again?"
-
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1649134837]
-stream = ExtResource("43_05nbr")
-volume_db = -34.405
-autoplay = true

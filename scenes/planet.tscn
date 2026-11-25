@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://f16y5muaykns" path="res://models/sludge_new.glb" id="9_8dfcq"]
 [ext_resource type="Material" uid="uid://kf620qrarfc2" path="res://materials/sludge.tres" id="10_qw1i6"]
 [ext_resource type="Texture2D" uid="uid://dbvlw4dm1aaxm" path="res://graphics/fish.png" id="13_n1t4m"]
+[ext_resource type="PackedScene" uid="uid://ynmruk1fr3no" path="res://scenes/hammer.tscn" id="16_y5i4l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_outline"]
 render_priority = 0
@@ -357,30 +358,38 @@ parameters/OneShot/request = 0
 [node name="HouseParent" type="Node3D" parent="." unique_id=137330338]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="House" parent="HouseParent" unique_id=27364319 groups=["house"] instance=ExtResource("2_11eka")]
+[node name="House" parent="HouseParent" unique_id=27364319 node_paths=PackedStringArray("hammer") groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(0.27185985, 0.10470999, -0.07161039, -0.123009, 0.25898278, -0.08829898, 0.031000243, 0.1093789, 0.27762428, 0.7329702, 1.8128792, 0.76565224)
+hammer = NodePath("../../Hammer")
 metadata/chel_house = true
 
-[node name="House2" parent="HouseParent" unique_id=1511804874 groups=["house"] instance=ExtResource("2_11eka")]
+[node name="House2" parent="HouseParent" unique_id=1511804874 node_paths=PackedStringArray("hammer") groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(-0.24800941, 0.07115211, -0.15306444, -0.15950838, -0.009807321, 0.25389153, 0.05521255, 0.29127514, 0.045938883, 0.49806452, -0.0686514, 2.038926)
+hammer = NodePath("../../Hammer2")
 
-[node name="House3" parent="HouseParent" unique_id=197381467 groups=["house"] instance=ExtResource("2_11eka")]
+[node name="House3" parent="HouseParent" unique_id=197381467 node_paths=PackedStringArray("hammer") groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(0.23810306, -0.13963705, 0.11750926, 0.065432504, 0.24563874, 0.15931164, -0.17036878, -0.100812204, 0.22541378, -0.97745925, 1.7194712, -0.7056854)
+hammer = NodePath("../../Hammer3")
 
-[node name="House4" parent="HouseParent" unique_id=226501783 groups=["house"] instance=ExtResource("2_11eka")]
+[node name="House4" parent="HouseParent" unique_id=226501783 node_paths=PackedStringArray("hammer") groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(-0.25093043, -0.15965442, 0.03929875, 0.13393971, -0.15689991, 0.21781315, -0.09536287, 0.19973202, 0.20251676, -1.1175814, -1.0982989, 1.398124)
+hammer = NodePath("../../Hammer4")
 
-[node name="House5" parent="HouseParent" unique_id=1340703231 groups=["house"] instance=ExtResource("2_11eka")]
-transform = Transform3D(0.09114595, -0.2733235, -0.083586425, 0.28136984, 0.070384964, 0.07666144, -0.05023381, -0.10168693, 0.2777343, -1.9132643, 0.4926951, -0.7118083)
+[node name="House5" parent="HouseParent" unique_id=1340703231 node_paths=PackedStringArray("hammer") groups=["house"] instance=ExtResource("2_11eka")]
+transform = Transform3D(0.09114595, -0.27332348, -0.08358642, 0.2813698, 0.07038494, 0.07666143, -0.05023381, -0.101686925, 0.27773428, -1.913264, 0.49269477, -0.7118077)
+hammer = NodePath("../../Hammer5")
 
-[node name="House6" parent="HouseParent" unique_id=838802341 groups=["house"] instance=ExtResource("2_11eka")]
+[node name="House6" parent="HouseParent" unique_id=838802341 node_paths=PackedStringArray("hammer") groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(-0.1357786, 0.18434651, -0.19385703, -0.24320145, -0.1756187, 0.003336774, -0.11143266, 0.15866458, 0.22892866, 1.2904253, -1.229331, 1.1106519)
+hammer = NodePath("../../Hammer6")
 
-[node name="House7" parent="HouseParent" unique_id=2004842834 groups=["house"] instance=ExtResource("2_11eka")]
+[node name="House7" parent="HouseParent" unique_id=2004842834 node_paths=PackedStringArray("hammer") groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(0.15307356, 0.19653392, 0.16716132, -0.2397322, 0.18019326, 0.0076726833, -0.095378, -0.13749477, 0.24899444, 1.3757377, 1.2613523, -0.96246326)
+hammer = NodePath("../../Hammer7")
 
-[node name="House8" parent="HouseParent" unique_id=315292112 groups=["house"] instance=ExtResource("2_11eka")]
+[node name="House8" parent="HouseParent" unique_id=315292112 node_paths=PackedStringArray("hammer") groups=["house"] instance=ExtResource("2_11eka")]
 transform = Transform3D(0.24915051, -0.10832694, 0.12723722, 0.16657305, 0.14278997, -0.20460807, 0.013321213, 0.24057497, 0.17873512, -0.7582883, 0.99952966, 1.6840246)
+hammer = NodePath("../../Hammer8")
 
 [node name="GPUParticlesCollisionSphere3D" type="GPUParticlesCollisionSphere3D" parent="." unique_id=829250652]
 cull_mask = 4293918736
@@ -404,9 +413,73 @@ visibility_aabb = AABB(-1, -1, -1, 2, 2, 2)
 process_material = SubResource("ParticleProcessMaterial_n1t4m")
 draw_pass_1 = SubResource("QuadMesh_kp5tw")
 
+[node name="Hammer" parent="." unique_id=1625781424 groups=["hammer"] instance=ExtResource("16_y5i4l")]
+transform = Transform3D(0.27185985, 0.10470999, -0.07161039, -0.123009, 0.25898278, -0.08829898, 0.031000243, 0.1093789, 0.27762428, 0.7329702, 1.8128792, 0.76565224)
+visible = false
+
+[node name="MeshInstance3D" parent="Hammer/Hammer" parent_id_path=PackedInt32Array(1625781424, 1625781424) index="0" unique_id=962302946]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999998, 0, 0, 0, 0.99999976, 0, 0.29636484, 0)
+
+[node name="Hammer2" parent="." unique_id=1149332396 groups=["hammer"] instance=ExtResource("16_y5i4l")]
+transform = Transform3D(-0.24800941, 0.07115211, -0.15306444, -0.15950838, -0.009807321, 0.25389153, 0.05521255, 0.29127514, 0.045938883, 0.49806452, -0.0686514, 2.038926)
+visible = false
+
+[node name="MeshInstance3D" parent="Hammer2/Hammer" parent_id_path=PackedInt32Array(1149332396, 1625781424) index="0" unique_id=962302946]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999998, 0, 0, 0, 0.99999976, 0, 0.29636484, 0)
+
+[node name="Hammer3" parent="." unique_id=852286819 groups=["hammer"] instance=ExtResource("16_y5i4l")]
+transform = Transform3D(0.23810306, -0.13963705, 0.11750926, 0.065432504, 0.24563874, 0.15931164, -0.17036878, -0.100812204, 0.22541378, -0.97745925, 1.7194712, -0.7056854)
+visible = false
+
+[node name="MeshInstance3D" parent="Hammer3/Hammer" parent_id_path=PackedInt32Array(852286819, 1625781424) index="0" unique_id=962302946]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999998, 0, 0, 0, 0.99999976, 0, 0.29636484, 0)
+
+[node name="Hammer4" parent="." unique_id=457962818 groups=["hammer"] instance=ExtResource("16_y5i4l")]
+transform = Transform3D(-0.25093043, -0.15965442, 0.03929875, 0.13393971, -0.15689991, 0.21781315, -0.09536287, 0.19973202, 0.20251676, -1.1175814, -1.0982989, 1.398124)
+visible = false
+
+[node name="MeshInstance3D" parent="Hammer4/Hammer" parent_id_path=PackedInt32Array(457962818, 1625781424) index="0" unique_id=962302946]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999998, 0, 0, 0, 0.99999976, 0, 0.29636484, 0)
+
+[node name="Hammer5" parent="." unique_id=1644141108 groups=["hammer"] instance=ExtResource("16_y5i4l")]
+transform = Transform3D(0.09114595, -0.2733235, -0.083586425, 0.28136984, 0.070384964, 0.07666144, -0.05023381, -0.10168693, 0.2777343, -1.9132643, 0.4926951, -0.7118083)
+visible = false
+
+[node name="MeshInstance3D" parent="Hammer5/Hammer" parent_id_path=PackedInt32Array(1644141108, 1625781424) index="0" unique_id=962302946]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999998, 0, 0, 0, 0.99999976, 0, 0.29636484, 0)
+
+[node name="Hammer6" parent="." unique_id=1861585456 groups=["hammer"] instance=ExtResource("16_y5i4l")]
+transform = Transform3D(-0.1357786, 0.18434651, -0.19385703, -0.24320145, -0.1756187, 0.003336774, -0.11143266, 0.15866458, 0.22892866, 1.2904253, -1.229331, 1.1106519)
+visible = false
+
+[node name="MeshInstance3D" parent="Hammer6/Hammer" parent_id_path=PackedInt32Array(1861585456, 1625781424) index="0" unique_id=962302946]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999998, 0, 0, 0, 0.99999976, 0, 0.29636484, 0)
+
+[node name="Hammer7" parent="." unique_id=47469911 groups=["hammer"] instance=ExtResource("16_y5i4l")]
+transform = Transform3D(0.15307356, 0.19653392, 0.16716132, -0.2397322, 0.18019326, 0.0076726833, -0.095378, -0.13749477, 0.24899444, 1.3757377, 1.2613523, -0.96246326)
+visible = false
+
+[node name="MeshInstance3D" parent="Hammer7/Hammer" parent_id_path=PackedInt32Array(47469911, 1625781424) index="0" unique_id=962302946]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999998, 0, 0, 0, 0.99999976, 0, 0.29636484, 0)
+
+[node name="Hammer8" parent="." unique_id=494558345 groups=["hammer"] instance=ExtResource("16_y5i4l")]
+transform = Transform3D(0.24915051, -0.10832694, 0.12723722, 0.16657305, 0.14278997, -0.20460807, 0.013321213, 0.24057497, 0.17873512, -0.7582883, 0.99952966, 1.6840246)
+visible = false
+
+[node name="MeshInstance3D" parent="Hammer8/Hammer" parent_id_path=PackedInt32Array(494558345, 1625781424) index="0" unique_id=962302946]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999998, 0, 0, 0, 0.99999976, 0, 0.29636484, 0)
+
 [editable path="planet"]
 [editable path="water"]
 [editable path="grass"]
 [editable path="dirt"]
 [editable path="crystals"]
 [editable path="sludge_new"]
+[editable path="Hammer"]
+[editable path="Hammer2"]
+[editable path="Hammer3"]
+[editable path="Hammer4"]
+[editable path="Hammer5"]
+[editable path="Hammer6"]
+[editable path="Hammer7"]
+[editable path="Hammer8"]

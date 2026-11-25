@@ -80,6 +80,6 @@ name_sound = &"crack"
 sound = ExtResource("13_4nfqj")
 metadata/_custom_type_script = "uid://cjvte1murqrue"
 
-[node name="SfxLibrary" type="Node2D" unique_id=1005291426]
+[node name="SfxLibrary" type="Node" unique_id=1269403268]
 script = ExtResource("1_vu6sb")
 sounds = Array[ExtResource("2_wm80g")]([SubResource("Resource_yyxft"), SubResource("Resource_cvcos"), SubResource("Resource_bfjp3"), SubResource("Resource_el45r"), SubResource("Resource_us8u7"), SubResource("Resource_tcbph"), SubResource("Resource_ymqyt"), SubResource("Resource_4nfqj"), SubResource("Resource_5plkd"), SubResource("Resource_bafq2"), SubResource("Resource_h3i77")])

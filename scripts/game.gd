@@ -67,14 +67,16 @@ func _ready() -> void:
 	_try_again_button.self_modulate.a = 0
 	_try_again_button.pressed.connect(get_tree().reload_current_scene)
 
+	BackgroundMusic.play()
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == KEY_SPACE and event.pressed == true:
 		_end_game()
 	if event is InputEventKey and event.keycode == KEY_0 and event.pressed == true:
-		_end_game_test(true)	
+		_end_game_test(true)
 	if event is InputEventKey and event.keycode == KEY_1 and event.pressed == true:
-		_end_game_test(false)		
+		_end_game_test(false)
 
 
 func _activate(button: EntityButton) -> void:
@@ -133,7 +135,7 @@ func _end_game():
 		return
 	_end_game_started = true
 
-	var is_win = _is_order_correct()
+	var is_win: bool = _is_order_correct()
 
 	if is_win:
 		print("win")

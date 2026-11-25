@@ -45,14 +45,33 @@ func _align_houses_to_sphere() -> void:
 var align_houses_action: Callable = _align_houses_to_sphere
 
 
+func _align_hammers_to_houses() -> void:
+	for house: Node3D in get_tree().get_nodes_in_group("house"):
+		var hammer = house.get("hammer")
+		if hammer is NodePath:
+			hammer = house.get_node_or_null(hammer)
+		if not hammer is Node3D:
+			push_warning("%s has no hammer linked" % house.name)
+			continue
+		hammer.global_transform = house.global_transform
+		var player := hammer.get_node_or_null("AnimationPlayer") as AnimationPlayer
+		if player:
+			player.root_node = NodePath("../Hammer")
+
+	if Engine.is_editor_hint():
+		var editor = Engine.get_singleton("EditorInterface")
+		if editor:
+			editor.mark_scene_as_unsaved()
+
+
+@export_tool_button("Align Hammers To Houses")
+var align_hammers_action: Callable = _align_hammers_to_houses
+
+
 func _ready() -> void:
 	_sludge_base.show()
 	_sludge_animation_tree.active = false
 	_sludge_base.scale = Vector3.ONE * 0.85
-
-	await grow_houses()
-	await get_tree().create_timer(2).timeout
-	await grow_grass()
 
 
 func change_landscape():
@@ -167,14 +186,53 @@ func add_fish():
 
 ## Возвращает ссылку на домик, откуда будет выбегать чел.
 func grow_houses() -> House:
-	print("sfjl")
-	var tween: Tween = create_tween().set_parallel()
-	tween.tween_property(_house_parent, "scale", Vector3.ONE, Helpers.duration(1.5))
-	await tween.finished
-
 	var houses := get_tree().get_nodes_in_group("house")
-	var i := houses.find_custom(func(x: Node): return x.has_meta("chel_house"))
-	return houses[i] if i != -1 else null
+	var chel_house_idx := houses.find_custom(func(x: Node): return x.has_meta("chel_house"))
+
+	var hammers := get_tree().get_nodes_in_group("hammer")
+	var j: int = 0
+	for hammer: Hammer in hammers:
+		var offset: Vector3 = (global_position - hammer.global_position).normalized()
+		hammer.position += offset
+		hammer.show()
+
+		var t: Tween = create_tween()
+		t.tween_property(hammer, "position", hammer.position - offset, 0.05 * j)
+		await t.finished
+
+		j += 1
+
+
+	var tweens: Array[Tween] = []
+	var tween: Tween = create_tween().set_parallel()
+	tween.tween_property(_house_parent, "scale", Vector3.ONE, Helpers.duration(2.8))
+	tweens.append(tween)
+
+	var i: int = 0
+	for house: House in houses:
+		var t: Tween = create_tween()
+		t.tween_interval(i * 0.2)
+		t.tween_callback(house.enable_building)
+		t.tween_interval(3.3)
+		t.tween_callback(house.disable_building)
+		tweens.append(t)
+		i += 1
+
+	for t in tweens:
+		await t.finished
+
+	j = 0
+	for hammer: Hammer in hammers:
+		var offset: Vector3 = (global_position - hammer.global_position).normalized()
+
+		var t: Tween = create_tween()
+		t.tween_property(hammer, "position", hammer.position + offset, 0.05 * j)
+		await t.finished
+		hammer.hide()
+
+		j += 1
+
+	return houses[chel_house_idx] if chel_house_idx != -1 else null
 
 
 func wobble():

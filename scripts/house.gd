@@ -1,6 +1,8 @@
 extends Node3D
 class_name House
 
+@export var hammer: Hammer
+
 @onready var _house_mesh: MeshInstance3D = $house/house
 @onready var _chel: Node3D = $chel
 @onready var _chel_animation_player: AnimationPlayer= $chel/AnimationPlayer
@@ -17,3 +19,11 @@ func release_chel():
 	tween = create_tween()
 	tween.tween_property(_chel_mesh, "blend_shapes/heart_face", 1, Helpers.duration(0.2))
 	await tween.finished
+
+
+func enable_building():
+	hammer.enable_building()
+
+
+func disable_building():
+	hammer.disable_building()

@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://qgbtvx1jvu1u"]
 
 [ext_resource type="Script" uid="uid://c3pwmxeldwwyg" path="res://scripts/ships/ship_construction.gd" id="1_bkwon"]
-[ext_resource type="PackedScene" uid="uid://dgncy06opl777" path="res://models/ship_construction.glb" id="2_nbv7e"]
+[ext_resource type="Material" uid="uid://dow8fllvtcfwl" path="res://shaders/outline_material.tres" id="3_nbr4u"]
+[ext_resource type="PackedScene" uid="uid://rvddiu45w7ny" path="res://models/ship_construction_new.glb" id="3_nbv7e"]
 
 [node name="ShipConstruction" type="Node3D" unique_id=1171368379]
 transform = Transform3D(0.609, 0, 0, 0, 0.609, 0, 0, 0, 0.609, 0, 0, 0)
 script = ExtResource("1_bkwon")
 
-[node name="ship_construction2" parent="." unique_id=1891709183 instance=ExtResource("2_nbv7e")]
+[node name="ship_construction_new" parent="." unique_id=1274854392 instance=ExtResource("3_nbv7e")]
 
-[editable path="ship_construction2"]
+[node name="ship_construction" parent="ship_construction_new" index="0" unique_id=1250308929]
+material_overlay = ExtResource("3_nbr4u")
+
+[editable path="ship_construction_new"]

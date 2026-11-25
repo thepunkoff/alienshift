@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://ynmruk1fr3no"]
+
+[ext_resource type="Script" uid="uid://cw71exosdxjt5" path="res://scripts/hammer.gd" id="1_puv5m"]
+[ext_resource type="Texture2D" uid="uid://bkitwpomay27g" path="res://graphics/hammer.png" id="1_s5ltg"]
+[ext_resource type="Texture2D" uid="uid://37m7vb37qvt2" path="res://graphics/steam.png" id="3_01xny"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f74lx"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_s5ltg")
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_ptc3g"]
+material = SubResource("StandardMaterial3D_f74lx")
+
+[sub_resource type="Gradient" id="Gradient_7cboi"]
+offsets = PackedFloat32Array(0, 0.59500736)
+colors = PackedColorArray(0.7047272, 0.5799224, 0.57347083, 1, 1, 0.9561573, 0.9586942, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_f74lx"]
+gradient = SubResource("Gradient_7cboi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_20s2t"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 5.42
+initial_velocity_max = 5.42
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.5
+color_initial_ramp = SubResource("GradientTexture1D_f74lx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3bgk5"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_01xny")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_xk3u2"]
+material = SubResource("StandardMaterial3D_3bgk5")
+
+[sub_resource type="Animation" id="Animation_ptc3g"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.99999994)
+
+[sub_resource type="Animation" id="Animation_f74lx"]
+resource_name = "hit"
+length = 0.81399435
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.0018867292, 1, 0, 0, 0.21644, 0.976296, 0.065290764, 1, 0, 0, 0.300706, 0.953717, 0.20271039, 1, 0, 0, 0, 0.99999994, 0.3027887, 1, 0, 0, 0, 0.99999994, 0.34309748, 1, 0, 0, 0.21644, 0.976296, 0.48283508, 1, 0, 0, 0.147809, 0.989016, 0.78822184, 1, 0, 0, 0.147809, 0.989016)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1.745707, 0, 0, 0.19015715, 1, 1.9130876, 0.35977235, 0, 0.29023546, 1, 1.9130876, 0.35977235, 0, 0.34394392, 1, 1.745707, 0, 0)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3510552),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_building_dust"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ptc3g"]
+_data = {
+&"RESET": SubResource("Animation_ptc3g"),
+&"hit": SubResource("Animation_f74lx")
+}
+
+[node name="HammerBase" type="Node3D" unique_id=1976971490]
+script = ExtResource("1_puv5m")
+
+[node name="Hammer" type="Node3D" parent="." unique_id=1625781424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.745707, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hammer" unique_id=962302946]
+mesh = SubResource("QuadMesh_ptc3g")
+
+[node name="Dust" type="GPUParticles3D" parent="." unique_id=1673356862]
+transform = Transform3D(0.9999997, 0, 0, 0, 0.9999997, 0, 0, 0, 0.9999998, 0, 0, 0)
+emitting = false
+one_shot = true
+speed_scale = 0.96
+explosiveness = 0.9
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_20s2t")
+draw_pass_1 = SubResource("QuadMesh_xk3u2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=847555633]
+root_node = NodePath("../Hammer")
+libraries/ = SubResource("AnimationLibrary_ptc3g")
