@@ -11,12 +11,12 @@ script = ExtResource("1_rk7hg")
 
 [node name="house" parent="." unique_id=27069113 instance=ExtResource("1_d7po0")]
 
-[node name="house" parent="house" index="0" unique_id=327597002]
+[node name="house" parent="house" index="0" unique_id=390220813]
 material_overlay = ExtResource("3_se78b")
 
 [node name="chel" parent="." unique_id=699990529 instance=ExtResource("2_qtlar")]
 
-[node name="Skeleton3D" parent="chel/rig" parent_id_path=PackedInt32Array(699990529, 109425860) index="0" unique_id=1718295361]
+[node name="Skeleton3D" parent="chel/rig" parent_id_path=PackedInt32Array(699990529, 210602350) index="0" unique_id=1681123998]
 bones/3/rotation = Quaternion(1, 0, 3.413358e-06, 0)
 bones/8/rotation = Quaternion(2.1827868e-08, -5.5969576e-07, 3.296591e-06, 1)
 bones/9/rotation = Quaternion(-1.6068812e-08, -1.1001496e-07, 0.03014989, 0.99954545)

@@ -19,6 +19,7 @@ signal landscape_changed
 @onready var _dirt_animation_player: AnimationPlayer = $dirt/AnimationPlayer2
 @onready var _fish_particles_1: GPUParticles3D = $Fish1
 @onready var _fish_particles_2: GPUParticles3D = $Fish2
+@onready var _house_parent: Node3D = $HouseParent
 
 const WOBBLE_TIMES: Array[float] = [0.0, 0.2, 0.4, 0.6333333, 0.8333333, 1.0666667, 1.2666667]
 const WOBBLE_KEYS: Array[Basis] = [
@@ -45,19 +46,14 @@ var align_houses_action: Callable = _align_houses_to_sphere
 
 
 func _ready() -> void:
-	if not Engine.is_editor_hint():
-		for house: Node3D in get_tree().get_nodes_in_group("house"):
-			house.show()
-			house.position = house.position.normalized() # топим внутри планеты
-
 	_sludge_base.show()
 	_sludge_animation_tree.active = false
 	_sludge_base.scale = Vector3.ONE * 0.85
 
-	await add_soil()
+	await grow_houses()
+	await get_tree().create_timer(2).timeout
 	await grow_grass()
-	await change_landscape()
-	await add_full_water()
+
 
 func change_landscape():
 	var tween: Tween = create_tween()
@@ -67,10 +63,10 @@ func change_landscape():
 
 
 func grow_grass():
-	var tween: Tween = create_tween()
+	var tween: Tween = create_tween().set_parallel()
 	tween.tween_property(_grass, "blend_shapes/growing", 0, Helpers.duration(1.5))
-	tween.parallel()
 	tween.tween_property(_grass, "scale", Vector3.ONE, Helpers.duration(1.5))
+	tween.tween_property(_house_parent, "scale", Vector3.ONE * 1.025, Helpers.duration(1.5))
 	await tween.finished
 
 
@@ -171,21 +167,14 @@ func add_fish():
 
 ## Возвращает ссылку на домик, откуда будет выбегать чел.
 func grow_houses() -> House:
-	var last_tween: Tween
-	var chel_house: House
+	print("sfjl")
+	var tween: Tween = create_tween().set_parallel()
+	tween.tween_property(_house_parent, "scale", Vector3.ONE, Helpers.duration(1.5))
+	await tween.finished
 
-	var i: int = 0
-	for house: Node3D in get_tree().get_nodes_in_group("house"):
-		_align_to_planet(house)
-		last_tween = create_tween()
-		var target: Vector3 = house.position.normalized() * _planet_radius
-		last_tween.tween_property(house, "position", target, Helpers.duration(1 + (i * 0.1)))
-		if house.has_meta("chel_house"):
-			chel_house = house
-		i += 1
-	await last_tween.finished
-
-	return chel_house
+	var houses := get_tree().get_nodes_in_group("house")
+	var i := houses.find_custom(func(x: Node): return x.has_meta("chel_house"))
+	return houses[i] if i != -1 else null
 
 
 func wobble():

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cdwbec3xanud5"]
 
 [ext_resource type="Script" uid="uid://ckmeef86p3omg" path="res://scripts/ships/ship_summon.gd" id="1_1up5q"]
-[ext_resource type="PackedScene" uid="uid://c54m1dpwcfywe" path="res://models/ship_summon.glb" id="2_3njwo"]
+[ext_resource type="PackedScene" uid="uid://c6dh5qv7s5huy" path="res://models/ship_summon_new.glb" id="3_3njwo"]
 
 [sub_resource type="Animation" id="Animation_1up5q"]
 length = 0.001
@@ -38,7 +38,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("ship_summon2/ship_summon:blend_shapes/tentacle")
-tracks/0/interp = 2
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 2, 4),
@@ -82,7 +82,7 @@ filters = ["ship_summon2/ship_summon:blend_shapes/radio"]
 mix_mode = 1
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3mar0"]
-graph_offset = Vector2(-770.8013, -114.79081)
+graph_offset = Vector2(-771.033, -58.809937)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_3njwo")
 nodes/Animation/position = Vector2(-460, 40)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_1up5q")
@@ -95,8 +95,6 @@ node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Animation", &"One
 transform = Transform3D(0.469, 0, 0, 0, 0.469, 0, 0, 0, 0.469, 0, 0, 0)
 script = ExtResource("1_1up5q")
 
-[node name="ship_summon2" parent="." unique_id=710268839 instance=ExtResource("2_3njwo")]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=237891706]
 libraries/ = SubResource("AnimationLibrary_pwkru")
 
@@ -106,5 +104,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/OneShot/active = false
 parameters/OneShot/internal_active = false
 parameters/OneShot/request = 0
+
+[node name="ship_summon2" parent="." unique_id=1240855 instance=ExtResource("3_3njwo")]
 
 [editable path="ship_summon2"]
