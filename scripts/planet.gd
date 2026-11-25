@@ -54,10 +54,6 @@ func _ready() -> void:
 	_sludge_animation_tree.active = false
 	_sludge_base.scale = Vector3.ONE * 0.85
 
-	await add_soil()
-	await grow_grass()
-	await change_landscape()
-	await add_full_water()
 
 func change_landscape():
 	var tween: Tween = create_tween()
