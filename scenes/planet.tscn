@@ -176,6 +176,7 @@ scale_min = 0.02
 scale_max = 0.07
 
 [node name="Planet" type="Node3D" unique_id=969387141]
+rotation_edit_mode = 2
 script = ExtResource("1_ekhpw")
 _planet_radius = 2.02
 
@@ -227,7 +228,6 @@ libraries/ = SubResource("AnimationLibrary_11eka")
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
 [node name="sludge_new" parent="." unique_id=1241830028 instance=ExtResource("9_8dfcq")]
-visible = false
 
 [node name="sludge_baked" parent="sludge_new" index="0" unique_id=140985686]
 surface_material_override/0 = ExtResource("10_qw1i6")

@@ -52,7 +52,7 @@ func sow_seeds() -> void:
 
 	await _ship.extend_needle()
 	await _ship.drain_liquid()
-
+	await planet.wobble()
 
 	tween = create_tween()
 	tween.tween_interval(Helpers.duration(.5))

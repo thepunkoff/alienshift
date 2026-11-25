@@ -83,6 +83,7 @@ func _monster_visit() -> void:
 		planet_eaten.emit()
 	else:
 		await _monster.sniff()
+		await planet.add_partial_water()
 		await get_tree().create_timer(Helpers.duration(1)).timeout
 		var tween: Tween = create_tween()
 		tween.tween_property(_monster_path_follow, "progress_ratio", 0, Helpers.duration(2))
@@ -91,7 +92,7 @@ func _monster_visit() -> void:
 
 func water_spread_accross_planet() -> void:
 	print("Вода распространилась по планете")
-	await planet.add_water()
+	await planet.add_full_water()
 
 
 func water_evaporated() -> void:

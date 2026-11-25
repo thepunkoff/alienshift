@@ -20,6 +20,19 @@ signal landscape_changed
 @onready var _fish_particles_1: GPUParticles3D = $Fish1
 @onready var _fish_particles_2: GPUParticles3D = $Fish2
 
+const WOBBLE_TIMES: Array[float] = [0.0, 0.2, 0.4, 0.6333333, 0.8333333, 1.0666667, 1.2666667]
+const WOBBLE_KEYS: Array[Basis] = [
+	Basis.IDENTITY,
+	Basis(Vector3(1.2, 0.42, 0), Vector3(0.4, 1.1, -0.697), Vector3(0, 0, 1)),
+	Basis(Vector3(1.2, 0, 0), Vector3(-0.811, 1.107, 1.277), Vector3(-1.036, 0, 1)),
+	Basis.IDENTITY,
+	Basis(Vector3(1.2, 0.453, 0), Vector3(0.43, 1.1, -0.697), Vector3(0, 0, 1)),
+	Basis(Vector3(1.2, 0, 0), Vector3(-0.811, 1.107, 1.277), Vector3(-1.036, 0, 1)),
+	Basis.IDENTITY,
+]
+
+var _rest_basis: Basis = Basis.IDENTITY
+
 
 func _align_houses_to_sphere() -> void:
 	for house: Node3D in get_tree().get_nodes_in_group("house"):
@@ -41,6 +54,11 @@ func _ready() -> void:
 	_sludge_animation_tree.active = false
 	_sludge_base.scale = Vector3.ONE * 0.85
 
+	await add_soil()
+	await grow_grass()
+	await change_landscape()
+	await add_full_water()
+
 func change_landscape():
 	var tween: Tween = create_tween()
 	tween.tween_property(_planet, "blend_shapes/relief", 1, Helpers.duration(3))
@@ -57,11 +75,33 @@ func grow_grass():
 
 
 func die_grass():
-	var tween: Tween = create_tween()
-	var mat: StandardMaterial3D = _grass.mesh.get("surface_0/material") as StandardMaterial3D
-	var dup: Resource = mat.duplicate()
-	_grass.mesh.set("surface0/material", dup)
-	tween.tween_property(dup, "albedo_color", Color.html("#df6e27"), Helpers.duration(2))
+	var mat := _grass.get_active_material(0).duplicate() as StandardMaterial3D
+	mat.emission_operator = BaseMaterial3D.EMISSION_OP_MULTIPLY
+	mat.emission = Color.WHITE
+	_grass.set_surface_override_material(0, mat)
+
+	var dead := Color.html("#df6e27")
+	var tween: Tween = create_tween().set_parallel()
+	tween.tween_property(mat, "albedo_color", dead, Helpers.duration(2))
+	tween.tween_property(mat, "emission", dead, Helpers.duration(2))
+	await tween.finished
+
+
+func add_soil():
+	var planet_mat := _planet.get_active_material(0).duplicate() as ShaderMaterial
+	_planet.set_surface_override_material(0, planet_mat)
+
+	var water_mat := _water.get_node("water").get_active_material(0).duplicate() as ShaderMaterial
+	_water.get_node("water").set_surface_override_material(0, water_mat)
+
+	var tween: Tween = create_tween().set_parallel()
+	tween.tween_property(planet_mat, "shader_parameter/a_c0", Color.html("342007"), Helpers.duration(2))
+	tween.tween_property(planet_mat, "shader_parameter/a_c1", Color.html("271201"), Helpers.duration(2))
+	tween.tween_property(planet_mat, "shader_parameter/a_c2", Color.html("493511"), Helpers.duration(2))
+	tween.tween_property(planet_mat, "shader_parameter/a_c3", Color.html("6c4615"), Helpers.duration(2))
+	tween.tween_property(water_mat, "shader_parameter/foam_color", Color.html("6f6cff"), Helpers.duration(2))
+	tween.tween_property(water_mat, "shader_parameter/line_color", Color.html("0d1c73"), Helpers.duration(2))
+	tween.tween_property(water_mat, "shader_parameter/fresnel_color", Color.html("b2c5ff"), Helpers.duration(2))
 	await tween.finished
 
 
@@ -94,7 +134,13 @@ func add_sludge():
 	_sludge_animation_tree.active = false
 
 
-func add_water():
+func add_partial_water():
+	var tween: Tween = create_tween()
+	tween.tween_property(_water, "scale", Vector3.ONE * 0.95, Helpers.duration(1))
+	await tween.finished
+
+
+func add_full_water():
 	var tween: Tween = create_tween()
 	tween.tween_property(_water, "scale", Vector3.ONE, Helpers.duration(1))
 	await tween.finished
@@ -140,6 +186,43 @@ func grow_houses() -> House:
 	await last_tween.finished
 
 	return chel_house
+
+
+func wobble():
+	_rest_basis = basis
+	var length: float = WOBBLE_TIMES[-1]
+	var tween: Tween = create_tween()
+	tween.tween_method(_apply_wobble, 0.0, length, Helpers.duration(length))
+	await tween.finished
+	basis = _rest_basis
+
+
+# тут буквально зашиты keyframes из animationplayer'а: он не работает в текущем годоте для анимации Basis
+func _apply_wobble(t: float) -> void:
+	var last: int = WOBBLE_TIMES.size() - 1
+	var i: int = 0
+	while i < last - 1 and t > WOBBLE_TIMES[i + 1]:
+		i += 1
+	var pre: int = maxi(i - 1, 0)
+	var next: int = i + 1
+	var post: int = mini(i + 2, last)
+
+	var t0: float = WOBBLE_TIMES[i]
+	var span: float = WOBBLE_TIMES[next] - t0
+	var pre_t: float = WOBBLE_TIMES[pre] - t0
+	var post_t: float = WOBBLE_TIMES[post] - t0
+	var w: float = clampf((t - t0) / span, 0.0, 1.0)
+
+	var a: Basis = WOBBLE_KEYS[i]
+	var b: Basis = WOBBLE_KEYS[next]
+	var pa: Basis = WOBBLE_KEYS[pre]
+	var pb: Basis = WOBBLE_KEYS[post]
+	var key := Basis(
+		a.x.cubic_interpolate_in_time(b.x, pa.x, pb.x, w, span, pre_t, post_t),
+		a.y.cubic_interpolate_in_time(b.y, pa.y, pb.y, w, span, pre_t, post_t),
+		a.z.cubic_interpolate_in_time(b.z, pa.z, pb.z, w, span, pre_t, post_t),
+	)
+	basis = _rest_basis * key
 
 
 func _random_point_on_sphere(radius: float = 1.0) -> Vector3:

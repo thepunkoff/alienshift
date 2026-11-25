@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://blmeo6g6gfint"]
+
+[ext_resource type="Shader" uid="uid://bwcmpcy37kpks" path="res://shaders/atmosphere_clouds.gdshader" id="1_atmo"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_atmo")
+shader_parameter/atmosphere_color = Color(0.40208885, 0.81078583, 0.9999996, 1)
+shader_parameter/opacity = 1.0
+shader_parameter/haze = 0.1
+shader_parameter/rim_alpha = 0.1600000076
+shader_parameter/rim_width = 0.0370000017575
+shader_parameter/cloud_color = Color(1, 1, 1, 0.6431373)
+shader_parameter/shade_color = Color(0.69803923, 0.8, 0.9490196, 1)
+shader_parameter/cloud_tint = 0.2
+shader_parameter/coverage = 0.3670000174325
+shader_parameter/shade_width = 0.035
+shader_parameter/edge_sharpness = 1.0
+shader_parameter/cloud_scale = 4.5150001907125
+shader_parameter/octaves = 2
+shader_parameter/warp = 0.150000007125
+shader_parameter/stretch = 1.402000019095
+shader_parameter/spin_axis = Vector3(0, 1, 0)
+shader_parameter/spin_speed = 0.014000048165
+shader_parameter/morph_speed = 0.05
+shader_parameter/light_bands = 2
+shader_parameter/shadow_floor = 1.0
+shader_parameter/self_light = 0.25

@@ -47,10 +47,7 @@ func run_level_up(new_lvl: int, new_state: State):
 
 
 func run_synergies() -> void:
-	if _fossils_bloomed:
-		return
-
-	if summon.level > 0:
+	if not _fossils_bloomed and summon.level > 0:
 		await bloom()
 		_fossils_bloomed = true
 
