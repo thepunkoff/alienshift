@@ -2,11 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dsp50p6438x33" path="res://scripts/ships/ship_life.gd" id="1_3s3vx"]
 [ext_resource type="PackedScene" uid="uid://cwmjpqv1a2y3h" path="res://models/ship_live.glb" id="1_s0i42"]
+[ext_resource type="Material" uid="uid://dow8fllvtcfwl" path="res://shaders/outline_material.tres" id="3_nr2xe"]
 
 [node name="ShipLife" type="Node3D" unique_id=199775063]
 transform = Transform3D(0.308, 0, 0, 0, 0.308, 0, 0, 0, 0.308, 0, 0, 0)
 script = ExtResource("1_3s3vx")
 
 [node name="ship_live2" parent="." unique_id=466029185 instance=ExtResource("1_s0i42")]
+
+[node name="ship_live" parent="ship_live2" index="0" unique_id=849772767]
+material_overlay = ExtResource("3_nr2xe")
 
 [editable path="ship_live2"]

@@ -2,11 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dsb5gb8nah0hs" path="res://scripts/ships/ship_crystal.gd" id="1_88lfp"]
 [ext_resource type="PackedScene" uid="uid://q7jy1d8il1q" path="res://models/ship_crystal.glb" id="2_tk35k"]
+[ext_resource type="Material" uid="uid://dow8fllvtcfwl" path="res://shaders/outline_material.tres" id="3_tk35k"]
 
 [node name="ShipCrystal" type="Node3D" unique_id=1547445990]
 transform = Transform3D(0.469, 0, 0, 0, 0.469, 0, 0, 0, 0.469, 0, 0, 0)
 script = ExtResource("1_88lfp")
 
 [node name="ship_crystal2" parent="." unique_id=62585376 instance=ExtResource("2_tk35k")]
+
+[node name="ship_crystal" parent="ship_crystal2" index="0" unique_id=521469196]
+material_overlay = ExtResource("3_tk35k")
 
 [editable path="ship_crystal2"]

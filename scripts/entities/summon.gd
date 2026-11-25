@@ -48,6 +48,7 @@ func run_synergies() -> void:
 
 func summon_monster() -> void:
 	print("Чуваки-шаманы призывают огромного космического монстра, и тот рыгает зеленую жижу на землю лужами")
+	SFX.play("monster_summon")
 	var tween: Tween = create_tween()
 	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(3))
 	await tween.finished
@@ -72,6 +73,7 @@ func run_after_evolve() -> void:
 func _monster_visit() -> void:
 	if core.state.name != Core.STATE_PUT_INSIDE:
 		print("Монстр съедает планету")
+		SFX.play("monster_roar")
 		_monster.eat()
 		await _monster.started_eating
 		var tween: Tween = create_tween()
@@ -91,9 +93,11 @@ func _monster_visit() -> void:
 
 func water_spread_accross_planet() -> void:
 	print("Вода распространилась по планете")
+	SFX.play("water")
 	await planet.add_water()
 
 
 func water_evaporated() -> void:
 	print("Вода испаряется, т.к. климат плохой")
+	SFX.play("evaporation")
 	await planet.evaporate_water()

@@ -73,6 +73,9 @@ script = ExtResource("1_xo5uv")
 
 [node name="ship_relief2" parent="." unique_id=705752394 instance=ExtResource("1_xvgyx")]
 
+[node name="ship_relief" parent="ship_relief2" index="0" unique_id=235324225]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+
 [node name="Bomb" type="MeshInstance3D" parent="." unique_id=1775173985]
 transform = Transform3D(0.558, 0, 0, 0, 0.558, 0, 0, 0, 0.558, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_xo5uv")

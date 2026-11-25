@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://54yncbvtbfim" path="res://scripts/ships/ship_purifying.gd" id="1_u3m6u"]
 [ext_resource type="PackedScene" uid="uid://c50lvdlfbb7tf" path="res://models/ship_purifying.glb" id="2_b7oqi"]
 [ext_resource type="Texture2D" uid="uid://b5a3h21j24yn" path="res://graphics/star_thin.png" id="3_b7oqi"]
+[ext_resource type="Material" uid="uid://dow8fllvtcfwl" path="res://shaders/outline_material.tres" id="3_tkbvv"]
 
 [sub_resource type="Gradient" id="Gradient_b7oqi"]
 interpolation_mode = 1
@@ -46,6 +47,9 @@ transform = Transform3D(0.721, 0, 0, 0, 0.721, 0, 0, 0, 0.721, 0, 0, 0)
 script = ExtResource("1_u3m6u")
 
 [node name="ship_purifying2" parent="." unique_id=203978773 instance=ExtResource("2_b7oqi")]
+
+[node name="ship_purifying" parent="ship_purifying2" index="0" unique_id=978965695]
+material_overlay = ExtResource("3_tkbvv")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=917502348]
 transform = Transform3D(0.9999998, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, -2.1413312, 0.09106448)

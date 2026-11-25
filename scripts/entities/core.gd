@@ -91,6 +91,7 @@ func take_out():
 
 	tween = create_tween()
 	tween.tween_property(_ship, "quaternion", Helpers.local_quaternion(_ship, _aligned_to_planet(_ship)), Helpers.duration(0.5))
+	SFX.play("drill")
 	await tween.finished
 
 	await _ship.extend_drill()
@@ -110,6 +111,7 @@ func take_out():
 	await _ship.enable_light()
 
 	_core_animation_player.play("take_out")
+	SFX.play("core_light")
 	await _core_animation_player.animation_finished
 
 	_core_animation_player.play("bob")
@@ -117,6 +119,7 @@ func take_out():
 
 func crack():
 	print("Ядро трескается")
+	SFX.play("crack")
 	var mat := _core.get_active_material(0).duplicate() as ShaderMaterial
 	_core.set_surface_override_material(0, mat)
 	var tween: Tween = create_tween()
@@ -126,6 +129,7 @@ func crack():
 
 func put_inside():
 	print("Корабль возвращает ядро обратно")
+	SFX.play("core_light")
 	_core_animation_player.play_backwards("take_out")
 	await _core_animation_player.animation_finished
 

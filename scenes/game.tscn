@@ -42,7 +42,7 @@
 [ext_resource type="PackedScene" uid="uid://cboqdp0shm28y" path="res://scenes/ships/ship_relief.tscn" id="22_twgab"]
 [ext_resource type="PackedScene" uid="uid://cdwbec3xanud5" path="res://scenes/ships/ship_summon.tscn" id="24_02fa5"]
 [ext_resource type="PackedScene" uid="uid://bkwl7yk5y73ye" path="res://scenes/monster.tscn" id="25_nepv3"]
-[ext_resource type="AudioStream" uid="uid://doklk1r2mhc48" path="res://assets/music/main_theme.mp3" id="28_sww3w"]
+[ext_resource type="AudioStream" uid="uid://b1ty3pgierrp8" path="res://assets/music/hmmmd.mp3" id="43_05nbr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xkm6b"]
 
@@ -1035,5 +1035,6 @@ theme = SubResource("Theme_1kice")
 text = "Try again?"
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=1649134837]
-stream = ExtResource("28_sww3w")
+stream = ExtResource("43_05nbr")
+volume_db = -34.405
 autoplay = true

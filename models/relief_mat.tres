@@ -1,11 +1,14 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://exdtg4q4a435"]
 
 [ext_resource type="Texture2D" uid="uid://d3n7cpnac312o" path="res://models/ship_relief_relief_texture.png" id="1_8xf6g"]
+[ext_resource type="Material" uid="uid://dow8fllvtcfwl" path="res://shaders/outline_material.tres" id="2_kco0p"]
 
 [resource]
 resource_name = "relief_mat"
+next_pass = ExtResource("2_kco0p")
 transparency = 4
 cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
 albedo_texture = ExtResource("1_8xf6g")
 roughness = 0.5
 emission_enabled = true
