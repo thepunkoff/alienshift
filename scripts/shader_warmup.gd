@@ -13,6 +13,7 @@ class_name ShaderWarmup
 const WARMUP_FRAMES := 3
 const OVERLAY_COLOR := Color(0.075, 0.055, 0.13, 1)
 const FADE_DURATION := 0.2
+const LABEL_FONT := preload("uid://b5g7e7xq8d4wn") # fonts/Oxanium-VariableFont_wght.ttf
 
 ## Скомпилированные программы живут в GL-контексте до перезагрузки страницы,
 ## поэтому после "Try again" повторный прогрев не нужен.
@@ -38,6 +39,18 @@ func _run() -> void:
 	overlay.mouse_filter = Control.MOUSE_FILTER_STOP
 	overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
 	overlay_layer.add_child(overlay)
+
+	# Тот же стиль, что у номеров порядка на EntityButton.
+	var label := Label.new()
+	label.text = "Loading..."
+	label.add_theme_font_override("font", LABEL_FONT)
+	label.add_theme_font_size_override("font_size", 59)
+	label.add_theme_color_override("font_outline_color", Color.WHITE)
+	label.add_theme_constant_override("outline_size", 6)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.set_anchors_preset(Control.PRESET_FULL_RECT)
+	overlay.add_child(label)
 	add_child(overlay_layer)
 
 	var warm_root := Node3D.new()

@@ -15,17 +15,16 @@ var _animations = [
 ]
 
 func _ready() -> void:
-	BackgroundMusic.play()
 	for animation in _animations:
 		animation_player.play(animation)
 		await animation_player.animation_finished
 	_animations_end = true
-	
+
 
 func _input(event: InputEvent) -> void:
-	if !_animations_end: 
-		return 
-		
+	if !_animations_end:
+		return
+
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			get_tree().change_scene_to_file(GAME_SCENE)	
+			get_tree().change_scene_to_file(GAME_SCENE)
