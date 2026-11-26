@@ -15,10 +15,12 @@ var _animations = [
 ]
 
 func _ready() -> void:
+	BackgroundMusic.play()
 	for animation in _animations:
 		animation_player.play(animation)
 		await animation_player.animation_finished
 	_animations_end = true
+	
 
 func _input(event: InputEvent) -> void:
 	if !_animations_end: 
