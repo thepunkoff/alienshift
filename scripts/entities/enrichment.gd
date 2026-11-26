@@ -2,6 +2,7 @@ extends Entity
 class_name Enrichment
 
 @export var crystal: Crystal
+@export var construction: Construction
 @export var planet: Planet
 
 const STATE_SLIME_ABSORBED := "slime_absorbed"
@@ -55,7 +56,8 @@ func enrich_soil() -> void:
 	await _ship.prepare_hose()
 	await get_tree().create_timer(Helpers.duration(.5)).timeout
 
-	planet.add_sludge()
+	var need_sink_houses = construction.level >= construction.get_level_by_name(Construction.STATE_HOUSES_LOWERED)
+	planet.add_sludge(need_sink_houses)
 	SFX.play("slime_deploy")
 	await _ship.drain_liquid()
 	SFX.play("slime_absorb")

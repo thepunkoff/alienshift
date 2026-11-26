@@ -1,17 +1,18 @@
 extends PanelContainer
 
-@onready var volume_slider: HSlider = $HBoxContainer/VolumeSlider
+@onready var volume_slider: HSlider = $HBoxContainer/MarginContainer/VolumeSlider
 @onready var mute_button: Button = $HBoxContainer/MuteButton
 
-const ICON_MUTE = preload("uid://ccul0ll57dc8p")
-const ICON_SPEAKER = preload("uid://dhvmhb4ve2ff1")
 const MASTER_BUS_NAME := "Master"
 const MAX_VOLUME := 100.0
+
+@export var icon_mute: Texture
+@export var icon_speaker: Texture
 
 func _ready() -> void:
 	volume_slider.value = AudioSettings.music_volume
 
-	mute_button.icon = ICON_SPEAKER
+	mute_button.icon = icon_mute
 	mute_button.pressed.connect(_toggle_mute)
 	volume_slider.value_changed.connect(_change_volume)
 
@@ -20,7 +21,7 @@ func _ready() -> void:
 
 func _change_volume(value: float) -> void:
 	var bus_index := AudioServer.get_bus_index(MASTER_BUS_NAME)
-	AudioSettings.music_volume = value	
+	AudioSettings.music_volume = value
 	_set_muted(AudioSettings.music_volume == 0.0)
 
 	if value > 0.0:
@@ -35,4 +36,4 @@ func _set_muted(value: bool) -> void:
 	AudioSettings.muted = value
 	var bus_index := AudioServer.get_bus_index(MASTER_BUS_NAME)
 	AudioServer.set_bus_mute(bus_index, AudioSettings.muted)
-	mute_button.icon = ICON_MUTE if AudioSettings.muted else ICON_SPEAKER
+	mute_button.icon = icon_mute if AudioSettings.muted else icon_speaker

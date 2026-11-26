@@ -73,7 +73,7 @@ func run_after_evolve() -> void:
 func ship_appear() -> void:
 	print("Корабли c ПВО системами подлетают к планете")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(3))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(2))
 	await tween.finished
 
 
@@ -82,9 +82,10 @@ func pvo_installed() -> void:
 	await planet.open_mountain()
 	await _drop_pvo()
 	_pvo.show()
+	await planet.close_mountain()
 
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(3))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
 	await tween.finished
 
 
@@ -104,19 +105,19 @@ func pvo_flew_away() -> void:
 	tween.tween_property(_ship, "rotation:y", deg_to_rad(-40), Helpers.duration(.5))
 	tween.tween_interval(Helpers.duration(.5))
 	tween.tween_property(_ship, "rotation:y", 0, Helpers.duration(.5))
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(3))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
 	await tween.finished
 
 
 func throw_meteor() -> void:
 	print("Пролетает метеорит, ПВО его сбивает")
 
-	const meteor_time: int = 6
+	const meteor_time: int = 4
 	const bullet_time_base: int = 1
 	var i: int = 0
 	for pf: PathFollow3D in [_bullet1_path_follow, _bullet2_path_follow, _bullet3_path_follow]:
 		var bullet: Node3D = pf.get_node("Bullet")
-		var bullet_time: float = bullet_time_base + (2 - i) * 0.5
+		var bullet_time: float = bullet_time_base + (2 - i) * 0.2
 		var tween_bullet: Tween = create_tween()
 		var delay: float = meteor_time - bullet_time
 		tween_bullet.tween_interval(Helpers.duration(delay))
@@ -127,8 +128,14 @@ func throw_meteor() -> void:
 
 	var tween: Tween = create_tween()
 	tween.tween_property(_meteor_path_follow, "progress_ratio", 1, Helpers.duration(meteor_time))
+	await get_tree().create_timer(1).timeout
+	planet.open_mountain()
+
 	await tween.finished
 	_explode()
+
+	await get_tree().create_timer(1).timeout
+	await planet.close_mountain()
 
 
 func _look_at(a: Node3D, b: Node3D):

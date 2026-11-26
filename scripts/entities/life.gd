@@ -43,7 +43,7 @@ func run_after_evolve() -> void:
 func sow_seeds() -> void:
 	print("Человечки в скафандрах засеивают планету семенами жизни")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(3))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(2))
 	await tween.finished
 
 	tween = create_tween()
@@ -57,7 +57,7 @@ func sow_seeds() -> void:
 	tween = create_tween()
 	tween.tween_interval(Helpers.duration(.5))
 	tween.tween_callback(func(): _ship.retract_needle())
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(3))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
 	tween.parallel()
 	tween.tween_property(_ship, "rotation:z", 0, Helpers.duration(1))
 	await tween.finished

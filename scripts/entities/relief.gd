@@ -50,9 +50,9 @@ func run_after_evolve() -> void:
 func bombs_created_relief():
 	print("Сбрасывают атомные бомбы, появляются впадины и горы")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(3))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(2))
 	tween.parallel()
-	tween.tween_property(_ship_path_follow_2, "progress_ratio", 1, Helpers.duration(3))
+	tween.tween_property(_ship_path_follow_2, "progress_ratio", 1, Helpers.duration(2))
 	await tween.finished
 
 	tween = create_tween()
@@ -68,9 +68,9 @@ func bombs_created_relief():
 	await planet.landscape_changed
 
 	tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(3))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
 	tween.parallel()
-	tween.tween_property(_ship_path_follow_2, "progress_ratio", 0, Helpers.duration(3))
+	tween.tween_property(_ship_path_follow_2, "progress_ratio", 0, Helpers.duration(2))
 	tween.parallel()
 	tween.tween_property(_ship, "quaternion", Helpers.local_quaternion(_ship, Basis.IDENTITY), Helpers.duration(1))
 	tween.parallel()

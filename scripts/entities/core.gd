@@ -6,6 +6,8 @@ const STATE_TAKEN_OUT: String = "taken_out"
 const STATE_CRACKED: String = "cracked"
 const STATE_PUT_INSIDE: String = "put_inside"
 
+@export var planet: Planet
+
 @onready var _ship: ShipCore = $Path3D/PathFollow3D/ShipCore
 @onready var _ship_path_follow: PathFollow3D = $Path3D/PathFollow3D
 
@@ -85,7 +87,7 @@ func run_after_evolve() -> void:
 func take_out():
 	print("Прилетает большой космический корабль, бурит скважину и достает ядро из планеты и зависает с ним")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(4))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(2))
 	tween.tween_interval(Helpers.duration(0.5))
 	await tween.finished
 
@@ -111,6 +113,9 @@ func take_out():
 	await _ship.enable_light()
 
 	_core_animation_player.play("take_out")
+	await get_tree().create_timer(1).timeout
+	planet.add_dirt()
+
 	SFX.play("core_light")
 	await _core_animation_player.animation_finished
 
@@ -136,7 +141,7 @@ func put_inside():
 	await _ship.disable_light()
 
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(4))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
 	await tween.finished
 
 

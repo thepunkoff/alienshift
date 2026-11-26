@@ -50,24 +50,21 @@ func summon_monster() -> void:
 	print("Чуваки-шаманы призывают огромного космического монстра, и тот рыгает зеленую жижу на землю лужами")
 	SFX.play("monster_summon")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(3))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(2))
+	tween.parallel()
 	await tween.finished
 
 	await _ship.summon_monster()
-	create_tween().tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(3))
+	create_tween().tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
 	tween = create_tween()
-	tween.tween_property(_monster_path_follow, "progress_ratio", 1, Helpers.duration(2))
+	tween.tween_property(_monster_path_follow, "progress_ratio", 1, Helpers.duration(3))
 	await tween.finished
 
 	await _monster_visit()
-	# _monster_waiting = true
 
 
 func run_after_evolve() -> void:
 	pass
-	# if _monster_waiting:
-	# 	await _monster_visit()
-	# 	_monster_waiting = false
 
 
 func _monster_visit() -> void:

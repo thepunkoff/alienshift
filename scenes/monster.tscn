@@ -91,11 +91,12 @@ script = ExtResource("1_1cbnp")
 [node name="monster_animations" parent="." unique_id=1129856279 instance=ExtResource("1_uwnm8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.3295026, 0)
 
-[node name="monster" parent="monster_animations" index="0" unique_id=1106680463]
-transform = Transform3D(1, 0, 0, 0, 0.9990875, 0.042710524, 0, -0.042710524, 0.9990875, -0.112513654, 8.197477, 0)
+[node name="monster" parent="monster_animations" index="0" unique_id=2003248518]
+transform = Transform3D(1, 0, 0, 0, 0.9586704, 0.28451902, 0, -0.28451902, 0.9586704, -0.112513654, 8.197477, 0)
 material_overlay = ExtResource("3_c47ug")
-blend_shapes/look = 0.93610156
-blend_shapes/eyes = 0.25925916
+blend_shapes/move2 = 0.8125593
+blend_shapes/move = 0.8125593
+blend_shapes/sniff = 0.91555274
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1112861218]
 root_node = NodePath("../monster_animations")

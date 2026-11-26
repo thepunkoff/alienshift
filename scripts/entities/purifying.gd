@@ -2,12 +2,12 @@ extends Entity
 class_name Purifying
 
 @export var core: Core
+@export var planet: Planet
 
 const STATE_RADIATION_CLEANSING := "radiation_cleansing"
 
 @onready var _ship: ShipPurifying = $Path3D/PathFollow3D/ShipPurifying
 @onready var _ship_path_follow: PathFollow3D = $Path3D/PathFollow3D
-@onready var _path: Path3D = $Path3D
 @onready var _core_purifying_position: Marker3D = $Marker3D
 
 var _core_interaction_processed := false
@@ -55,7 +55,7 @@ func cleanse_with_radiation() -> void:
 	await tween.finished
 
 	await _ship.enable_ray()
-	await get_tree().create_timer(Helpers.duration(2)).timeout
+	await planet.remove_dirt()
 
 
 func cleanse_core() -> void:

@@ -26,7 +26,6 @@ func _ready():
 	_ship_path_follow_2.progress_ratio = 0
 
 
-
 func _process(delta: float) -> void:
 
 	if _align_ship_to_planet:
@@ -60,7 +59,7 @@ func bury_fossils():
 	print("Высаживаются человечки и закапывают светящиеся кристаллы в землю")
 	SFX.play("crystal_ship_deploy")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(1.9))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(2))
 	await tween.finished
 
 	_ship_path_follow.remove_child(_ship)
@@ -75,6 +74,7 @@ func bury_fossils():
 	tween = create_tween()
 	tween.tween_property(_ship_path_follow_2, "progress", _path.curve.get_closest_offset(_path.curve.get_point_position(1)), Helpers.duration(2))
 	await tween.finished
+	planet.become_blue()
 	await _ship.drop_crystals()
 
 	tween = create_tween()
@@ -84,7 +84,8 @@ func bury_fossils():
 	await _ship.drop_crystals()
 
 	tween = create_tween()
-	tween.tween_property(_ship_path_follow_2, "progress", _path.curve.get_baked_length(), Helpers.duration(1))
+	tween.tween_property(_ship_path_follow_2, "progress", _path.curve.get_baked_length(), Helpers.duration(2))
+	planet.reset_color()
 	await tween.finished
 
 
@@ -95,7 +96,7 @@ func bury_fossils():
 	tween.tween_property(_ship, "rotation:z", 0, Helpers.duration(1))
 
 	tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(1.9))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
 	await tween.finished
 
 func mineralization_occurred():

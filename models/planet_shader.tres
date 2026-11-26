@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bboagonmo4erb"]
+
+[resource]
+resource_name = "planet_shader"
+cull_mode = 2
+shading_mode = 0

@@ -39,9 +39,17 @@
 [ext_resource type="PackedScene" uid="uid://dnrjmu5h7emg3" path="res://scenes/ships/ship_pvo.tscn" id="20_gxtfn"]
 [ext_resource type="PackedScene" uid="uid://dap0w8dmjfsad" path="res://scenes/pvo.tscn" id="22_pr1ej"]
 [ext_resource type="PackedScene" uid="uid://cboqdp0shm28y" path="res://scenes/ships/ship_relief.tscn" id="22_twgab"]
+[ext_resource type="Texture2D" uid="uid://c4xjl5j6ck0a7" path="res://models/grass_grass_texture.png" id="23_8qswn"]
 [ext_resource type="PackedScene" uid="uid://cdwbec3xanud5" path="res://scenes/ships/ship_summon.tscn" id="24_02fa5"]
+[ext_resource type="PackedScene" uid="uid://c3qhyd61qo21l" path="res://scenes/bullet.tscn" id="24_fedci"]
 [ext_resource type="PackedScene" uid="uid://bkwl7yk5y73ye" path="res://scenes/monster.tscn" id="25_nepv3"]
+[ext_resource type="StyleBox" uid="uid://x27pqpdklr1i" path="res://styles/panel_style.tres" id="37_rm0al"]
+[ext_resource type="Texture2D" uid="uid://cb1a4jac3s51p" path="res://graphics/grabber.png" id="39_i4re6"]
+[ext_resource type="Texture2D" uid="uid://ccul0ll57dc8p" path="res://graphics/icon-mute.svg" id="39_o8ni1"]
+[ext_resource type="Texture2D" uid="uid://dhvmhb4ve2ff1" path="res://graphics/icon-speaker.svg" id="40_3hbvx"]
+[ext_resource type="Texture2D" uid="uid://dbxdbb4r1bb5b" path="res://graphics/grabber_highlight.png" id="40_pf7vy"]
 [ext_resource type="Texture2D" uid="uid://buvu3vm07vcv2" path="res://assets/end_game/loss.png" id="41_oaba0"]
+[ext_resource type="StyleBox" uid="uid://dqf0eprh2y50e" path="res://styles/button_normal_style.tres" id="41_q8j3a"]
 [ext_resource type="Texture2D" uid="uid://bnrd0jc0fioe0" path="res://assets/end_game/extra_loss.png" id="42_458eo"]
 [ext_resource type="Script" uid="uid://rxra6esreje5" path="res://scripts/ui/game_over_animation.gd" id="43_fedci"]
 [ext_resource type="Texture2D" uid="uid://03pu0253dl7r" path="res://assets/end_game/win.png" id="43_h3rex"]
@@ -323,12 +331,17 @@ point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_02fa5"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 6.926, 0, 156.76993, 320.59576, -713.3782, 0, 7.973, 0, 0, 0, 0, -0.6502839, 1.6557349, 7.2910376),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -19.52714, -15.652619, 1.128163, 0, 0, 0, 0, 0, 0, -0.43315423, 1.1248372, 4.9616013),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fedci"]
+albedo_color = Color(1.159, 0.26451644, 0.3090365, 1)
+albedo_texture = ExtResource("23_8qswn")
+
 [sub_resource type="SphereMesh" id="SphereMesh_gxtfn"]
+material = SubResource("StandardMaterial3D_fedci")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gxtfn"]
 
@@ -417,25 +430,55 @@ scale_min = 0.5
 scale_curve = SubResource("CurveTexture_nepv3")
 alpha_curve = SubResource("CurveTexture_twgab")
 
+[sub_resource type="Curve" id="Curve_8qswn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.34243786, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_rm0al"]
+curve = SubResource("Curve_8qswn")
+
+[sub_resource type="Gradient" id="Gradient_fedci"]
+offsets = PackedFloat32Array(0.23655446, 0.5744535, 0.9922378)
+colors = PackedColorArray(1, 0.29803923, 0, 1, 1, 0.44103634, 0, 1, 1, 0.7035638, 0.72012603, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8qswn"]
+gradient = SubResource("Gradient_fedci")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fedci"]
+emission_shape = 1
+emission_sphere_radius = 0.48
+direction = Vector3(0, 0, 1)
+spread = 11.366
+initial_velocity_min = 6.46
+initial_velocity_max = 6.46
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_8qswn")
+alpha_curve = SubResource("CurveTexture_rm0al")
+
+[sub_resource type="Gradient" id="Gradient_rm0al"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i4re6"]
+gradient = SubResource("Gradient_rm0al")
+fill = 1
+fill_from = Vector2(0.5037894, 0.47087005)
+fill_to = Vector2(0.77585804, 0.2106537)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pf7vy"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_i4re6")
+
+[sub_resource type="QuadMesh" id="QuadMesh_8qswn"]
+material = SubResource("StandardMaterial3D_pf7vy")
+orientation = 0
+
 [sub_resource type="Curve3D" id="Curve3D_nepv3"]
 _data = {
 "points": PackedVector3Array(0, 0, 0, 0, 1.604, 0, -0.14507665, 2.3680184, 0.7057345, 0, 0.437, 0, 0, 0, 0, -0.43315423, 1.1248372, 4.9616013),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_twgab"]
-radius = 0.006
-height = 0.098
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_twgab"]
-albedo_color = Color(0.22254184, 0.6787038, 0.99420685, 1)
-emission_enabled = true
-emission = Color(0.22352941, 0.6784314, 0.99607843, 1)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gxtfn"]
-radius = 0.006
-height = 0.098
 
 [sub_resource type="Curve3D" id="Curve3D_7025r"]
 _data = {
@@ -473,11 +516,12 @@ _data = {
 point_count = 4
 
 [sub_resource type="Curve3D" id="Curve3D_0sl42"]
+bake_interval = 20.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -16.991852, 32.335327, -243.20686, 0, 0, 0, 0, 0, 0, 0.078, 0, 0.302),
-"tilts": PackedFloat32Array(0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 15.415627, -10.408661, -1.9073486e-06, 0, 0, 0, 0, 0, 0, 9.773293, -3.1251602, 0, 0, 0, 0, 0, 0, 0, 0.078, 0, 0.302),
+"tilts": PackedFloat32Array(0, 0, 0)
 }
-point_count = 2
+point_count = 3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p57ef"]
 shader = ExtResource("7_u5sy4")
@@ -777,6 +821,28 @@ _data = {
 &"win": SubResource("Animation_o8ni1")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rm0al"]
+content_margin_top = 6.0
+bg_color = Color(0.2509804, 0.10980392, 0.32156864, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pf7vy"]
+bg_color = Color(0.5630378, 0.37049004, 0.67297363, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o8ni1"]
+bg_color = Color(0.66931903, 0.48644498, 0.7717285, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="Theme" id="Theme_1kice"]
 Button/colors/font_color = Color(0.8, 0.7764706, 0.58431375, 1)
 
@@ -853,8 +919,9 @@ loop = false
 
 [node name="ShipConstruction" parent="Construction/Path3D/PathFollow3D" unique_id=1171368379 instance=ExtResource("7_sww3w")]
 
-[node name="Core" type="Node" parent="." unique_id=266317937 groups=["entity"]]
+[node name="Core" type="Node" parent="." unique_id=266317937 node_paths=PackedStringArray("planet") groups=["entity"]]
 script = ExtResource("2_yqjtg")
+planet = NodePath("../Planet")
 
 [node name="Core" type="MeshInstance3D" parent="Core" unique_id=574797616]
 transform = Transform3D(0.49999997, 0, 0, 0, 0.5, 0, 0, 0, 0.50000006, 0, 0, 0)
@@ -907,9 +974,10 @@ amount = 10
 process_material = SubResource("ParticleProcessMaterial_sgl2t")
 draw_pass_1 = SubResource("QuadMesh_qouja")
 
-[node name="Enrichment" type="Node" parent="." unique_id=140800727 node_paths=PackedStringArray("crystal", "planet") groups=["entity"]]
+[node name="Enrichment" type="Node" parent="." unique_id=140800727 node_paths=PackedStringArray("crystal", "construction", "planet") groups=["entity"]]
 script = ExtResource("9_enrichment")
 crystal = NodePath("../Crystal")
+construction = NodePath("../Construction")
 planet = NodePath("../Planet")
 
 [node name="Path3D" type="Path3D" parent="Enrichment" unique_id=1172756541]
@@ -950,9 +1018,10 @@ loop = false
 
 [node name="ShipLife" parent="Life/Path3D/PathFollow3D" unique_id=199775063 instance=ExtResource("16_v2yb1")]
 
-[node name="Purifying" type="Node" parent="." unique_id=843564201 node_paths=PackedStringArray("core") groups=["entity"]]
+[node name="Purifying" type="Node" parent="." unique_id=843564201 node_paths=PackedStringArray("core", "planet") groups=["entity"]]
 script = ExtResource("11_sww3w")
 core = NodePath("../Core")
+planet = NodePath("../Planet")
 
 [node name="Path3D" type="Path3D" parent="Purifying" unique_id=780270357]
 transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
@@ -992,7 +1061,7 @@ transform = Transform3D(0.68, 0, 0, 0, 0.68, 0, 0, 0, 0.68, 0, 0, 0)
 curve = SubResource("Curve3D_02fa5")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Pvo/Path3D2" unique_id=968377025]
-transform = Transform3D(-4.3710543e-08, 0.9999898, -4.3711072e-08, 0, -4.3710944e-08, -0.9999927, -0.9999807, -4.3710944e-08, 1.9106715e-15, 156.76993, 320.59576, -713.3782)
+transform = Transform3D(-0.1968317, -0.63987464, -0.7427669, 0, 0.75757736, -0.6526527, 0.9803995, -0.12846561, -0.14912297, -19.52714, -15.652619, 1.128163)
 
 [node name="Meteor" type="MeshInstance3D" parent="Pvo/Path3D2/PathFollow3D" unique_id=394201242]
 transform = Transform3D(1, -3.7252903e-09, -2.9802322e-08, -4.0978193e-08, 0.9999999, -2.9802322e-08, 0, 2.9802322e-08, 1, 0, 0, 0)
@@ -1026,6 +1095,13 @@ explosiveness = 0.81
 process_material = SubResource("ParticleProcessMaterial_twgab")
 draw_pass_1 = SubResource("BoxMesh_gxtfn")
 
+[node name="Trail" type="GPUParticles3D" parent="Pvo/Path3D2/PathFollow3D/Meteor" unique_id=1315750064]
+amount = 20
+lifetime = 0.53
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_fedci")
+draw_pass_1 = SubResource("QuadMesh_8qswn")
+
 [node name="Pvo" parent="Pvo" unique_id=1341935641 instance=ExtResource("22_pr1ej")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1476708, 3.729348, 0.7057345)
 visible = false
@@ -1037,17 +1113,8 @@ curve = SubResource("Curve3D_nepv3")
 transform = Transform3D(0, 0.9999978, 0, 0, 0, -0.9999964, -0.9999936, 0, 0, -0.14507665, 2.3680184, 0.7057345)
 rotation_mode = 4
 
-[node name="Bullet" type="MeshInstance3D" parent="Pvo/Path3D3/PathFollow3D" unique_id=349975211 groups=["bullet"]]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+[node name="Bullet" parent="Pvo/Path3D3/PathFollow3D" unique_id=1150002910 instance=ExtResource("24_fedci")]
 visible = false
-mesh = SubResource("CapsuleMesh_twgab")
-surface_material_override/0 = SubResource("StandardMaterial3D_twgab")
-
-[node name="Area3D" type="Area3D" parent="Pvo/Path3D3/PathFollow3D/Bullet" unique_id=1051682158]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pvo/Path3D3/PathFollow3D/Bullet/Area3D" unique_id=130687750]
-transform = Transform3D(1, 0, -3.5527137e-15, 0, 0.99999994, -2.5239303e-15, 0, 7.1054274e-15, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_gxtfn")
 
 [node name="Path3D4" type="Path3D" parent="Pvo" unique_id=1870756450]
 curve = SubResource("Curve3D_7025r")
@@ -1056,17 +1123,8 @@ curve = SubResource("Curve3D_7025r")
 transform = Transform3D(1.32809e-07, -0.41516852, -0.9097394, 0, 0.9097406, -0.41516796, 0.9999936, 5.513847e-08, 1.2082236e-07, -0.14507665, 2.3680184, 0.7057345)
 rotation_mode = 4
 
-[node name="Bullet" type="MeshInstance3D" parent="Pvo/Path3D4/PathFollow3D" unique_id=328473795 groups=["bullet"]]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+[node name="Bullet" parent="Pvo/Path3D4/PathFollow3D" unique_id=1896537087 instance=ExtResource("24_fedci")]
 visible = false
-mesh = SubResource("CapsuleMesh_twgab")
-surface_material_override/0 = SubResource("StandardMaterial3D_twgab")
-
-[node name="Area3D" type="Area3D" parent="Pvo/Path3D4/PathFollow3D/Bullet" unique_id=1816925676]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pvo/Path3D4/PathFollow3D/Bullet/Area3D" unique_id=1768113058]
-transform = Transform3D(1, 0, -3.5527137e-15, 0, 0.99999994, -2.5239303e-15, 0, 7.1054274e-15, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_gxtfn")
 
 [node name="Path3D5" type="Path3D" parent="Pvo" unique_id=649376721]
 curve = SubResource("Curve3D_m4url")
@@ -1076,20 +1134,11 @@ transform = Transform3D(-0.17906274, 0.37392113, 0.9100061, 0, 0.92495704, -0.38
 progress = 0.16005337
 rotation_mode = 4
 
-[node name="Bullet" type="MeshInstance3D" parent="Pvo/Path3D5/PathFollow3D" unique_id=1505588410 groups=["bullet"]]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+[node name="Bullet" parent="Pvo/Path3D5/PathFollow3D" unique_id=1325965639 instance=ExtResource("24_fedci")]
 visible = false
-mesh = SubResource("CapsuleMesh_twgab")
-surface_material_override/0 = SubResource("StandardMaterial3D_twgab")
-
-[node name="Area3D" type="Area3D" parent="Pvo/Path3D5/PathFollow3D/Bullet" unique_id=408783841]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Pvo/Path3D5/PathFollow3D/Bullet/Area3D" unique_id=1743744705]
-transform = Transform3D(1, 0, -3.5527137e-15, 0, 0.99999994, -2.5239303e-15, 0, 7.1054274e-15, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_gxtfn")
 
 [node name="Marker3D" type="Marker3D" parent="Pvo" unique_id=381717714]
-transform = Transform3D(-0.26043704, 0.96549064, 0, -0.96549076, -0.260437, 0, 0, 0, 0.9999999, -0.1476708, 1.8065279, 0.7057345)
+transform = Transform3D(-0.26043704, 0.96549064, 0, -0.96549076, -0.260437, 0, 0, 0, 0.9999999, -0.1476708, 1.9473002, 0.7057345)
 
 [node name="Relief" type="Node" parent="." unique_id=58858047 node_paths=PackedStringArray("planet") groups=["entity"]]
 script = ExtResource("4_iywne")
@@ -1143,7 +1192,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4056251, -0.66181517)
 curve = SubResource("Curve3D_0sl42")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Summon/Path3D2" unique_id=738027227]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, -16.991852, 32.335327, -243.20686)
+transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, 0.078000546, 0, 0.302)
+progress = 19.404324
 rotation_mode = 0
 loop = false
 
@@ -1218,10 +1268,15 @@ texture = ExtResource("44_fedci")
 libraries/ = SubResource("AnimationLibrary_3hbvx")
 
 [node name="SoundPanel" type="PanelContainer" parent="CanvasLayer" unique_id=1582678440]
-offset_right = 160.0
-offset_bottom = 20.0
+offset_left = 15.0
+offset_top = 15.000001
+offset_right = 269.0
+offset_bottom = 65.0
 scale = Vector2(1.041866, 1.041866)
+theme_override_styles/panel = ExtResource("37_rm0al")
 script = ExtResource("16_suyxu")
+icon_mute = ExtResource("39_o8ni1")
+icon_speaker = ExtResource("40_3hbvx")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/SoundPanel" unique_id=1646823636]
 layout_mode = 2
@@ -1230,11 +1285,32 @@ alignment = 1
 [node name="MuteButton" type="Button" parent="CanvasLayer/SoundPanel/HBoxContainer" unique_id=1311065724]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme_override_colors/icon_normal_color = Color(0.63753194, 0.41496164, 0.76579285, 1)
+theme_override_colors/icon_pressed_color = Color(0.6392157, 0.41568628, 0.7647059, 1)
+theme_override_colors/icon_hover_color = Color(0.7829962, 0.51179093, 0.9360962, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.78431374, 0.5137255, 0.9372549, 1)
+theme_override_constants/icon_max_width = 32
+theme_override_styles/normal = ExtResource("41_q8j3a")
+theme_override_styles/pressed = ExtResource("41_q8j3a")
+theme_override_styles/hover = ExtResource("41_q8j3a")
+theme_override_styles/hover_pressed = ExtResource("41_q8j3a")
+icon = ExtResource("40_3hbvx")
+icon_alignment = 1
 expand_icon = true
 
-[node name="VolumeSlider" type="HSlider" parent="CanvasLayer/SoundPanel/HBoxContainer" unique_id=632213873]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/SoundPanel/HBoxContainer" unique_id=1678327097]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_right = 5
+
+[node name="VolumeSlider" type="HSlider" parent="CanvasLayer/SoundPanel/HBoxContainer/MarginContainer" unique_id=632213873]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
+theme_override_icons/grabber = ExtResource("39_i4re6")
+theme_override_icons/grabber_highlight = ExtResource("40_pf7vy")
+theme_override_styles/slider = SubResource("StyleBoxFlat_rm0al")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_pf7vy")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_o8ni1")
 value = 50.0
 ticks_position = 3
 

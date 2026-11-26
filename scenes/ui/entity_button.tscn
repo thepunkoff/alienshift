@@ -2,21 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3v6p6ed6b2lb" path="res://scripts/ui/entity_button.gd" id="1_0rud4"]
 [ext_resource type="FontFile" uid="uid://b5g7e7xq8d4wn" path="res://fonts/Oxanium-VariableFont_wght.ttf" id="2_0rud4"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14kd5"]
-bg_color = Color(0.039215688, 0.10980392, 0.1882353, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.2509804, 0.10980392, 0.32156864, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 20
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 20
-shadow_color = Color(0, 0, 0, 0.19607843)
-shadow_size = 3
-shadow_offset = Vector2(2, 2)
+[ext_resource type="StyleBox" uid="uid://x27pqpdklr1i" path="res://styles/panel_style.tres" id="2_4nej8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nej8"]
 bg_color = Color(0.039215688, 0.10980392, 0.1882353, 1)
@@ -50,7 +36,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_14kd5")
+theme_override_styles/panel = ExtResource("2_4nej8")
 
 [node name="Panel" type="Panel" parent="Panel" unique_id=2041814520]
 clip_children = 2
@@ -147,6 +133,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Tip" type="Label" parent="." unique_id=1682044168]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

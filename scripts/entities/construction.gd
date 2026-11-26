@@ -46,7 +46,7 @@ func run_after_evolve() -> void:
 func lower_houses() -> void:
 	print("Спускаются дома на краниках")
 	var tween: Tween = create_tween()
-	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(2.2))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 1, Helpers.duration(2))
 	await tween.finished
 
 	tween = create_tween()
@@ -62,7 +62,7 @@ func lower_houses() -> void:
 	tween = create_tween()
 	tween.tween_interval(Helpers.duration(0.5))
 	tween.tween_property(_ship, "position", init, Helpers.duration(1))
-	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2.2))
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
 	tween.parallel()
 	tween.tween_property(_ship, "rotation:z", 0, Helpers.duration(1))
 	await tween.finished

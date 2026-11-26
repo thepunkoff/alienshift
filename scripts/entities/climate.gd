@@ -54,12 +54,12 @@ func install_domes() -> void:
 
 	# прилетают
 	var tween_1: Tween = create_tween()
-	tween_1.tween_property(_ship_1_path_follow, "progress_ratio", 1, Helpers.duration(1))
+	tween_1.tween_property(_ship_1_path_follow, "progress_ratio", 1, Helpers.duration(2))
 
 	await get_tree().create_timer(Helpers.duration(0.3)).timeout
 
 	var tween_2: Tween = create_tween()
-	tween_2.tween_property(_ship_2_path_follow, "progress_ratio", 1, Helpers.duration(1))
+	tween_2.tween_property(_ship_2_path_follow, "progress_ratio", 1, Helpers.duration(2))
 
 	await tween_1.finished
 	await tween_2.finished
@@ -93,14 +93,14 @@ func install_domes() -> void:
 	# await tween.finished
 
 	tween_1= create_tween()
-	tween_1.tween_property(_ship_1_path_follow, "progress_ratio", 0, Helpers.duration(1))
+	tween_1.tween_property(_ship_1_path_follow, "progress_ratio", 0, Helpers.duration(2))
 	tween_1.parallel()
 	tween_1.tween_property(_ship_1, "rotation:z", 0, Helpers.duration(1))
 
 	await get_tree().create_timer(Helpers.duration(0.3)).timeout
 
 	tween_2 = create_tween()
-	tween_2.tween_property(_ship_2_path_follow, "progress_ratio", 0, Helpers.duration(1))
+	tween_2.tween_property(_ship_2_path_follow, "progress_ratio", 0, Helpers.duration(2))
 	tween_2.parallel()
 	tween_2.tween_property(_ship_2, "rotation:z", 0, Helpers.duration(1))
 

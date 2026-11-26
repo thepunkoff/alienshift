@@ -15,6 +15,7 @@ signal landscape_changed
 @onready var _dirt_base = $dirt
 @onready var _sludge_base = $sludge_new
 @onready var _sludge_animation_tree: AnimationTree = $sludge_new/AnimationTree
+@onready var _sludge_animation_player: AnimationPlayer = $sludge_new/AnimationPlayer2
 @onready var _dirt_sub = $dirt/dirt_baked
 @onready var _dirt_animation_player: AnimationPlayer = $dirt/AnimationPlayer2
 @onready var _fish_particles_1: GPUParticles3D = $Fish1
@@ -59,7 +60,7 @@ func _align_hammers_to_houses() -> void:
 			player.root_node = NodePath("../Hammer")
 
 	if Engine.is_editor_hint():
-		var editor = Engine.get_singleton("EditorInterface")
+		var editor: Object = Engine.get_singleton("EditorInterface")
 		if editor:
 			editor.mark_scene_as_unsaved()
 
@@ -85,7 +86,7 @@ func grow_grass():
 	var tween: Tween = create_tween().set_parallel()
 	tween.tween_property(_grass, "blend_shapes/growing", 0, Helpers.duration(1.5))
 	tween.tween_property(_grass, "scale", Vector3.ONE, Helpers.duration(1.5))
-	tween.tween_property(_house_parent, "scale", Vector3.ONE * 1.025, Helpers.duration(1.5))
+	tween.tween_property(_house_parent, "scale", _house_parent.scale + Vector3.ONE * 0.025, Helpers.duration(1.5))
 	await tween.finished
 
 
@@ -111,6 +112,37 @@ func die_grass():
 	var tween: Tween = create_tween().set_parallel()
 	tween.tween_property(mat, "albedo_color", dead, Helpers.duration(2))
 	tween.tween_property(mat, "emission", dead, Helpers.duration(2))
+	await tween.finished
+
+
+func become_blue():
+	var planet_mat := _planet.get_active_material(0).duplicate() as ShaderMaterial
+	_planet.set_surface_override_material(0, planet_mat)
+
+	var tween: Tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property(planet_mat, "shader_parameter/a_c0", Color.html("3e515b"), Helpers.duration(1))
+	tween.parallel()
+	tween.tween_property(planet_mat, "shader_parameter/a_c1", Color.html("101e39"), Helpers.duration(1))
+	tween.parallel()
+	tween.tween_property(planet_mat, "shader_parameter/a_c2", Color.html("66858c"), Helpers.duration(1))
+	tween.parallel()
+	tween.tween_property(planet_mat, "shader_parameter/a_c3", Color.html("7cb4cf"), Helpers.duration(1))
+	tween.tween_interval(1)
+	await tween.finished
+
+
+func reset_color():
+	var planet_mat := _planet.get_active_material(0).duplicate() as ShaderMaterial
+	_planet.set_surface_override_material(0, planet_mat)
+
+	var tween: Tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property(planet_mat, "shader_parameter/a_c0", Color.html("535b63"), Helpers.duration(1))
+	tween.parallel()
+	tween.tween_property(planet_mat, "shader_parameter/a_c1", Color.html("401c52"), Helpers.duration(1))
+	tween.parallel()
+	tween.tween_property(planet_mat, "shader_parameter/a_c2", Color.html("8c8c8c"), Helpers.duration(1))
+	tween.parallel()
+	tween.tween_property(planet_mat, "shader_parameter/a_c3", Color.html("c0a1cf"), Helpers.duration(1))
 	await tween.finished
 
 
@@ -142,21 +174,31 @@ func grow_crystals():
 func add_dirt():
 	var tween: Tween = create_tween()
 	tween.set_trans(Tween.TRANS_ELASTIC)
-	tween.tween_property(_dirt_base, "scale", 1, Helpers.duration(1))
+	tween.tween_property(_dirt_base, "scale", Vector3.ONE, Helpers.duration(2))
 	tween.parallel()
 	_dirt_animation_player.play("dirt_wobble")
-	tween.tween_property(_dirt_sub, "blend_shapes/wobble_big", -1, Helpers.duration(1))
-	tween.tween_property(_dirt_sub, "blend_shapes/wobble_big", 0.4, Helpers.duration(1))
+	tween.tween_property(_dirt_sub, "blend_shapes/wobble_big", 0, Helpers.duration(2))
 	await tween.finished
 
 
-func add_sludge():
+func remove_dirt():
+	var tween: Tween = create_tween()
+	tween.set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(_dirt_base, "scale", Vector3.ONE * 0.8, Helpers.duration(2))
+	await tween.finished
+
+
+func add_sludge(need_sink_houses: bool):
 	var tween: Tween = create_tween()
 	tween.tween_property(_sludge_base, "scale", Vector3.ONE, Helpers.duration(1))
 	await tween.finished
 	_sludge_animation_tree.active = true
 	await get_tree().create_timer(Helpers.duration(1)).timeout
 	_sludge_animation_tree.set("parameters/OneShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	if need_sink_houses:
+		var t: Tween = create_tween()
+		t.tween_property(_house_parent, "scale", Vector3.ONE * 0.7, _sludge_animation_player.get_animation("absorb").length)
+
 	await _sludge_animation_tree.animation_finished
 	_sludge_animation_tree.active = false
 
@@ -185,9 +227,17 @@ func evaporate_water():
 
 func open_mountain():
 	var tween: Tween = create_tween()
-	tween.tween_property(_planet, "blend_shapes/relief", 0, Helpers.duration(3))
-	tween.parallel()
-	tween.tween_property(_planet, "blend_shapes/pvo_lid", 1, Helpers.duration(3))
+	tween.set_trans(Tween.TRANS_SPRING)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(_planet, "blend_shapes/pvo_lid", 0.7, Helpers.duration(1))
+	await tween.finished
+
+
+func close_mountain():
+	var tween: Tween = create_tween()
+	tween.set_trans(Tween.TRANS_BOUNCE)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(_planet, "blend_shapes/pvo_lid", 0, Helpers.duration(1))
 	await tween.finished
 
 
@@ -217,7 +267,7 @@ func grow_houses() -> House:
 
 	var tweens: Array[Tween] = []
 	var tween: Tween = create_tween().set_parallel()
-	tween.tween_property(_house_parent, "scale", Vector3.ONE, Helpers.duration(2.8))
+	tween.tween_property(_house_parent, "scale", _house_parent.scale + Vector3.ONE * 0.3, Helpers.duration(2.8))
 	tweens.append(tween)
 
 	var i: int = 0
