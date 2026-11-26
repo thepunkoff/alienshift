@@ -89,10 +89,22 @@ func grow_grass():
 	await tween.finished
 
 
-func die_grass():
+func _make_dead_grass_material() -> StandardMaterial3D:
 	var mat := _grass.get_active_material(0).duplicate() as StandardMaterial3D
 	mat.emission_operator = BaseMaterial3D.EMISSION_OP_MULTIPLY
 	mat.emission = Color.WHITE
+	return mat
+
+
+## Для ShaderWarmup: die_grass() создает новый вариант шейдера травы прямо во время игры.
+func get_shader_warmup_nodes() -> Array[Node3D]:
+	var grass := _grass.duplicate(0) as MeshInstance3D
+	grass.set_surface_override_material(0, _make_dead_grass_material())
+	return [grass]
+
+
+func die_grass():
+	var mat := _make_dead_grass_material()
 	_grass.set_surface_override_material(0, mat)
 
 	var dead := Color.html("#df6e27")

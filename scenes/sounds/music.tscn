@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://cha4in8mea5l5"]
 
 [ext_resource type="Script" uid="uid://dwj6qa35dnuts" path="res://scripts/music.gd" id="1_w36ox"]
-[ext_resource type="AudioStream" uid="uid://buh7kpbw840qs" path="res://assets/music/sfx/bg_sound_fade.MP3" id="2_w36ox"]
+[ext_resource type="AudioStream" uid="uid://bwavejlaudosc" path="res://assets/music/sfx/bg_sound_fade.MP3" id="2_w36ox"]
 
 [node name="Music" type="Node" unique_id=1396120633]
 script = ExtResource("1_w36ox")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=727074594]
 stream = ExtResource("2_w36ox")
+parameters/looping = true

@@ -67,6 +67,12 @@ func _ready() -> void:
 	_try_again_button.self_modulate.a = 0
 	_try_again_button.pressed.connect(get_tree().reload_current_scene)
 
+	var warmup := ShaderWarmup.new()
+	warmup.scene_root = self
+	add_child(warmup)
+
+	BackgroundMusic.play()
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == KEY_SPACE and event.pressed == true:
