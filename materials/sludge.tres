@@ -1,7 +1,30 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://kf620qrarfc2"]
 
-[ext_resource type="Shader" uid="uid://biylj8fevvrf0" path="res://shaders/sludge_material.gdshader" id="1_mggh4"]
+[ext_resource type="Shader" uid="uid://fynj3lal44tx" path="res://shaders/core.gdshader" id="1_mggh4"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_mggh4")
+shader_parameter/color_center = Color(1, 0.78, 0.35, 1)
+shader_parameter/color_mid = Color(0.95, 0.42, 0.12, 1)
+shader_parameter/color_rim = Color(0.55, 0.12, 0.08, 1)
+shader_parameter/band_mid = 0.45
+shader_parameter/band_center = 0.8
+shader_parameter/band_softness = 0.01
+shader_parameter/swirl_strength = 0.12
+shader_parameter/swirl_scale = 2.5
+shader_parameter/swirl_speed = 0.15
+shader_parameter/crack_amount = 0.0
+shader_parameter/crack_scale = 3.0
+shader_parameter/crack_width = 0.06
+shader_parameter/crack_color = Color(1, 0.95, 0.7, 1)
+shader_parameter/crack_intensity = 2.0
+shader_parameter/crack_pulse_speed = 2.0
+shader_parameter/crack_pulse_amount = 0.25
+shader_parameter/crack_seed = 0.0
+shader_parameter/crack_edge_width = 0.04
+shader_parameter/crack_edge_color = Color(0.12, 0.03, 0.03, 1)
+shader_parameter/brightness = 0.6
+shader_parameter/desaturate = 0.2
+shader_parameter/tint = Color(1, 1, 1, 1)
+shader_parameter/dim_cracks = false
