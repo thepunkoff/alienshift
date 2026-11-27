@@ -1,6 +1,14 @@
 extends Entity
 class_name Construction
 
+@export var core: Core
+@export var crystal: Crystal
+@export var purifying: Purifying
+@export var relief: Relief
+@export var climate: Climate
+@export var pvo: Pvo
+@export var summon: Summon
+@export var enrichment: Enrichment
 @export var life : Life
 @export var planet : Planet
 
@@ -33,7 +41,17 @@ func run_synergies() -> void:
 	if _added_people:
 		return
 
-	if life.state.name == Life.STATE_SOW_SEEDS:
+	if (
+			core.state.name == Core.STATE_PUT_INSIDE \
+		and crystal.state.name == Crystal.STATE_MINERALIZATION_OCCURRED \
+		and purifying.state.name == Purifying.STATE_RADIATION_CLEANSING \
+		and relief.state.name == Relief.STATE_BOMBS_CREATED_RELIEF \
+		and climate.state.name == Climate.STATE_CLIMATE_STABILIZED \
+		and pvo.state.name == Pvo.STATE_SHIPS_APPROACHING \
+		and summon.state.name == Summon.STATE_WATER_SPREAD_ACCROSS_PLANET \
+		and enrichment.state.name == Enrichment.STATE_VEGETATION_GROWN \
+		and life.state.name == Life.STATE_SOW_SEEDS
+	):
 		await added_people()
 
 	_added_people = true

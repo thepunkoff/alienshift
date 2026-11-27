@@ -8,6 +8,9 @@ class_name House
 @onready var _chel_animation_player: AnimationPlayer= $chel/AnimationPlayer
 @onready var _chel_mesh: MeshInstance3D = $chel/rig/Skeleton3D/chel
 
+func _ready() -> void:
+	_house_mesh.set_blend_shape_value(_house_mesh.find_blend_shape_by_name("door_open"), 0)
+
 
 func release_chel():
 	var tween: Tween = create_tween()

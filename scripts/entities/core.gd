@@ -47,20 +47,6 @@ func _ready():
 	_ship_path_follow.progress_ratio = 0
 
 
-# @onready var cam: Camera3D = get_viewport().get_camera_3d()
-# func _process(delta: float) -> void:
-# 	if Engine.is_editor_hint():
-# 		return
-#
-# 	# _ship.look_at(cam.position, Vector3.UP, true)
-# 	# direction to the camera, in the parent's local space
-# 	var parent := _ship.get_parent_node_3d()
-# 	var dir := parent.global_basis.inverse() * (cam.global_position - _ship.global_position)
-#
-# 	# rotation around X that points +Z toward the camera (in the YZ plane)
-# 	_ship.rotation.x = atan2(-dir.y, dir.z)
-
-
 func run_level_up(new_lvl: int, new_state: State):
 	if new_state == null:
 		return
@@ -121,6 +107,18 @@ func take_out():
 
 	_core_animation_player.play("bob")
 
+	planet.entities_with_ships_near.append(self)
+
+
+func escape_monster():
+	_ship.disable_light()
+	_core_animation_player.play_backwards("take_out")
+	var tween: Tween = create_tween()
+	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
+	tween.parallel()
+	tween.tween_property(_ship, "quaternion", Quaternion.IDENTITY, Helpers.duration(0.7))
+	await tween.finished
+
 
 func crack():
 	print("Ядро трескается")
@@ -142,6 +140,8 @@ func put_inside():
 
 	var tween: Tween = create_tween()
 	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
+	tween.parallel()
+	tween.tween_property(_ship, "quaternion", Quaternion.IDENTITY, Helpers.duration(0.7))
 	await tween.finished
 
 

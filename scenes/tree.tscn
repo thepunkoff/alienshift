@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://8vdwole4aviu"]
+
+[ext_resource type="PackedScene" uid="uid://7xpnb08vepyn" path="res://models/tree.glb" id="1_avsvi"]
+[ext_resource type="Material" uid="uid://dkueiqmi3cywv" path="res://shaders/outline_material_black.tres" id="2_vplca"]
+
+[node name="Tree" type="Node3D" unique_id=1874084534]
+
+[node name="tree" parent="." unique_id=1438919768 instance=ExtResource("1_avsvi")]
+
+[node name="Cube_004" parent="tree" index="0" unique_id=1241218698]
+material_overlay = ExtResource("2_vplca")
+
+[editable path="tree"]

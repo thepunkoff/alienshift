@@ -310,7 +310,7 @@ material = SubResource("StandardMaterial3D_0sl42")
 
 [sub_resource type="Curve3D" id="Curve3D_js0lu"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, -1.8, 1.6, 0.7333, 7, -11, 0, 0.5, -1.0667, -0.3333, -0.5, 1.0667, 0.3333, 1.6, -6.2, 2.2, -0.1035, -0.536, 0.3667, 0.1035, 0.536, -0.3667, 4, -4.6, 2, 0.593, -0.5387, 0.6667, 0, 0, 0, 2.221, -2.984, 0),
+"points": PackedVector3Array(0, 0, 0, -1.8, 1.6, 0.7333, 10.729819, -7.1895027, 0.41393465, 0.5, -1.0667, -0.3333, -0.5, 1.0667, 0.3333, 4.612367, -4.3015585, 2.406228, -0.1035, -0.536, 0.3667, 0.1035, 0.536, -0.3667, 5.9572473, -3.2637396, 2.145158, 0.593, -0.5387, 0.6667, 0, 0, 0, 3.1438682, -1.9414881, 0.11324811),
 "tilts": PackedFloat32Array(0, 0, 0, 0)
 }
 point_count = 4
@@ -518,7 +518,7 @@ point_count = 4
 [sub_resource type="Curve3D" id="Curve3D_0sl42"]
 bake_interval = 20.0
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 15.415627, -10.408661, -1.9073486e-06, 0, 0, 0, 0, 0, 0, 9.773293, -3.1251602, 0, 0, 0, 0, 0, 0, 0, 0.078, 0, 0.302),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 15.415627, -10.408661, -1.9073486e-06, 0, 0, 0, 0, 0, 0, 9.773293, -3.1251602, 0, 0, 0, 0, 0, 0, 0, 0.078, 0, -1.6536057),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -853,7 +853,7 @@ correct_order = [NodePath("CanvasLayer/HBoxContainer/Core"), NodePath("CanvasLay
 [node name="Camera" type="Camera3D" parent="." unique_id=780614332]
 transform = Transform3D(1, 0, 0, 0, 0.994151, 0.107999206, 0, -0.107999206, 0.994151, 0, 1.084, 8.906)
 projection = 1
-size = 9.349
+size = 9.35
 
 [node name="Planet" parent="." unique_id=969387141 instance=ExtResource("2_pl11u")]
 
@@ -903,8 +903,16 @@ amount = 1000
 process_material = SubResource("ParticleProcessMaterial_0sl42")
 draw_pass_1 = SubResource("CapsuleMesh_05nbr")
 
-[node name="Construction" type="Node" parent="." unique_id=255364905 node_paths=PackedStringArray("life", "planet") groups=["entity"]]
+[node name="Construction" type="Node" parent="." unique_id=255364905 node_paths=PackedStringArray("core", "crystal", "purifying", "relief", "climate", "pvo", "summon", "enrichment", "life", "planet") groups=["entity"]]
 script = ExtResource("8_construct")
+core = NodePath("../Core")
+crystal = NodePath("../Crystal")
+purifying = NodePath("../Purifying")
+relief = NodePath("../Relief")
+climate = NodePath("../Climate")
+pvo = NodePath("../Pvo")
+summon = NodePath("../Summon")
+enrichment = NodePath("../Enrichment")
 life = NodePath("../Life")
 planet = NodePath("../Planet")
 
@@ -1012,7 +1020,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9942, 0.108, 0, -0.108, 0.9942, 0, 0, 0)
 curve = SubResource("Curve3D_js0lu")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Life/Path3D" unique_id=1042411125]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -11, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.729819, -7.1895027, 0.41393465)
 rotation_mode = 0
 loop = false
 
@@ -1192,7 +1200,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4056251, -0.66181517)
 curve = SubResource("Curve3D_0sl42")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Summon/Path3D2" unique_id=738027227]
-transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, 0.078000546, 0, 0.302)
+transform = Transform3D(0.9999911, 0, 0, 0, 0.9999958, 0, 0, 0, 0.99999994, 0.14035034, -0.019676715, -1.6428976)
 progress = 19.404324
 rotation_mode = 0
 loop = false
@@ -1202,6 +1210,7 @@ transform = Transform3D(1.0000088, 0, 0, 0, 1.0000042, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1026976489]
 transform = Transform3D(0.27858496, 0.88134605, 0.38160127, -0.6094361, -0.14486268, 0.7794887, 0.74227893, -0.44971538, 0.49676746, 4.3110504, 2.752436, -1.3894801)
+sky_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=715571524]
 environment = SubResource("Environment_u5sy4")
@@ -1383,7 +1392,7 @@ texture = ExtResource("18_bhx41")
 
 [node name="Climate" parent="CanvasLayer/HBoxContainer" unique_id=1723808063 node_paths=PackedStringArray("entity") instance=ExtResource("9_0tnpc")]
 layout_mode = 2
-tip_text = "Nubes Gemiurg"
+tip_text = "Nubes Gemiurge"
 entity = NodePath("../../../Climate")
 texture = ExtResource("10_vtaks")
 

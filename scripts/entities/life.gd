@@ -18,6 +18,7 @@ func _ready() -> void:
 
 	_ship_path_follow.progress_ratio = 0
 
+
 func run_level_up(new_lvl: int, new_state: State):
 	if new_state == null:
 		return
@@ -31,7 +32,7 @@ func run_synergies() -> void:
 		return
 
 	if state.name == STATE_SOW_SEEDS and summon.state.name == Summon.STATE_WATER_SPREAD_ACCROSS_PLANET:
-		await add_water_life()
+		await add_life()
 
 	_added_water_life = true
 
@@ -63,6 +64,7 @@ func sow_seeds() -> void:
 	await tween.finished
 
 
-func add_water_life() -> void:
+func add_life() -> void:
 	print("Появляются водные существа")
 	await planet.add_fish()
+	await planet.grow_trees()

@@ -12,6 +12,8 @@ const STATE_RADIATION_CLEANSING := "radiation_cleansing"
 
 var _core_interaction_processed := false
 
+var core_purified: bool = false
+
 func _ready() -> void:
 	register_states({
 		1: State.create(STATE_RADIATION_CLEANSING),
@@ -28,14 +30,16 @@ func run_level_up(new_lvl: int, new_state: State):
 			await cleanse_with_radiation()
 
 func run_synergies() -> void:
-	if _core_interaction_processed :
+	if _core_interaction_processed:
 		return
 
 	_core_interaction_processed = true
 	if core.state.name == Core.STATE_CRACKED or core.state.name == Core.STATE_TAKEN_OUT:
 		await cleanse_core()
-		if  core.state.name == Core.STATE_TAKEN_OUT:
+		if core.state.name == Core.STATE_TAKEN_OUT:
 			await core.core_dimmed()
+		else:
+			core_purified = true
 
 	await _fly_away();
 

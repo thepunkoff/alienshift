@@ -21,6 +21,7 @@ signal landscape_changed
 @onready var _fish_particles_1: GPUParticles3D = $Fish1
 @onready var _fish_particles_2: GPUParticles3D = $Fish2
 @onready var _house_parent: Node3D = $HouseParent
+@onready var _tree_parent: Node3D = $TreeParent
 
 const WOBBLE_TIMES: Array[float] = [0.0, 0.2, 0.4, 0.6333333, 0.8333333, 1.0666667, 1.2666667]
 const WOBBLE_KEYS: Array[Basis] = [
@@ -32,6 +33,9 @@ const WOBBLE_KEYS: Array[Basis] = [
 	Basis(Vector3(1.2, 0, 0), Vector3(-0.811, 1.107, 1.277), Vector3(-1.036, 0, 1)),
 	Basis.IDENTITY,
 ]
+
+
+var entities_with_ships_near: Array[Entity] = []
 
 var _rest_basis: Basis = Basis.IDENTITY
 
@@ -74,6 +78,13 @@ func _ready() -> void:
 	_sludge_animation_tree.active = false
 	_sludge_base.scale = Vector3.ONE * 0.85
 
+	_grass.set_blend_shape_value(_grass.find_blend_shape_by_name("growing"), 1)
+	_planet.set_blend_shape_value(_planet.find_blend_shape_by_name("relief"), 0)
+	_planet.set_blend_shape_value(_planet.find_blend_shape_by_name("pvo_lid"), 0)
+	_house_parent.scale = Vector3.ONE * 0.7
+	_tree_parent.scale = Vector3.ONE * 0.6
+	_water.scale = Vector3.ONE * 0.9
+
 
 func change_landscape():
 	var tween: Tween = create_tween()
@@ -86,7 +97,8 @@ func grow_grass():
 	var tween: Tween = create_tween().set_parallel()
 	tween.tween_property(_grass, "blend_shapes/growing", 0, Helpers.duration(1.5))
 	tween.tween_property(_grass, "scale", Vector3.ONE, Helpers.duration(1.5))
-	tween.tween_property(_house_parent, "scale", _house_parent.scale + Vector3.ONE * 0.025, Helpers.duration(1.5))
+	tween.tween_property(_house_parent, "scale", _house_parent.scale + Vector3.ONE * 0.030, Helpers.duration(1.5))
+	tween.tween_property(_tree_parent, "scale", _tree_parent.scale + Vector3.ONE * 0.030, Helpers.duration(1.5))
 	await tween.finished
 
 
@@ -295,6 +307,12 @@ func grow_houses() -> House:
 		j += 1
 
 	return houses[chel_house_idx] if chel_house_idx != -1 else null
+
+
+func grow_trees():
+	var tween: Tween = create_tween()
+	tween.tween_property(_tree_parent, "scale", _tree_parent.scale + Vector3.ONE * 0.4, Helpers.duration(1.5))
+	await tween.finished
 
 
 func wobble():

@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c3svwdkvbrm8u"]
+
+[ext_resource type="Texture2D" uid="uid://bnsyjfw8k2y68" path="res://models/tree_tree_texture.png" id="1_t1b6c"]
+
+[resource]
+resource_name = "Material.010"
+cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("1_t1b6c")
+metallic_specular = 0.0
+emission_enabled = true
+emission_energy_multiplier = 0.9
+emission_texture = ExtResource("1_t1b6c")
+normal_texture = ExtResource("1_t1b6c")
