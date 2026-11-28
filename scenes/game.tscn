@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://020qm2exuxa2"]
 
 [ext_resource type="Script" uid="uid://da7rw34q7e5yn" path="res://scripts/game.gd" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://dmkrxwdx4ipbj" path="res://scripts/camera_shake.gd" id="2_7ixpq"]
 [ext_resource type="PackedScene" uid="uid://dl5tyybjh5qgk" path="res://scenes/planet.tscn" id="2_pl11u"]
 [ext_resource type="Script" uid="uid://cvk568fl7xmji" path="res://scripts/entities/core.gd" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://b6yqr867tnihq" path="res://scenes/ships/ship_climate.tscn" id="3_bhx41"]
@@ -855,6 +856,7 @@ correct_order = [NodePath("CanvasLayer/HBoxContainer/Core"), NodePath("CanvasLay
 transform = Transform3D(1, 0, 0, 0, 0.994151, 0.107999206, 0, -0.107999206, 0.994151, 0, 1.084, 8.906)
 projection = 1
 size = 9.35
+script = ExtResource("2_7ixpq")
 
 [node name="Planet" parent="." unique_id=969387141 instance=ExtResource("2_pl11u")]
 

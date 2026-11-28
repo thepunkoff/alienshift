@@ -11,6 +11,7 @@ func drop_bomb():
 	_animation_player.play("drop_bomb")
 	await _animation_player.animation_finished
 	_bomb.hide()
+	get_tree().current_scene.get_node("Camera").shake()
 	bomb_dropped.emit()
 
 	var tween: Tween = create_tween()
