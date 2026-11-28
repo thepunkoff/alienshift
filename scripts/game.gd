@@ -6,6 +6,7 @@ class_name Game
 @onready var _buttons_parent: Node = $CanvasLayer/HBoxContainer
 @onready var _game_over_label: Label = $CanvasLayer/GameOverLabel
 @onready var _try_again_button: Button = $CanvasLayer/TryAgainButton
+@onready var _restart_button: Button = $CanvasLayer/RestartButton
 @onready var _dark: ColorRect = $CanvasLayer/ColorRect
 @onready var game_over_pictures: Control = $CanvasLayer/GameOverPictures
 
@@ -66,6 +67,7 @@ func _ready() -> void:
 	_game_over_label.visible_ratio = 0
 	_try_again_button.self_modulate.a = 0
 	_try_again_button.pressed.connect(get_tree().reload_current_scene)
+	_restart_button.pressed.connect(get_tree().reload_current_scene)
 
 	var warmup := ShaderWarmup.new()
 	warmup.scene_root = self

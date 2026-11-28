@@ -54,6 +54,7 @@
 [ext_resource type="Script" uid="uid://rxra6esreje5" path="res://scripts/ui/game_over_animation.gd" id="43_fedci"]
 [ext_resource type="Texture2D" uid="uid://03pu0253dl7r" path="res://assets/end_game/win.png" id="43_h3rex"]
 [ext_resource type="Texture2D" uid="uid://cn8b308vlop5a" path="res://assets/end_game/extra_win.png" id="44_fedci"]
+[ext_resource type="Texture2D" uid="uid://jghjkmov5sgq" path="res://assets/interface/restart.png" id="44_ms3bu"]
 [ext_resource type="Material" uid="uid://blmeo6g6gfint" path="res://materials/atmosphere.tres" id="99_atmo"]
 
 [sub_resource type="Animation" id="Animation_bhx41"]
@@ -1322,6 +1323,28 @@ theme_override_styles/grabber_area = SubResource("StyleBoxFlat_pf7vy")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_o8ni1")
 value = 50.0
 ticks_position = 3
+
+[node name="RestartButton" type="Button" parent="CanvasLayer" unique_id=1146654936]
+custom_minimum_size = Vector2(50, 50)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -65.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 65.0
+theme_override_colors/icon_normal_color = Color(0.63753194, 0.41496164, 0.76579285, 1)
+theme_override_colors/icon_pressed_color = Color(0.6392157, 0.41568628, 0.7647059, 1)
+theme_override_colors/icon_hover_color = Color(0.7829962, 0.51179093, 0.9360962, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.78431374, 0.5137255, 0.9372549, 1)
+theme_override_constants/icon_max_width = 32
+theme_override_styles/normal = ExtResource("41_q8j3a")
+theme_override_styles/pressed = ExtResource("41_q8j3a")
+theme_override_styles/hover = ExtResource("41_q8j3a")
+theme_override_styles/hover_pressed = ExtResource("41_q8j3a")
+icon = ExtResource("44_ms3bu")
+icon_alignment = 1
+expand_icon = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1874052168]
 anchors_preset = 7
