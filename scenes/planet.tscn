@@ -347,14 +347,13 @@ _planet_radius = 2.1
 
 [node name="planet" parent="." unique_id=2011569318 instance=ExtResource("5_xa7tn")]
 
-[node name="planet" parent="planet" index="0" unique_id=1429359998]
-blend_shapes/relief = 1.0
+[node name="planet" parent="planet" index="0" unique_id=1568689477]
 surface_material_override/0 = SubResource("ShaderMaterial_2bpk3")
 
 [node name="water" parent="." unique_id=648124364 instance=ExtResource("3_ggt7d")]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 
-[node name="water" parent="water" index="0" unique_id=136206552]
+[node name="water" parent="water" index="0" unique_id=1658752482]
 surface_material_override/0 = SubResource("ShaderMaterial_c8igh")
 
 [node name="Steam" type="GPUParticles3D" parent="water" unique_id=1912953196]
@@ -375,15 +374,15 @@ draw_pass_1 = SubResource("QuadMesh_qkmej")
 
 [node name="grass" parent="." unique_id=31342776 instance=ExtResource("5_48b8c")]
 
-[node name="grass" parent="grass" index="0" unique_id=1741579426]
-transform = Transform3D(0.975, 0, 0, 0, 0.975, 0, 0, 0, 0.975, 0, 0, 0)
+[node name="grass" parent="grass" index="0" unique_id=146140064]
+transform = Transform3D(0.95, 0, 0, 0, 0.95, 0, 0, 0, 0.95, 0, 0, 0)
 material_overlay = ExtResource("8_qa7os")
 blend_shapes/growing = 1.0
 
 [node name="dirt" parent="." unique_id=243842207 instance=ExtResource("6_3s4jt")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
-[node name="dirt_baked" parent="dirt" index="0" unique_id=1458414823]
+[node name="dirt_baked" parent="dirt" index="0" unique_id=1591066732]
 surface_material_override/0 = SubResource("ShaderMaterial_xa7tn")
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="dirt" unique_id=565971102]
@@ -393,12 +392,12 @@ libraries/ = SubResource("AnimationLibrary_11eka")
 [node name="crystals" parent="." unique_id=1567000235 instance=ExtResource("8_m5dqw")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 
-[node name="crystals" parent="crystals" index="0" unique_id=1355333710]
+[node name="crystals" parent="crystals" index="0" unique_id=1277257441]
 material_overlay = ExtResource("8_qa7os")
 
 [node name="sludge_new" parent="." unique_id=1241830028 instance=ExtResource("9_8dfcq")]
 
-[node name="sludge_baked" parent="sludge_new" index="0" unique_id=938426105]
+[node name="sludge_baked" parent="sludge_new" index="0" unique_id=140985686]
 transform = Transform3D(0.9750001, 0, 0, 0, 0.9750001, 0, 0, 0, 0.9750001, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_qkmej")
 
