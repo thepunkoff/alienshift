@@ -75,6 +75,8 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	return
+	
 	if event is InputEventKey and event.keycode == KEY_SPACE and event.pressed == true:
 		_end_game()
 	if event is InputEventKey and event.keycode == KEY_0 and event.pressed == true:
