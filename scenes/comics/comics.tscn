@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dw448l7skvwlq" path="res://assets/comics/frame2.png" id="3_4oeph"]
 [ext_resource type="Texture2D" uid="uid://52pg764hjo1c" path="res://assets/comics/frame3.png" id="4_lp8cy"]
 [ext_resource type="Texture2D" uid="uid://bcshhy0evvcy4" path="res://assets/comics/frame4.png" id="5_glfpi"]
+[ext_resource type="Texture2D" uid="uid://carpmtlcexbn3" path="res://assets/comics/play.png" id="6_iktpb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iktpb"]
 bg_color = Color(1, 1, 1, 1)
@@ -490,9 +491,18 @@ offset_right = 258.0
 offset_bottom = 95.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 67
-text = "Easy! ▶︎"
+text = "Easy!    "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Play" type="TextureRect" parent="FinalText/Label" unique_id=1366390286]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 20.0
+offset_right = 686.0
+offset_bottom = 532.0
+scale = Vector2(0.11997369, 0.11997369)
+texture = ExtResource("6_iktpb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=524447122]
 root_node = NodePath("../Frame1")
