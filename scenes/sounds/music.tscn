@@ -8,4 +8,5 @@ script = ExtResource("1_w36ox")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=727074594]
 stream = ExtResource("2_w36ox")
+volume_db = -4.0
 parameters/looping = true
