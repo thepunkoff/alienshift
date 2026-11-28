@@ -76,7 +76,7 @@ func install_domes() -> void:
 
 	# образуется атмосфера
 	var tween: Tween = create_tween()
-	tween.tween_property(_atmosphere, "scale", 5.8 * Vector3.ONE, Helpers.duration(1))
+	tween.tween_property(_atmosphere, "scale", 6.2 * Vector3.ONE, Helpers.duration(1))
 	await tween.finished
 
 	# улетают

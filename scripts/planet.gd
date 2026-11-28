@@ -79,11 +79,22 @@ func _ready() -> void:
 	_sludge_base.scale = Vector3.ONE * 0.85
 
 	_grass.set_blend_shape_value(_grass.find_blend_shape_by_name("growing"), 1)
+	_grass.scale = Vector3.ONE * 0.95
 	_planet.set_blend_shape_value(_planet.find_blend_shape_by_name("relief"), 0)
 	_planet.set_blend_shape_value(_planet.find_blend_shape_by_name("pvo_lid"), 0)
 	_house_parent.scale = Vector3.ONE * 0.7
 	_tree_parent.scale = Vector3.ONE * 0.6
 	_water.scale = Vector3.ONE * 0.9
+
+
+func add_all():
+	change_landscape()
+	grow_grass()
+	add_full_water()
+	grow_trees()
+	add_fish()
+	add_soil()
+	await grow_houses()
 
 
 func change_landscape():

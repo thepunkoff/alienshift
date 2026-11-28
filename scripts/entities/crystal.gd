@@ -74,7 +74,10 @@ func bury_fossils():
 	tween = create_tween()
 	tween.tween_property(_ship_path_follow_2, "progress", _path.curve.get_closest_offset(_path.curve.get_point_position(1)), Helpers.duration(2))
 	await tween.finished
+
 	planet.become_blue()
+	_particles.emitting = true
+
 	await _ship.drop_crystals()
 
 	tween = create_tween()
@@ -99,9 +102,10 @@ func bury_fossils():
 	tween.tween_property(_ship_path_follow, "progress_ratio", 0, Helpers.duration(2))
 	await tween.finished
 
+	_particles.emitting = false
+
 func mineralization_occurred():
 	print("Почва пригодна для жизни - нет текста в shuffle")
-	_particles.emitting = true
 
 
 func bloom():
