@@ -30,9 +30,20 @@ collision_mode = 1
 collision_friction = 0.0
 collision_bounce = 0.0
 
+[sub_resource type="Gradient" id="Gradient_57grl"]
+offsets = PackedFloat32Array(0.61372626, 0.8029404)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jvehi"]
+gradient = SubResource("Gradient_57grl")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57grl"]
 transparency = 1
 vertex_color_use_as_albedo = true
+albedo_texture = SubResource("GradientTexture2D_jvehi")
+albedo_texture_force_srgb = true
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -83,7 +94,7 @@ draw_pass_1 = SubResource("QuadMesh_t1wc6")
 
 [node name="ship_enrichment2" parent="." unique_id=643671757 instance=ExtResource("3_57grl")]
 
-[node name="ship_enrichment" parent="ship_enrichment2" index="0" unique_id=763888669]
+[node name="ship_enrichment" parent="ship_enrichment2" index="0" unique_id=1429777210]
 material_overlay = ExtResource("3_jvehi")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1191672952]

@@ -33,6 +33,10 @@ window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://translations/strings.en.translation", "res://translations/strings.ru.translation")
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

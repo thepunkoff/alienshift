@@ -36,6 +36,7 @@ const WOBBLE_KEYS: Array[Basis] = [
 
 
 var entities_with_ships_near: Array[Entity] = []
+var _has_soil: bool
 
 var _rest_basis: Basis = Basis.IDENTITY
 
@@ -85,6 +86,16 @@ func _ready() -> void:
 	_house_parent.scale = Vector3.ONE * 0.7
 	_tree_parent.scale = Vector3.ONE * 0.6
 	_water.scale = Vector3.ONE * 0.9
+
+
+func add_all():
+	change_landscape()
+	grow_grass()
+	add_full_water()
+	grow_trees()
+	add_fish()
+	add_soil()
+	await grow_houses()
 
 
 func change_landscape():
@@ -148,14 +159,19 @@ func reset_color():
 	var planet_mat := _planet.get_active_material(0).duplicate() as ShaderMaterial
 	_planet.set_surface_override_material(0, planet_mat)
 
-	var tween: Tween = create_tween().set_trans(Tween.TRANS_SINE)
-	tween.tween_property(planet_mat, "shader_parameter/a_c0", Color.html("535b63"), Helpers.duration(1))
-	tween.parallel()
-	tween.tween_property(planet_mat, "shader_parameter/a_c1", Color.html("401c52"), Helpers.duration(1))
-	tween.parallel()
-	tween.tween_property(planet_mat, "shader_parameter/a_c2", Color.html("8c8c8c"), Helpers.duration(1))
-	tween.parallel()
-	tween.tween_property(planet_mat, "shader_parameter/a_c3", Color.html("c0a1cf"), Helpers.duration(1))
+	var tween: Tween = create_tween().set_parallel().set_trans(Tween.TRANS_SINE)
+
+	if not _has_soil:
+		tween.tween_property(planet_mat, "shader_parameter/a_c0", Color.html("535b63"), Helpers.duration(1))
+		tween.tween_property(planet_mat, "shader_parameter/a_c1", Color.html("401c52"), Helpers.duration(1))
+		tween.tween_property(planet_mat, "shader_parameter/a_c2", Color.html("8c8c8c"), Helpers.duration(1))
+		tween.tween_property(planet_mat, "shader_parameter/a_c3", Color.html("c0a1cf"), Helpers.duration(1))
+	else:
+		tween.tween_property(planet_mat, "shader_parameter/a_c0", Color.html("342007"), Helpers.duration(1))
+		tween.tween_property(planet_mat, "shader_parameter/a_c1", Color.html("271201"), Helpers.duration(1))
+		tween.tween_property(planet_mat, "shader_parameter/a_c2", Color.html("493511"), Helpers.duration(1))
+		tween.tween_property(planet_mat, "shader_parameter/a_c3", Color.html("6c4615"), Helpers.duration(1))
+
 	await tween.finished
 
 
@@ -175,6 +191,8 @@ func add_soil():
 	tween.tween_property(water_mat, "shader_parameter/line_color", Color.html("0d1c73"), Helpers.duration(2))
 	tween.tween_property(water_mat, "shader_parameter/fresnel_color", Color.html("b2c5ff"), Helpers.duration(2))
 	await tween.finished
+
+	_has_soil = true
 
 
 func grow_crystals():

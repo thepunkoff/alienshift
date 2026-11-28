@@ -19,6 +19,8 @@ const STATE_SHIPS_APPROACHING := "ships_approaching"
 @onready var _explosion: Node3D = $Path3D2/PathFollow3D/Meteor/Explosion
 @onready var _explosion_base: GPUParticles3D = $Path3D2/PathFollow3D/Meteor/Explosion/Base
 @onready var _explosion_white: GPUParticles3D = $Path3D2/PathFollow3D/Meteor/Explosion/White
+@onready var _meteor_warning: Label = $MeteorWarning
+@onready var _meteor_ok: Label = $MeteorOk
 
 var _pvo_decided := false
 var _pvo_installed := false
@@ -38,6 +40,9 @@ func _ready() -> void:
 	_bullet3_path_follow.progress_ratio = 0
 
 	_pvo.hide()
+
+	_meteor_warning.hide()
+	_meteor_ok.hide()
 
 
 func run_level_up(new_lvl: int, new_state: State):
@@ -112,6 +117,19 @@ func pvo_flew_away() -> void:
 func throw_meteor() -> void:
 	print("Пролетает метеорит, ПВО его сбивает")
 
+	var tween: Tween = create_tween()
+	tween.tween_callback(_meteor_warning.show)
+	tween.tween_interval(0.5)
+	tween.tween_callback(_meteor_warning.hide)
+	tween.tween_interval(0.5)
+	tween.tween_callback(_meteor_warning.show)
+	tween.tween_interval(0.5)
+	tween.tween_callback(_meteor_warning.hide)
+	tween.tween_interval(0.5)
+	tween.tween_callback(_meteor_warning.show)
+	tween.tween_interval(0.5)
+	tween.tween_callback(_meteor_warning.hide)
+
 	const meteor_time: int = 4
 	const bullet_time_base: int = 1
 	var i: int = 0
@@ -126,7 +144,7 @@ func throw_meteor() -> void:
 		tween_bullet.tween_callback(bullet.hide)
 		i += 1
 
-	var tween: Tween = create_tween()
+	tween = create_tween()
 	tween.tween_property(_meteor_path_follow, "progress_ratio", 1, Helpers.duration(meteor_time))
 	await get_tree().create_timer(1).timeout
 	planet.open_mountain()
@@ -135,6 +153,12 @@ func throw_meteor() -> void:
 	_explode()
 
 	await get_tree().create_timer(1).timeout
+
+	tween = create_tween()
+	tween.tween_callback(_meteor_ok.show)
+	tween.tween_interval(2)
+	tween.tween_callback(_meteor_ok.hide)
+
 	await planet.close_mountain()
 
 
