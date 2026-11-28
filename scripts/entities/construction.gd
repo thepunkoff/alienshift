@@ -105,7 +105,8 @@ func added_people() -> void:
 	tween.parallel()
 	tween.tween_property(_camera, "size", 4.1, 3)
 	await _chel_house.release_chel()
-	await tween.finished
+	if tween.is_running():
+		await tween.finished
 
 	tween= create_tween()
 	tween.tween_property(_camera, "position", _initial_camera_position.position, 4)

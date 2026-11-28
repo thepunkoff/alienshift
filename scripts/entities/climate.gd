@@ -27,6 +27,9 @@ func _ready() -> void:
 
 	_atmosphere.scale = Vector3.ONE
 
+	install_domes()
+	$"../Planet".grow_trees()
+
 
 func run_level_up(new_lvl: int, new_state: State):
 	if new_state == null:
@@ -76,7 +79,7 @@ func install_domes() -> void:
 
 	# образуется атмосфера
 	var tween: Tween = create_tween()
-	tween.tween_property(_atmosphere, "scale", 5.8 * Vector3.ONE, Helpers.duration(1))
+	tween.tween_property(_atmosphere, "scale", 6.2 * Vector3.ONE, Helpers.duration(1))
 	await tween.finished
 
 	# улетают
