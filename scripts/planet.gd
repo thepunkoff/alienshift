@@ -87,6 +87,16 @@ func _ready() -> void:
 	_water.scale = Vector3.ONE * 0.9
 
 
+func add_all():
+	change_landscape()
+	grow_grass()
+	add_full_water()
+	grow_trees()
+	add_fish()
+	add_soil()
+	await grow_houses()
+
+
 func change_landscape():
 	var tween: Tween = create_tween()
 	tween.tween_property(_planet, "blend_shapes/relief", 1, Helpers.duration(3))

@@ -105,7 +105,7 @@ shader_parameter/wave_frequency = 0.10000000149012
 shader_parameter/wave_speed = 0.0
 shader_parameter/enable_shore_foam = true
 shader_parameter/enable_crest_foam = false
-shader_parameter/foam_color = Color(0.73333335, 0.40392157, 0.73333335, 1)
+shader_parameter/foam_color = Color(0.07450107, 0.69265604, 0.56806666, 1)
 shader_parameter/shore_foam_distance = 0.022000001045
 shader_parameter/shore_foam_noise = 0.010000000475
 shader_parameter/crest_foam_threshold = 1.306000062035
@@ -348,10 +348,10 @@ _planet_radius = 2.1
 [node name="planet" parent="." unique_id=2011569318 instance=ExtResource("5_xa7tn")]
 
 [node name="planet" parent="planet" index="0" unique_id=1568689477]
+blend_shapes/relief = 1.0
 surface_material_override/0 = SubResource("ShaderMaterial_2bpk3")
 
 [node name="water" parent="." unique_id=648124364 instance=ExtResource("3_ggt7d")]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 
 [node name="water" parent="water" index="0" unique_id=1658752482]
 surface_material_override/0 = SubResource("ShaderMaterial_c8igh")

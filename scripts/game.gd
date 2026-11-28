@@ -10,6 +10,7 @@ class_name Game
 @onready var game_over_pictures: Control = $CanvasLayer/GameOverPictures
 
 @onready var _entities: Array[Node] = get_tree().get_nodes_in_group("entity")
+@onready var _entities_sorted_by_synergy_priority: Array[Node] = get_tree().get_nodes_in_group("entity")
 
 @onready var _planet_core_button: EntityButton = $CanvasLayer/HBoxContainer/Core
 @onready var _planet_core: Core = $Core
@@ -60,6 +61,10 @@ var _end_game_started := false
 var _current_button_order: int = 1
 
 func _ready() -> void:
+
+	_entities_sorted_by_synergy_priority = _entities.duplicate()
+	_entities_sorted_by_synergy_priority.sort_custom(func(a: Entity, b: Entity): return a.synergy_priority > b.synergy_priority)
+
 	for button in _button_entities:
 		button.pressed.connect(_activate.bind(button))
 	_summon.planet_eaten.connect(_end_game)
@@ -106,15 +111,15 @@ func _activate(button: EntityButton) -> void:
 
 
 func _evolve(except: Entity) -> void:
-	for entity: Entity in _entities:
-		if entity != except and entity.level > 0:
-			await entity.level_up()
+	for entity: Entity in _entities_sorted_by_synergy_priority:
+		if entity.level > 0:
+			await entity.run_synergies()
 			if _end_game_started:
 				return
 
 	for entity: Entity in _entities:
-		if entity.level > 0:
-			await entity.run_synergies()
+		if entity != except and entity.level > 0:
+			await entity.level_up()
 			if _end_game_started:
 				return
 

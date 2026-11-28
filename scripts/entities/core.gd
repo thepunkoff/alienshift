@@ -40,8 +40,8 @@ func _ready():
 
 	register_states({
 		1: State.create(STATE_TAKEN_OUT), # первое состояние - всегда уровень 1!
-		3: State.create(STATE_CRACKED),
-		6: State.create(STATE_PUT_INSIDE)
+		2: State.create(STATE_CRACKED),
+		5: State.create(STATE_PUT_INSIDE)
 	})
 
 	_ship_path_follow.progress_ratio = 0

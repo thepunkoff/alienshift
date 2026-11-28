@@ -9,7 +9,7 @@ const STATE_SOW_SEEDS := "sow_seeds"
 @onready var _ship: ShipLife = $Path3D/PathFollow3D/ShipLife
 @onready var _ship_path_follow: PathFollow3D = $Path3D/PathFollow3D
 
-var _added_water_life: bool = false
+var added_water_life: bool = false
 
 func _ready() -> void:
 	register_states({
@@ -28,13 +28,13 @@ func run_level_up(new_lvl: int, new_state: State):
 			await sow_seeds()
 
 func run_synergies() -> void:
-	if _added_water_life:
+	if added_water_life:
 		return
 
 	if state.name == STATE_SOW_SEEDS and summon.state.name == Summon.STATE_WATER_SPREAD_ACCROSS_PLANET:
 		await add_life()
 
-	_added_water_life = true
+	added_water_life = true
 
 
 func run_after_evolve() -> void:
@@ -66,5 +66,6 @@ func sow_seeds() -> void:
 
 func add_life() -> void:
 	print("Появляются водные существа")
-	await planet.add_fish()
+	await planet.add_soil()
 	await planet.grow_trees()
+	await planet.add_fish()
