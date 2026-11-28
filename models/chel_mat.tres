@@ -5,4 +5,7 @@
 [resource]
 resource_name = "chel_mat"
 cull_mode = 2
+albedo_color = Color(0, 0, 0, 1)
 albedo_texture = ExtResource("1_88w6g")
+emission_enabled = true
+emission_texture = ExtResource("1_88w6g")
