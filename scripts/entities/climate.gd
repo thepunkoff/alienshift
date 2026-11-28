@@ -27,9 +27,6 @@ func _ready() -> void:
 
 	_atmosphere.scale = Vector3.ONE
 
-	install_domes()
-	$"../Planet".grow_trees()
-
 
 func run_level_up(new_lvl: int, new_state: State):
 	if new_state == null:
