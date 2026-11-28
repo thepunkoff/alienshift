@@ -1161,6 +1161,44 @@ visible = false
 [node name="Marker3D" type="Marker3D" parent="Pvo" unique_id=381717714]
 transform = Transform3D(-0.26043704, 0.96549064, 0, -0.96549076, -0.260437, 0, 0, 0, 0.9999999, -0.1476708, 1.9473002, 0.7057345)
 
+[node name="MeteorWarning" type="Label" parent="Pvo" unique_id=2106545386]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.26384282, 0.2617154, 1)
+theme_override_colors/font_outline_color = Color(1, 0.2627451, 0.2627451, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("19_264po")
+theme_override_font_sizes/font_size = 32
+text = "METEOR INBOUND"
+
+[node name="MeteorOk" type="Label" parent="Pvo" unique_id=1534929404]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = -16.5
+offset_right = 136.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.45325392, 1, 0.39474708, 1)
+theme_override_colors/font_outline_color = Color(0.45490196, 1, 0.39607844, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("19_264po")
+theme_override_font_sizes/font_size = 32
+text = "THREAT ELIMINATED"
+
 [node name="Relief" type="Node" parent="." unique_id=58858047 node_paths=PackedStringArray("planet") groups=["entity"]]
 script = ExtResource("4_iywne")
 planet = NodePath("../Planet")
@@ -1454,3 +1492,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_1kice")
 text = "Try again?"
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=997070652]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -437.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 111.0
+grow_horizontal = 0
+text = "TEST"
